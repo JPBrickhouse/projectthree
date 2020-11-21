@@ -5,12 +5,20 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
+// Importing the Covid19 component
+import Covid19 from "./components/Covid19";
+
 function App() {
   return (
     <Router>
       <div>
-        <Nav />
-        <Switch>
+
+        <Covid19 />
+
+
+
+        {/* <Nav /> */}
+        {/* <Switch>
           <Route exact path={["/", "/books"]}>
             <Books />
           </Route>
@@ -20,7 +28,8 @@ function App() {
           <Route>
             <NoMatch />
           </Route>
-        </Switch>
+        </Switch> */}
+      
       </div>
     </Router>
   );
