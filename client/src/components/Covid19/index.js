@@ -8,7 +8,7 @@ import CovidMap from "../CovidMap"
 import LoadUSstates from "../../tasks/LoadUSstates"
 
 // This is the Covid19 function
-const Covid19 = () => {
+const Covid19 = ({ mapClick }) => {
     // The useState React Hook
     const [usstates, setUsstates] = useState([])
 
@@ -20,7 +20,7 @@ const Covid19 = () => {
     //   the LoadUSstates class file, it is being passed here, too.
     // - This updates the state of ussates to correspond to the data from us-state.json
     const load = () => {
-        const loadUSstatesTask = new LoadUSstates ()
+        const loadUSstatesTask = new LoadUSstates()
         loadUSstatesTask.load(setUsstates)
     }
 
@@ -32,7 +32,8 @@ const Covid19 = () => {
     return (
         <div>
             {/* Passing down usstates as the value for the prop stateGeom */}
-            <CovidMap stateGeom={usstates}/>
+            {/* Also passing down the mapClick prop (aka, the gettingTheMapClick function) */}
+            <CovidMap stateGeom={usstates} mapClickTwo={mapClick} />
         </div>
     );
 }
