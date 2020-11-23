@@ -8,7 +8,7 @@ import { MapContainer, GeoJSON, TileLayer } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 
 // This is the CovidMap function
-const CovidMap = ({ stateGeom }) => {
+const CovidMap = ({ stateGeom, mapClickTwo }) => {
     // - It assigns that name and "binds" it to the map layer
     // - This is done in tandom with the onEachFeature property of <GeoJSON/> below
     const onEachUSstate = (feature, layer) => {
@@ -28,14 +28,14 @@ const CovidMap = ({ stateGeom }) => {
     const clickToFeature = (event) => {
         // The event target (aka, what was targeted by the click event)
         // is the particular US State, so grab the feature.properties.name associated
-        
-        // FOR NOW...
-        console.log(event.target);
-        console.log("I clicked on " + event.target.feature.properties.name);
-
-        // EVENTUALLY...
-        // Pass this information back up to the parent
-
+        // Also grab the associated region property
+        const unitedStateName = event.target.feature.properties.name
+        const region = event.target.feature.properties.region
+        // mapClickTwo is a prop passed down
+        // Following it back up leads to the gettingTheMapClickFunction
+        // This will ultimately set the state object, based on the United State clicked
+        // The information will consist of the United State and the associated region
+        mapClickTwo(unitedStateName,region)
     }
 
     // This is the return of the function, which displays the map
