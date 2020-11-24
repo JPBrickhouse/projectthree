@@ -4,7 +4,7 @@ import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-
+import ApiCall from "./components/ApiCall/ApiCall"
 // Importing the Covid19 component
 import Covid19 from "./components/Covid19";
 
@@ -39,7 +39,7 @@ function App() {
           {stateOfTheStates.regionSelected}
         </div>
 
-
+      <ApiCall />
 
         {/* <Nav /> */}
         {/* <Switch>
