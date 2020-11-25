@@ -1,3 +1,4 @@
+// Importing React and Hooks
 import React, { useEffect, useState } from "react"
 
 // -----------------------------------------------------------
@@ -15,6 +16,7 @@ import React, { useEffect, useState } from "react"
 // URL: "https://api.covidtracking.com/v1/states/" + state + "/current.json"
 // -----------------------------------------------------------
 
+// This is the ApiCall function and we are passing it props
 function ApiCall(props) {
 
     // State object with hooks
@@ -22,14 +24,15 @@ function ApiCall(props) {
         covidData: {},
     })
 
+    // useEffect that conditionally runs when props.usstateAbbrev changes
     useEffect(() => {
+        // Making the api call to fetch the Covid Data (cases, etc.)
         fetch("https://api.covidtracking.com/v1/states/" + props.usstateAbbrev + "/current.json")
             .then(response => response.json())
             .then(data => {
                 setStateAndCovidData({
                     covidData: data,
                 })
-                console.log(data)
             })
     }, [props.usstateAbbrev])
 
@@ -45,7 +48,6 @@ function ApiCall(props) {
             {/* -------------------------------------------- */}
         </div>
     )
-
 }
 
 export default ApiCall
