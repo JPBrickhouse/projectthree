@@ -7,18 +7,26 @@ import Nav from "./components/Nav";
 
 // Importing the MAP (Covid19) component
 import Covid19 from "./components/Covid19";
-// Importing the ApiCall component
+// Importing the ApiCall component (which gets the Covid19 data [cases, etc.])
 import ApiCall from "./components/ApiCall/ApiCall"
+// Importing the SearchBar component
+import SearchBar from "./components/SearchBar/SearchBar"
+// Importing the SearchButton component
+import SearchButton from "./components/SearchButton/SearchButton"
 
+// =================================================================
 
 function App() {
-  // State object with Hooks
+  // ---------------------------------------------------------------
+  // State elements and objects with Hooks
   const [stateOfTheStates, setStateOfTheStates] = useState({
     unitedStateSelected: "",
     regionSelected: "",
-    abbreviation: ""
+    abbreviation: "",
   })
 
+  const [newsSearchEntry, setNewsSearchEntry] = useState()
+  // ---------------------------------------------------------------
   // A function – to be passed down – that will run when the map is clicked
   // It will update the state object and list which United State was most recently clicked
   const gettingTheMapClick = (unitedState, region, abbrev) => {
@@ -28,8 +36,20 @@ function App() {
       abbreviation: abbrev,
     })
   }
-
-
+  // ---------------------------------------------------------------
+  // A function - to be passed down - that will run any time the content in the
+  // SearchBar component registers an onChange event. As such, it will update
+  // the state of newsSearchEntry
+  const handleInputChange = (event) => {
+    setNewsSearchEntry(event.target.value)
+  }
+  // ---------------------------------------------------------------
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(newsSearchEntry)
+  }
+  // ---------------------------------------------------------------
   return (
     <Router>
       <div>
@@ -37,16 +57,29 @@ function App() {
         {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
         <Covid19 mapClick={gettingTheMapClick} />
 
-        {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data
+        {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
         Passing down the unitedStateSelected as a prop */}
         <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
 
-        {/* Temporary div, just to show the United State most recently clicked */}
+        {/* The SearchBar component, which is a simple input form. Passing down the
+        handleInputChange function as a prop with onChange, so any change
+        will run the handleInputChange function */}
+        <SearchBar onChange={handleInputChange} />
+
+        {/* The SearchButton component, which is a simple button. Passing down the
+        handleSubmit function as a prop with onClick, so any button click will
+        run the handleSubmit function */}
+        <SearchButton onClick={handleSubmit} />
+
+
+
+        {/* Temporary div, just to show that content is being acquired from clicks / submits */}
         <div>
-          {stateOfTheStates.unitedStateSelected}
-          {stateOfTheStates.regionSelected}
-          {stateOfTheStates.abbreviation}
+          <p>{stateOfTheStates.unitedStateSelected}</p>
+          <p>{stateOfTheStates.regionSelected}</p>
+          <p>{stateOfTheStates.abbreviation}</p>
         </div>
+
 
         {/* <Nav /> */}
         {/* <Switch>

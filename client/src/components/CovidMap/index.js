@@ -8,6 +8,7 @@ import { MapContainer, GeoJSON, TileLayer } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 
 // This is the CovidMap function
+// Destructing the props passed down to get stateGeom and mapClickTwo
 const CovidMap = ({ stateGeom, mapClickTwo }) => {
     // - It assigns that name and "binds" it to the map layer
     // - This is done in tandom with the onEachFeature property of <GeoJSON/> below
