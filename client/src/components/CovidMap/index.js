@@ -31,11 +31,12 @@ const CovidMap = ({ stateGeom, mapClickTwo }) => {
         // Also grab the associated region property
         const unitedStateName = event.target.feature.properties.name
         const region = event.target.feature.properties.region
+        const abbrev = event.target.feature.properties.abbrev
         // mapClickTwo is a prop passed down
         // Following it back up leads to the gettingTheMapClickFunction
         // This will ultimately set the state object, based on the United State clicked
         // The information will consist of the United State and the associated region
-        mapClickTwo(unitedStateName,region)
+        mapClickTwo(unitedStateName,region,abbrev)
     }
 
     // This is the return of the function, which displays the map
