@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Books from "./pages/Books";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
+
+// Importing Navbar component
 import Nav from "./components/Nav";
 
 // Importing the MAP (Covid19) component
@@ -44,7 +46,7 @@ function App() {
     setNewsSearchEntry(event.target.value)
   }
   // ---------------------------------------------------------------
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(newsSearchEntry)
@@ -53,7 +55,7 @@ function App() {
   return (
     <Router>
       <div>
-
+        <Nav />
         {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
         <Covid19 mapClick={gettingTheMapClick} />
 
