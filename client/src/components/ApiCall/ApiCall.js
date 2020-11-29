@@ -26,14 +26,18 @@ function ApiCall(props) {
 
     // useEffect that conditionally runs when props.usstateAbbrev changes
     useEffect(() => {
-        // Making the api call to fetch the Covid Data (cases, etc.)
-        fetch("https://api.covidtracking.com/v1/states/" + props.usstateAbbrev + "/current.json")
-            .then(response => response.json())
-            .then(data => {
-                setStateAndCovidData({
-                    covidData: data,
+        // Also adding a conditional if statement to confirm that props.usstateAbbrev isn't blank/empty
+        // That way there aren't any unexplained results and/or errors when the API call is made
+        if (props.usstateAbbrev !== "") {
+            // Making the api call to fetch the Covid Data (cases, etc.)
+            fetch("https://api.covidtracking.com/v1/states/" + props.usstateAbbrev + "/current.json")
+                .then(response => response.json())
+                .then(data => {
+                    setStateAndCovidData({
+                        covidData: data,
+                    })
                 })
-            })
+        }
     }, [props.usstateAbbrev])
 
     return (
