@@ -15,6 +15,9 @@ import ApiCall from "./components/ApiCall/ApiCall"
 import SearchBar from "./components/SearchBar/SearchBar"
 // Importing the SearchButton component
 import SearchButton from "./components/SearchButton/SearchButton"
+// Importing the QuickSearchButton component
+import QuickSearchButton from "./components/QuickSearchButton/QuickSearchButton"
+
 
 // =================================================================
 
@@ -46,6 +49,14 @@ function App() {
     setNewsSearchEntry(event.target.value)
   }
   // ---------------------------------------------------------------
+  // A function - to be passed down - that will run any time a quick search button
+  // is clicked and will update the state of newsSearchEntry to be whatever the
+  // value of the quick search button is set to. 
+  const handleQuickSearch = (event) => {
+    setNewsSearchEntry(event.target.value)
+  }
+  // ---------------------------------------------------------------
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -73,6 +84,10 @@ function App() {
         run the handleSubmit function */}
         <SearchButton onClick={handleSubmit} />
 
+        {/* Quick search buttons. Any click will run the handle quick search function, which
+        in turn will set the news search entry */}
+        <QuickSearchButton onClick={handleQuickSearch} value="Covid" />
+        <QuickSearchButton onClick={handleQuickSearch} value="News" />
 
 
         {/* Temporary div, just to show that content is being acquired from clicks / submits */}
