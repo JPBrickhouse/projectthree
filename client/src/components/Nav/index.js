@@ -9,19 +9,21 @@ import Typography from "@material-ui/core/Typography"
 
 function Nav() {
   return (
-    <AppBar>
-      <Toolbar>
-        {/* <IconButton>
-          <MenuIcon />
-        </IconButton> */}
-        <Typography variant="h6">
-          No Alternatives - Just Facts
-      </Typography>
-        <Button>
-          Login
-      </Button>
-      </Toolbar>
-    </AppBar>
+    <header>
+      <AppBar>
+        <Toolbar>
+          {/* <IconButton>
+              <MenuIcon />
+            </IconButton> */}
+          <Typography variant="h6">
+            No Alternatives - Just Facts
+          </Typography>
+          <Button>
+            Login
+        </Button>
+        </Toolbar>
+      </AppBar>
+    </header>
   );
 }
 
