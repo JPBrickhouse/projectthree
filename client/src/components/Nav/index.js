@@ -12,14 +12,14 @@ function Nav() {
     <AppBar>
       <ToolBar>
         {/* <IconButton>
-          <MenuIcon />
-        </IconButton> */}
+            <MenuIcon />
+          </IconButton> */}
         <Typography variant="h6">
           No Alternatives - Just Facts
-      </Typography>
+        </Typography>
         <Button>
           Login
-      </Button>
+        </Button>
       </ToolBar>
     </AppBar>
   );
