@@ -11,9 +11,9 @@ function Nav() {
   return (
     <AppBar>
       <ToolBar>
-        <IconButton>
+        {/* <IconButton>
           <MenuIcon />
-        </IconButton>
+        </IconButton> */}
         <Typography variant="h6">
           No Alternatives - Just Facts
       </Typography>
