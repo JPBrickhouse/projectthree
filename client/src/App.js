@@ -11,6 +11,8 @@ import Nav from "./components/Nav";
 import Covid19 from "./components/Covid19";
 // Importing the ApiCall component (which gets the Covid19 data [cases, etc.])
 import ApiCall from "./components/ApiCall/ApiCall"
+// Importing the SenatorApiCall component (which gets the senator data [name, party, twitter account])
+import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
 // Importing the SearchBar component
 import SearchBar from "./components/SearchBar/SearchBar"
 // Importing the SearchButton component
@@ -74,6 +76,10 @@ function App() {
         Passing down the unitedStateSelected as a prop */}
         <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
 
+        {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+        Passing down the unitedStateSelected as a prop */}
+        <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+
         {/* The SearchBar component, which is a simple input form. Passing down the
         handleInputChange function as a prop with onChange, so any change
         will run the handleInputChange function */}
@@ -88,7 +94,6 @@ function App() {
         in turn will set the news search entry */}
         <QuickSearchButton onClick={handleQuickSearch} value="Covid" />
         <QuickSearchButton onClick={handleQuickSearch} value="News" />
-
 
         {/* Temporary div, just to show that content is being acquired from clicks / submits */}
         <div>
