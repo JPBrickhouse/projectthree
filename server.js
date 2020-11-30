@@ -1,7 +1,10 @@
 const express = require("express");
 
 const mongoose = require("mongoose");
+// ------------------------------------------------------------------------------------------
 const request = require('request');
+// routes was deleted and replaced with request
+// ------------------------------------------------------------------------------------------
 const app = express();
 
 require('dotenv').config();
@@ -15,7 +18,9 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
+// ------------------------------------------------------------------------------------------
+// routes was deleted
+// ------------------------------------------------------------------------------------------
 // Connect to the Mongo DB
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/dbProjectThree",
@@ -32,6 +37,7 @@ app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
+// ------------------------------------------------------------------------------------------
 // Endpoint that gets hit by the SenatorApiCall. This is need to avoid issues
 // with CORS. This route makes an ajax call to the pro publica api and 
 // retrieves senator data for the selected state
@@ -46,3 +52,4 @@ app.get('/senators/:state', function (req, res) {
     res.send(body);
   })
 });
+// ------------------------------------------------------------------------------------------
