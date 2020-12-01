@@ -6,7 +6,6 @@ import NoMatch from "./pages/NoMatch";
 
 // Importing Navbar component
 import Nav from "./components/Nav";
-
 // Importing the MAP (Covid19) component
 import Covid19 from "./components/Covid19";
 // Importing the ApiCall component (which gets the Covid19 data [cases, etc.])
@@ -30,17 +29,19 @@ function App() {
     unitedStateSelected: "",
     regionSelected: "",
     abbreviation: "",
+    population: 0
   })
 
   const [newsSearchEntry, setNewsSearchEntry] = useState()
   // ---------------------------------------------------------------
   // A function – to be passed down – that will run when the map is clicked
   // It will update the state object and list which United State was most recently clicked
-  const gettingTheMapClick = (unitedState, region, abbrev) => {
+  const gettingTheMapClick = (unitedState, region, abbrev, pop) => {
     setStateOfTheStates({
       unitedStateSelected: unitedState,
       regionSelected: region,
       abbreviation: abbrev,
+      population: pop,
     })
   }
   // ---------------------------------------------------------------
@@ -69,6 +70,10 @@ function App() {
     <Router>
       <div>
         <Nav />
+
+        {/* ------------------------------------------------------------ */}
+        {/* WE'LL ORGANIZE THIS MORE IN THE COMING DAYS */}
+
         {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
         <Covid19 mapClick={gettingTheMapClick} />
 
@@ -100,10 +105,11 @@ function App() {
           <p>{stateOfTheStates.unitedStateSelected}</p>
           <p>{stateOfTheStates.regionSelected}</p>
           <p>{stateOfTheStates.abbreviation}</p>
+          <p>{stateOfTheStates.population}</p>
         </div>
 
+        {/* ------------------------------------------------------------ */}
 
-        {/* <Nav /> */}
         {/* <Switch>
           <Route exact path={["/", "/books"]}>
             <Books />
