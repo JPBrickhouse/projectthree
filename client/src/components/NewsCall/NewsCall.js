@@ -1,9 +1,4 @@
-
 import React, { useEffect, useState } from "react"
-
-require('dotenv').config();
-const NYTIMES_KEY = process.env.REACT_APP_NYTIMES_KEY;
-
 
 function NewsCall(props) {
     const [error, setError] = useState(null);
@@ -36,31 +31,28 @@ function NewsCall(props) {
     }, [props.unitedState])
 
 
+    // A series of if/else statements to determine whether there is relevant news to display
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else if (data.response) {
+                
+        // CONSOLE LOGGING FOR NOW
         console.log(data)
-        // if (data.response.docs[0] !== []) {
 
-
+        // Returning the news content
+        // Currently only returning the first article as a basic div
+        // Future refinements:
+        // MAP OVER THE data.response
+        // Return a component, where each article is passed as a prop
         return (
             <div>
                 <h2> {data.response.docs[0].headline.main} </h2>
                 <p> {data.response.docs[0].snippet}</p>
                 <p>{data.response.docs[0].web_url}</p>
             </div>
-
-            // <div>
-
-
-
-            // </div>
-
-
         );
-        // }
     } else {
         return (<div>
             Nothing to display yet
