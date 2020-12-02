@@ -1,11 +1,8 @@
+// Importing React and useState Hooks from react
 import React, { useState } from "react";
+
+// Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-
-// import Books from "./pages/Books";
-// import Detail from "./pages/Detail";
-// import NoMatch from "./pages/NoMatch";
-
-
 
 // Importing Navbar component
 import Nav from "./components/Nav";
@@ -16,8 +13,8 @@ import Covid19 from "./components/Covid19";
 // Importing the ApiCall component (which gets the Covid19 data [cases, etc.])
 import ApiCall from "./components/ApiCall/ApiCall"
 
-// Importing the NewsCall component (which gets news articles from NY Times)
-import NewsCall from "./components/NewsCall/NewsCall"
+// Importing the NewsDisplay component (which displays articles from NY Times)
+import NewsDisplay from "./components/NewsDisplay/NewsDisplay"
 
 // Importing the SenatorApiCall component (which gets the senator data [name, party, twitter account])
 import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
@@ -31,7 +28,6 @@ import SearchButton from "./components/SearchButton/SearchButton"
 // Importing the ForeverFactButton component
 import ForeverFactButton from "./components/ForeverFactButton/ForeverFactButton"
 
-
 // =================================================================
 
 function App() {
@@ -44,7 +40,9 @@ function App() {
     population: 0
   })
 
-  const [newsSearchEntry, setNewsSearchEntry] = useState()
+  const [newsSearchEntry, setNewsSearchEntry] = useState("")
+
+  const [newsResultObject, setNewsResultObject] = useState({})
   // ---------------------------------------------------------------
   // A function – to be passed down – that will run when the map is clicked
   // It will update the state object with the United State was most recently clicked
@@ -60,18 +58,51 @@ function App() {
   // A function - to be passed down - that will run any time the content in the
   // SearchBar component registers an onChange event. As such, it will update
   // the state of newsSearchEntry
-  const handleInputChange = (event) => {
+  const handleNewsInputChange = (event) => {
     setNewsSearchEntry(event.target.value)
   }
   // ---------------------------------------------------------------
-  const handleSubmit = (event) => {
+  // A function that runs when the submit button is clicked
+  const handleNewsSubmit = (event) => {
     event.preventDefault();
-    console.log(newsSearchEntry)
+
+    // Checking to make sure that both stateOfTheStates.unitedStateSelected and newsSearchEntry aren't blank
+    // If they aren't blank, proceed with the fetch API call to the /news/... route
+    // (It's going to the NYTimes and getting articles)
+    if (stateOfTheStates.unitedStateSelected !== "" && newsSearchEntry !== "") {
+
+      fetch("/news/" + stateOfTheStates.unitedStateSelected + "/" + newsSearchEntry)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            // setIsLoaded(true);
+            // setData(result);
+
+            console.log(result)
+            setNewsResultObject(result)
+
+          },
+          // Note: it's important to handle errors here
+          // instead of a catch() block so that we don't swallow
+          // exceptions from actual bugs in components.
+          (error) => {
+            // setIsLoaded(true);
+            // setError(error);
+
+            console.log(error)
+
+          }
+        )
+    }
+
+
+
 
     // ON CLICK
     // POST the following to the database: stateOfTheStates and newsSearchEntry
     // (Storing the user's search history)
   }
+
 
   // ---------------------------------------------------------------
   // A function - to be passed down - that will run any time a quick search button
@@ -87,7 +118,7 @@ function App() {
   return (
     <Router>
       <div>
-
+        {/* -------------------------------------------------------------- */}
         {/* Permanent Nav Bar always exists at the top of the page */}
         <Nav />
 
@@ -96,9 +127,6 @@ function App() {
 
         {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
         <Covid19 mapClick={gettingTheMapClick} />
-
-
-
         {/* -------------------------------------------------------------- */}
         {/* RECTANGLE 2 - Forever Fact Buttons */}
 
@@ -118,8 +146,6 @@ function App() {
         <Link to="/generalforeverfact">
           <ForeverFactButton onClick={foreverFacts} value="general" />
         </Link>
-
-
         {/* -------------------------------------------------------------- */}
         {/* RECTANGLE 3 - Forever Fact DISPLAY */}
 
@@ -143,54 +169,25 @@ function App() {
 
           </Route>
         </Switch>
-
         {/* -------------------------------------------------------------- */}
         {/* RECTANGLE 4 - News Search and Display */}
 
         {/* The SearchBar component, which is a simple input form. Passing down the
         handleInputChange function as a prop with onChange, so any change
         will run the handleInputChange function */}
-        <SearchBar onChange={handleInputChange} />
+        <SearchBar onChange={handleNewsInputChange} />
 
         {/* The SearchButton component, which is a simple button. Passing down the
         handleSubmit function as a prop with onClick, so any button click will
         run the handleSubmit function */}
-        <SearchButton onClick={handleSubmit} />
+        <SearchButton onClick={handleNewsSubmit} />
 
-
-        {/* The NewsCall component, which gets news articles from the New York Times
-        Passing down the unitedState and newsSearchEntry as props, so that the searches
-        will correspond to the United State selected and the user entered search terms */}
-        <NewsCall unitedState={stateOfTheStates.unitedStateSelected} />
+        {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+        <NewsDisplay newsResultProp={newsResultObject} />
 
 
 
-
-
-
-
-        {/* Temporary div, just to show that content is being acquired from clicks / submits */}
-        <div>
-          <p>{stateOfTheStates.unitedStateSelected}</p>
-          <p>{stateOfTheStates.regionSelected}</p>
-          <p>{stateOfTheStates.abbreviation}</p>
-          <p>{stateOfTheStates.population}</p>
-        </div>
-
-        {/* ------------------------------------------------------------ */}
-
-        {/* <Switch>
-          <Route exact path={["/", "/books"]}>
-            <Books />
-          </Route>
-          <Route exact path="/books/:id">
-            <Detail />
-          </Route>
-          <Route>
-            <NoMatch />
-          </Route>
-        </Switch> */}
-
+        {/* -------------------------------------------------------------- */}
       </div>
     </Router>
   );
