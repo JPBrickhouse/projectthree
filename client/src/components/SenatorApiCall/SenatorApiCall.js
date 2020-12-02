@@ -23,17 +23,17 @@ function SenatorApiCall(props) {
                     });
                 })
         }
-    }, [props.usstateAbbrev])
+    }, [props, props.usstateAbbrev])
 
-    // display senator name + party in parentheses. Also add links to the senators' twitter accounts
+    // Display senator name and party in parentheses. Also add links to the senators' twitter accounts
     if (isStateAbbreviationNotEmpty(props)) {
         return (
             <div>
                 <p>
-                    <a href={"https://www.twitter.com/" + stateAndSenatorData.firstSenator.twitter_id} target="_blank"> {stateAndSenatorData.firstSenator.name} ({stateAndSenatorData.firstSenator.party})</a>
+                    <a href={"https://www.twitter.com/" + stateAndSenatorData.firstSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.firstSenator.name} ({stateAndSenatorData.firstSenator.party})</a>
                 </p>
                 <p>
-                    <a href={"https://www.twitter.com/" + stateAndSenatorData.secondSenator.twitter_id} target="_blank"> {stateAndSenatorData.secondSenator.name} ({stateAndSenatorData.secondSenator.party})</a>
+                    <a href={"https://www.twitter.com/" + stateAndSenatorData.secondSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.secondSenator.name} ({stateAndSenatorData.secondSenator.party})</a>
                 </p>
             </div>
         )
