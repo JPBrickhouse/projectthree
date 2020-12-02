@@ -5,14 +5,10 @@ function NewsCall(props) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState({});
     
-
-    // Note: the empty deps array [] means
-    // this useEffect will run once
-    // similar to componentDidMount()
     useEffect(() => {
-        if (props.unitedState !== "") {   
-            console.log(props.unitedState)
-            fetch("/news/" + props.unitedState)
+        if (props.unitedState !== "" && props.newsToSearch !== "") {   
+            
+            fetch("/news/" + props.unitedState + "/" + props.newsToSearch)
                 .then(res => res.json())
                 .then(
                     (result) => {
