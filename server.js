@@ -10,7 +10,7 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 const PROPUBLICA_API_KEY  = process.env.PROPUBLICA_API_KEY;
-
+const REACT_APP_NYTIMES_KEY = process.env.REACT_APP_NYTIMES_KEY
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -47,6 +47,17 @@ app.get('/senators/:state', function (req, res) {
     headers: {
       'X-API-Key': PROPUBLICA_API_KEY
     }
+  };
+  request(options, function (error, response, body) {
+    res.send(body);
+  })
+});
+app.get('/news/:state', function (req, res) {
+
+  console.log(req.params)
+  const options = {
+    url: "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=covid&fq=" + req.params.state + "&api-key=" + REACT_APP_NYTIMES_KEY,
+
   };
   request(options, function (error, response, body) {
     res.send(body);

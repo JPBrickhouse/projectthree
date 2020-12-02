@@ -11,6 +11,8 @@ import Nav from "./components/Nav";
 import Covid19 from "./components/Covid19";
 // Importing the ApiCall component (which gets the Covid19 data [cases, etc.])
 import ApiCall from "./components/ApiCall/ApiCall"
+// Importing the NewsCall component (which gets news articles from NY Times)
+import NewsCall from "./components/NewsCall/NewsCall"
 // Importing the SenatorApiCall component (which gets the senator data [name, party, twitter account])
 import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
 // Importing the SearchBar component
@@ -75,6 +77,9 @@ function App() {
         {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
         Passing down the unitedStateSelected as a prop */}
         <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+
+
+        <NewsCall unitedState={stateOfTheStates.unitedStateSelected} />
 
         {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
         Passing down the unitedStateSelected as a prop */}
