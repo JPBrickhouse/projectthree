@@ -46,9 +46,9 @@ function ApiCall(props) {
             {/* FANCY Covid Data component goes here
             Pass down the CovidData object as a prop */}
 
-            <p>{stateAndCovidData.covidData.positive}</p>
-            <p>{stateAndCovidData.covidData.hospitalizedCurrently}</p>
-            <p>{stateAndCovidData.covidData.death}</p>
+            <p>Positive cases: {stateAndCovidData.covidData.positive}</p>
+            <p>Currently hospitalized: {stateAndCovidData.covidData.hospitalizedCurrently}</p>
+            <p>Current deaths: {stateAndCovidData.covidData.death}</p>
             {/* -------------------------------------------- */}
         </div>
     )
