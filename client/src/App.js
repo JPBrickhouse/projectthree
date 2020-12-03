@@ -28,6 +28,9 @@ import SearchButton from "./components/SearchButton/SearchButton"
 // Importing the ForeverFactButton component
 import ForeverFactButton from "./components/ForeverFactButton/ForeverFactButton"
 
+// Importing the ForeverFactDisplay component
+import ForeverFactDisplay from "./components/ForeverFactDisplay/ForeverFactDisplay"
+
 // =================================================================
 
 function App() {
@@ -37,7 +40,9 @@ function App() {
     unitedStateSelected: "",
     regionSelected: "",
     abbreviation: "",
-    population: 0
+    population: 0,
+    electoralvotes: 0,
+    populationpervote: 0
   })
 
   const [newsSearchEntry, setNewsSearchEntry] = useState("")
@@ -46,12 +51,14 @@ function App() {
   // ---------------------------------------------------------------
   // A function – to be passed down – that will run when the map is clicked
   // It will update the state object with the United State was most recently clicked
-  const gettingTheMapClick = (unitedState, region, abbrev, pop) => {
+  const gettingTheMapClick = (unitedState, region, abbrev, pop, elec, poppervote) => {
     setStateOfTheStates({
       unitedStateSelected: unitedState,
       regionSelected: region,
       abbreviation: abbrev,
       population: pop,
+      electoralvotes: elec,
+      populationpervote: poppervote
     })
   }
   // ---------------------------------------------------------------
@@ -166,7 +173,7 @@ function App() {
 
           <Route exact path="/generalforeverfact">
             {/* Population and general facts component, which will grab local data from our us-states.json file */}
-
+            <ForeverFactDisplay usStateInformation = {stateOfTheStates}/>
           </Route>
         </Switch>
         {/* -------------------------------------------------------------- */}
