@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography"
 function Nav() {
   return (
     <header>
-      <AppBar>
+      <AppBar position="static">
         <Toolbar>
           {/* <IconButton>
               <MenuIcon />
