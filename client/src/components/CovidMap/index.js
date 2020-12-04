@@ -46,7 +46,7 @@ const CovidMap = ({ stateGeom, mapClickTwo }) => {
         // This will ultimately set the state object, based on the United State clicked
         // The information will consist of the United State and the associated region
 
-        mapClickTwo(unitedStateName, region, abbrev, pop)
+        mapClickTwo(unitedStateName, region, abbrev, pop, elec, poppervote)
     }
 
     // This is the return of the function, which displays the map
