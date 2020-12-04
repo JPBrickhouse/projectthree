@@ -34,8 +34,8 @@ import SearchBar from "./components/SearchBar/SearchBar"
 // Importing the SearchButton component
 import SearchButton from "./components/SearchButton/SearchButton"
 
-// Importing the ForeverFactButton component
-import ForeverFactButton from "./components/ForeverFactButton/ForeverFactButton"
+// Importing the ForeverFactDisplay
+import ForeverFactDisplay from "./components/ForeverFactDisplay/ForeverFactDisplay"
 
 
 import BtnGrp from "./components/ButtonGroup/index"
@@ -281,7 +281,7 @@ function App() {
 
                 <Route exact path="/generalforeverfact">
                   {/* Population and general facts component, which will grab local data from our us-states.json file */}
-
+                  <ForeverFactDisplay usStateInformation={stateOfTheStates}/>
                 </Route>
               </Switch>
             </Grid>
