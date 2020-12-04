@@ -37,8 +37,10 @@ import SearchButton from "./components/SearchButton/SearchButton"
 // Importing the ForeverFactButton component
 import ForeverFactButton from "./components/ForeverFactButton/ForeverFactButton"
 
+
 import BtnGrp from "./components/ButtonGroup/index"
 import { FormHelperText } from "@material-ui/core";
+
 
 // =================================================================
 
@@ -95,7 +97,9 @@ function App() {
     unitedStateSelected: "",
     regionSelected: "",
     abbreviation: "",
-    population: 0
+    population: 0,
+    electoralvotes: 0,
+    populationpervote: 0
   })
 
   const [newsSearchEntry, setNewsSearchEntry] = useState("")
@@ -104,12 +108,14 @@ function App() {
   // ---------------------------------------------------------------
   // A function – to be passed down – that will run when the map is clicked
   // It will update the state object with the United State was most recently clicked
-  const gettingTheMapClick = (unitedState, region, abbrev, pop) => {
+  const gettingTheMapClick = (unitedState, region, abbrev, pop, elec, poppervote) => {
     setStateOfTheStates({
       unitedStateSelected: unitedState,
       regionSelected: region,
       abbreviation: abbrev,
       population: pop,
+      electoralvotes: elec,
+      populationpervote: poppervote
     })
   }
   // ---------------------------------------------------------------
@@ -194,13 +200,12 @@ function App() {
             {/* RECTANGLE 2 - Forever Fact Buttons */}
             <BtnGrp />
             {/* Forever fact buttons. Clicking the buttons will activate the router switch.
-        This will route to the relevant display, which will contain relevant forever facts.
-        Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
-        This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
-        We're creating a link (equivalent to <a>), and then button a button "inside" that link
-        Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
-        https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
-
+            This will route to the relevant display, which will contain relevant forever facts.
+            Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
+            This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
+            We're creating a link (equivalent to <a>), and then button a button "inside" that link
+            Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
+            https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
 
             {/* <Grid spacing={2} justify="flex-start" align-items="flex-start" container xs={12} sm={12} md={8} lg={8} xl={8}>
               <ButtonGroup variant="contained">
