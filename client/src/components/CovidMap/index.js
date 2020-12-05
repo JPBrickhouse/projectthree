@@ -4,11 +4,6 @@ import React from 'react';
 // Importing properties from "react-leaflet" by using destructuring
 import { MapContainer, GeoJSON, TileLayer } from "react-leaflet"
 
-// Importing Container and Grid 
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-
 // Importing the necessary CSS to display the React Leaflet map
 import "leaflet/dist/leaflet.css"
 
@@ -51,21 +46,13 @@ const CovidMap = ({ stateGeom, mapClickTwo }) => {
 
     // This is the return of the function, which displays the map
     return (
-        <Grid container spacing={2} justify="flex-start" align-items="flex-start" xs={12} sm={12} md={6} lg={6} xl={6}>
-            <header>
-                <Typography variant="h1" style={{ paddingTop: 25 }}>
-                    Select A State
-                </Typography>
-            </header>
-
-            <MapContainer style={{ height: "55vh", width: "100%", boxShadow: '0 3px 5px 2px #E63946', marginBottom: 25 }} zoom={4} center={[39, -96]}>
-                <GeoJSON data={stateGeom} onEachFeature={onEachUSstate} />
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-            </MapContainer>
-        </Grid>
+        <MapContainer style={{ height: "60vh", width: "100%", boxShadow: '0 3px 5px 2px #E63946', marginBottom: 25, position: 'relative' }} zoom={4} center={[39, -96]}>
+            <GeoJSON data={stateGeom} onEachFeature={onEachUSstate} />
+            <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+        </MapContainer>
     );
 }
 
