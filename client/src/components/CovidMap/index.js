@@ -46,7 +46,7 @@ const CovidMap = ({ stateGeom, mapClickTwo }) => {
 
     // This is the return of the function, which displays the map
     return (
-        <MapContainer style={{ height: "60vh", width: "100%", boxShadow: '0 3px 5px 2px #E63946', marginBottom: 25, position: 'relative' }} zoom={4} center={[39, -96]}>
+        <MapContainer style={{ height: "60vh", width: "100%", boxShadow: '0 3px 5px 2px #4A4E69', marginBottom: 25, position: 'relative' }} zoom={4} center={[39, -96]}>
             <GeoJSON data={stateGeom} onEachFeature={onEachUSstate} />
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

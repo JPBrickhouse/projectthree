@@ -16,11 +16,11 @@ import ForeverFactButton from "../ForeverFactButton/ForeverFactButton"
 
 function BtnGrp() {
     const FactsButton = styled(Button)({
-        background: 'linear-gradient(45deg, #A8DADC 30%, #457B9D 90%)',
+        background: '#F2E9E4',
         border: 0,
         width: '100%',
         fontSize: 20,
-        boxShadow: '0 3px 5px 2px #E63946',
+        boxShadow: '0 3px 5px 2px #4A4E69',
         color: 'white',
         height: 60,
         padding: '5px 30px',
