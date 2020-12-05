@@ -222,7 +222,7 @@ function App() {
 
                                             <Route exact path="/generalforeverfact">
                                                 {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                                                <ForeverFactDisplay usStateInformation={stateOfTheStates} />
+                                                <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
                                             </Route>
                                         </Switch>
                                     </Grid>
