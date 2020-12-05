@@ -1,7 +1,7 @@
 // Importing React and useState Hooks from react
 import React, { useState } from "react";
 
-import "./styles/App.css"
+import "./styles/Home.css"
 
 // Importing styles from Material-ui
 import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { sizing, flexbox } from '@material-ui/system';
+import 'fontsource-roboto';
 
 
 // Importing destructured methods from react-router-dom
@@ -58,10 +59,12 @@ function App() {
     const theme = createMuiTheme({
         palette: {
             primary: {
-                main: blue[500],
+                light: '#9A8C98',
+                main: '#4A4E69',
+                text: '#22223B'
             },
             secondary: {
-                main: purple[500]
+                main: '#C9ADA7'
             }
         }
     })
@@ -74,13 +77,13 @@ function App() {
         card: {
             // padding: theme.spacing(2),
             textAlign: 'center',
-            color: theme.palette.text.secondary,
-            background: 'linear-gradient(45deg, #F1FAEE, #A8DADC)',
-            marginTop: 25,
-            marginBottom: 25,
-            boxShadow: '#1D3557',
-            color: '#1D3557',
-            padding: '5px'
+            width: '95%',
+            height: '250px',
+            color: theme.palette.text.primary,
+            background: 'linear-gradient(45deg, #C9ADA7, #F2E9E4)',
+            margin: '25px 25px 5px',
+            boxShadow: '#4A4E69',
+            color: '#22223B'
         },
         root: {
             minHeight: '100vh',

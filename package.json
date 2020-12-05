@@ -24,6 +24,7 @@
     "axios": "^0.18.0",
     "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "fontsource-roboto": "^3.0.3",
     "if-env": "^1.0.4",
     "leaflet": "^1.7.1",
     "mongoose": "^5.3.16",
