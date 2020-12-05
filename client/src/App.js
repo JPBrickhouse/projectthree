@@ -1,6 +1,8 @@
 // Importing React and useState Hooks from react
 import React, { useState } from "react";
 
+import "./styles/App.css"
+
 // Importing styles from Material-ui
 import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -9,6 +11,8 @@ import { blue, purple } from "@material-ui/core/colors";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import { sizing, flexbox } from '@material-ui/system';
+
 
 // Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
@@ -37,8 +41,13 @@ import SearchButton from "./components/SearchButton/SearchButton"
 // Importing the ForeverFactDisplay
 import ForeverFactDisplay from "./components/ForeverFactDisplay/ForeverFactDisplay"
 
+// Importing the ForeverFactCard
+import ForeverFactCard from "./components/ForeverFactCard/ForeverFactCard"
 
-import BtnGrp from "./components/ButtonGroup/index"
+import NewsCard from "./components/NewsCard/NewsCard"
+
+
+import BtnGrp from "./components/ButtonGroup/ButtonGroup"
 import { FormHelperText } from "@material-ui/core";
 
 
@@ -60,11 +69,10 @@ function App() {
   const useStyles = makeStyles((theme) => ({
     grid: {
       width: '100%',
-      margin: '0px'
+      margin: '0px',
     },
     card: {
-      // width: '100%',
-      padding: theme.spacing(3),
+      // padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
       background: 'linear-gradient(45deg, #F1FAEE, #A8DADC)',
@@ -72,7 +80,7 @@ function App() {
       marginBottom: 25,
       boxShadow: '#1D3557',
       color: '#1D3557',
-      padding: '5px 30px'
+      padding: '5px'
     },
     root: {
       minHeight: '100vh',
@@ -80,16 +88,6 @@ function App() {
     }
   }))
 
-  const FactsButton = styled(Button)({
-    background: 'linear-gradient(45deg, #A8DADC 30%, #457B9D 90%)',
-    border: 0,
-    borderRadius: 3,
-    marginTop: 15,
-    boxShadow: '0 3px 5px 2px #E63946',
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-  });
   const classes = useStyles();
   // ---------------------------------------------------------------
   // State elements and objects with Hooks
@@ -182,130 +180,94 @@ function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <Container maxWidth="xl">
-          <div className={classes.root}>
+        <Container maxWidth="l">
+          <div className="App">
+            <div className={classes.root}>
 
-            {/* -------------------------------------------------------------- */}
-            {/* Permanent Nav Bar always exists at the top of the page */}
-            <Nav />
+              {/* -------------------------------------------------------------- */}
+              {/* Permanent Nav Bar always exists at the top of the page */}
+              <Nav />
 
-            {/* -------------------------------------------------------------- */}
-            {/* RECTANGLE 1 - Map component */}
+              {/* -------------------------------------------------------------- */}
+              {/* RECTANGLE 1 - Map component */}
 
-            {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
-            <div className={classes.card}>
-              <Covid19 mapClick={gettingTheMapClick} />
+              {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
+              <Grid container justify="flex-start" alignItems="center"
+                style={{
+                  alignContent: 'center',
+                  position: 'relative',
+                }}
+              >
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                  <Covid19 mapClick={gettingTheMapClick} />
+                  <BtnGrp />
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                  {/* RECTANGLE 3 - Forever Fact DISPLAY */}
+                  <Grid container className={classes.card} spacing={2} justify="center" alignItems="center">
+                    {/* <ForeverFactCard /> */}
+                    <Switch>
+                      <Route exact path="/covidforeverfact">
+                        {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
+                      Passing down the unitedStateSelected as a prop */}
+                        <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                      </Route>
+
+                      <Route exact path="/senatorforeverfact">
+                        {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+                      Passing down the unitedStateSelected as a prop */}
+                        <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                      </Route>
+
+                      <Route exact path="/generalforeverfact">
+                        {/* Population and general facts component, which will grab local data from our us-states.json file */}
+                        <ForeverFactDisplay usStateInformation={stateOfTheStates} />
+                      </Route>
+                    </Switch>
+                  </Grid>
+
+                  {/* RECTANGLE 4 - News Search and Display */}
+                  {/* The SearchBar component, which is a simple input form. Passing down the
+                  handleInputChange function as a prop with onChange, so any change
+                  will run the handleInputChange function */}
+                  <Grid container className={classes.card} spacing={4} justify="center" alignItems="center">
+                    
+                    
+                    
+                    
+                    {/* <NewsCard /> */}
+                    <SearchBar onChange={handleNewsInputChange} />
+
+                    {/* The SearchButton component, which is a simple button. Passing down the
+                        handleSubmit function as a prop with onClick, so any button click will
+                        run the handleSubmit function */}
+                    <SearchButton onClick={handleNewsSubmit} />
+
+                    {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                    <NewsDisplay newsResultProp={newsResultObject} />
+
+
+                    
+                  </Grid>
+                </Grid>
+
+              </Grid>
+              {/* -------------------------------------------------------------- */}
+              {/* RECTANGLE 2 - Forever Fact Buttons */}
+              {/* <BtnGrp /> */}
+              {/* Forever fact buttons. Clicking the buttons will activate the router switch.
+                This will route to the relevant display, which will contain relevant forever facts.
+                Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
+                This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
+                We're creating a link (equivalent to <a>), and then button a button "inside" that link
+                Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
+                https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
+
+
+
+              {/* -------------------------------------------------------------- */}
             </div>
-            {/* -------------------------------------------------------------- */}
-            {/* RECTANGLE 2 - Forever Fact Buttons */}
-            <BtnGrp />
-            {/* Forever fact buttons. Clicking the buttons will activate the router switch.
-            This will route to the relevant display, which will contain relevant forever facts.
-            Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
-            This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
-            We're creating a link (equivalent to <a>), and then button a button "inside" that link
-            Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
-            https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
-
-            {/* <Grid spacing={2} justify="flex-start" align-items="flex-start" container xs={12} sm={12} md={8} lg={8} xl={8}>
-              <ButtonGroup variant="contained">
-                <FactsButton
-                  size="large"
-                  style={{
-                    height: 100,
-                    width: '95%',
-                    fontSize: 20
-                  }}
-                  color="primary"
-                >
-                  <Link to="/covidforeverfact">
-                    <ForeverFactButton onClick={foreverFacts} value="covid" />
-                  </Link>
-                </FactsButton>
-                <FactsButton
-                  size="large"
-                  style={{
-                    height: 100,
-                    width: '95%',
-                    fontSize: 20
-                  }}
-                  color="primary"
-                >
-                  <Link to="/senatorforeverfact">
-                    <ForeverFactButton onClick={foreverFacts} value="senator" />
-                  </Link>
-                </FactsButton>
-                <FactsButton
-                  size="large"
-                  style={{
-                    height: 100,
-                    width: '95%',
-                    fontSize: 20
-                  }}
-                  color="primary"
-                >
-                  <Link to="/generalforeverfact">
-                    <ForeverFactButton onClick={foreverFacts} value="general" />
-                  </Link>
-                </FactsButton>
-              </ButtonGroup>
-            </Grid> */}
-
-            {/* <Link to="/covidforeverfact">
-              <ForeverFactButton onClick={foreverFacts} value="covid" />
-            </Link>
-            <Link to="/senatorforeverfact">
-              <ForeverFactButton onClick={foreverFacts} value="senator" />
-            </Link>
-            <Link to="/generalforeverfact">
-              <ForeverFactButton onClick={foreverFacts} value="general" />
-            </Link> */}
-            {/* -------------------------------------------------------------- */}
-            {/* RECTANGLE 3 - Forever Fact DISPLAY */}
-
-            {/* Router switch so that when the Fact Buttons are clicked, the route switches to the corresponding component */}
-            <Grid className={classes.card} spacing={2} justify="flex-start" align-items="flex-start" container xs={12} sm={12} md={2} lg={2} xl={2}>
-              <Switch>
-
-                <Route exact path="/covidforeverfact">
-                  {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
-              Passing down the unitedStateSelected as a prop */}
-                  <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                </Route>
-
-                <Route exact path="/senatorforeverfact">
-                  {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
-              Passing down the unitedStateSelected as a prop */}
-                  <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                </Route>
-
-                <Route exact path="/generalforeverfact">
-                  {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                  <ForeverFactDisplay usStateInformation={stateOfTheStates}/>
-                </Route>
-              </Switch>
-            </Grid>
-            {/* -------------------------------------------------------------- */}
-            {/* RECTANGLE 4 - News Search and Display */}
-
-            {/* The SearchBar component, which is a simple input form. Passing down the
-        handleInputChange function as a prop with onChange, so any change
-        will run the handleInputChange function */}
-            <Grid className={classes.card} style={{ paddingLeft: 25, alignContent: 'center' }} container xs={12} sm={12} md={2} lg={2} xl={2}>
-              <SearchBar onChange={handleNewsInputChange} />
-
-              {/* The SearchButton component, which is a simple button. Passing down the
-        handleSubmit function as a prop with onClick, so any button click will
-        run the handleSubmit function */}
-              <SearchButton onClick={handleNewsSubmit} />
-
-              {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-              <NewsDisplay newsResultProp={newsResultObject} />
-            </Grid>
-
-
-
-            {/* -------------------------------------------------------------- */}
           </div>
         </Container>
       </ThemeProvider>

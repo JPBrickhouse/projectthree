@@ -12,7 +12,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
 // Importing the ForeverFactButton component
-import ForeverFactButton from "../../components/ForeverFactButton/ForeverFactButton"
+import ForeverFactButton from "../ForeverFactButton/ForeverFactButton"
 
 function BtnGrp() {
     const FactsButton = styled(Button)({
@@ -37,7 +37,7 @@ function BtnGrp() {
 
 
     return (
-        <Grid spacing={2} justify="flex-start" align-items="flex-start" container xs={12} sm={12} md={8} lg={8} xl={8}>
+        <Grid item spacing={2} xs={12} sm={12} md={6} lg={6} xl={6}>
             <ButtonGroup variant="contained">
                 <FactsButton
                     size="large"

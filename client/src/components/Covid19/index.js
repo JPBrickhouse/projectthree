@@ -1,6 +1,11 @@
 // Importing React and Hooks
 import React, { useState, useEffect } from 'react';
 
+// Importing Container and Grid 
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+
 // Importing the CovidMap component
 import CovidMap from "../CovidMap"
 
@@ -30,11 +35,15 @@ const Covid19 = ({ mapClick }) => {
 
     // This is the return of the function
     return (
-        <div>
+        <Grid container>
+            <Typography variant="h2" style={{ paddingTop: 10 }}>
+                Select A State
+                </Typography>
+
             {/* Passing down usstates as the value for the prop stateGeom */}
             {/* Also passing down the mapClick prop (aka, the gettingTheMapClick function) */}
             <CovidMap stateGeom={usstates} mapClickTwo={mapClick} />
-        </div>
+        </Grid>
     );
 }
 
