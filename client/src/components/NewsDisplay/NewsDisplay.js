@@ -1,22 +1,28 @@
 import React from 'react';
 
+import IndividualNews from "../IndividualNews/IndividualNews"
+
 function NewsDisplay(props) {
-
-    // Currently only returning the first article as a basic div
-    // Future refinements:
-    // MAP OVER DATA
-    // Return a component, where each article is passed as a prop
-    // Carousel likely imported and used here
-
+    // Confirming if there was or wasn't a response before rendering
+    // If a response exists...
     if (props.newsResultProp.response) {
+
+        // Getting the response and extracting the array of news objects
+        var arrayOfNewsArticleObjects = props.newsResultProp.response.docs
+
         return (
             <div>
-                <h2>{props.newsResultProp.response.docs[0].headline.main} </h2>
-                <p> {props.newsResultProp.response.docs[0].snippet}</p>
-                <a href={props.newsResultProp.response.docs[0].web_url}>{props.newsResultProp.response.docs[0].web_url}</a>
+                {/* Letting the user know their most recent search */}
+                <p>Your most recent search was for "{props.searchHistorySingle.recentNewsSearch}", filtered by "{props.searchHistorySingle.recentNewsSearch}"</p>
+
+                {/* Mapping over the array of news objects and returning each individual news item */}
+                {arrayOfNewsArticleObjects.map(newsArticle => {
+                    return <IndividualNews passingDownNews={newsArticle} key={newsArticle.web_url} />
+                })}
             </div>
         );
     }
+    // If a response doesn't exist
     else {
         return (
             <div>
