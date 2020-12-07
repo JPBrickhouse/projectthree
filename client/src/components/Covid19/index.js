@@ -5,6 +5,9 @@ import React, { useState, useEffect } from 'react';
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 // Importing the CovidMap component
 import CovidMap from "../CovidMap"
@@ -36,9 +39,9 @@ const Covid19 = ({ mapClick }) => {
     // This is the return of the function
     return (
         <Grid container>
-            <Typography variant="h2" style={{ paddingTop: 10 }}>
+            <Typography variant="h2" style={{ color: "#5A189A", fontFamily: " 'Roboto', sans serif", fontWeight: "bold" }}>
                 Select A State
-                </Typography>
+            </Typography>
 
             {/* Passing down usstates as the value for the prop stateGeom */}
             {/* Also passing down the mapClick prop (aka, the gettingTheMapClick function) */}

@@ -5,6 +5,14 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Divider from '@material-ui/core/Divider';
+import 'fontsource-roboto';
 
 
 // Importing the ApiCall component (which gets the Covid19 data [cases, etc.])
@@ -20,6 +28,51 @@ import SearchBar from "../SearchBar/SearchBar"
 import SearchButton from "../SearchButton/SearchButton"
 
 function NewsCard() {
+
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                light: '#9A8C98',
+                main: '#4A4E69',
+                text: '#22223B'
+            },
+            secondary: {
+                main: '#C9ADA7'
+            }
+        }
+    })
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            // minHeight: '100vh',
+            border: 0,
+            display: 'flex',
+        },
+        details: {
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        content: {
+            flex: '1 0 auto',
+        },
+        media: {
+            height: '150px',
+            // maxWidth: '200px',
+            // display: 'flex'
+        },
+        controls: {
+            width: 'fit-content',
+            border: `1px solid ${theme.palette.main}`,
+            display: 'flex',
+            alignItems: 'center',
+            paddingLeft: theme.spacing(1),
+            paddingBottom: theme.spacing(1),
+        },
+        cover: {
+            width: 151,
+        },
+    }))
+
+    const classes = useStyles();
 
     // ---------------------------------------------------------------
     // State elements and objects with Hooks
@@ -88,15 +141,21 @@ function NewsCard() {
 
     return (
         <Grid>
-            <SearchBar onChange={handleNewsInputChange} />
+            <Card className={classes.root}>
+                <div className={classes.details}>
+                    <CardContent className={classes.controls}>
+                        <SearchBar onChange={handleNewsInputChange} />
 
-            {/* The SearchButton component, which is a simple button. Passing down the
-        handleSubmit function as a prop with onClick, so any button click will
-        run the handleSubmit function */}
-            <SearchButton onClick={handleNewsSubmit} />
+                        {/* The SearchButton component, which is a simple button. Passing down the
+                            handleSubmit function as a prop with onClick, so any button click will
+                            run the handleSubmit function */}
+                        <SearchButton onClick={handleNewsSubmit} />
 
-            {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-            <NewsDisplay newsResultProp={newsResultObject} />
+                        {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                        <NewsDisplay newsResultProp={newsResultObject} />
+                    </CardContent>
+                </div>
+            </Card>
         </Grid>
     );
 }

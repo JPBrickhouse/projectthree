@@ -5,13 +5,19 @@ import "./styles/Home.css"
 
 // Importing styles from Material-ui
 import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
+import BottomNavigation from '@material-ui/core/BottomNavigation'
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { blue, purple } from "@material-ui/core/colors";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import { sizing, flexbox } from '@material-ui/system';
+import { CssBaseline } from '@material-ui/core';
 import 'fontsource-roboto';
 
 
@@ -44,7 +50,7 @@ import ForeverFactDisplay from "./components/ForeverFactDisplay/ForeverFactDispl
 
 
 import BtnGrp from "./components/ButtonGroup/ButtonGroup"
-import { FormHelperText } from "@material-ui/core";
+import { CardActionArea, FormHelperText } from "@material-ui/core";
 
 
 // =================================================================
@@ -72,17 +78,29 @@ function App() {
         card: {
             // padding: theme.spacing(2),
             textAlign: 'center',
-            width: '95%',
-            height: '250px',
+            width: '100%',
+            height: '300px',
             color: theme.palette.text.primary,
-            background: 'linear-gradient(45deg, #C9ADA7, #F2E9E4)',
+            marginTop: '20px',
+            // background: '#F2E9E4',
             margin: '25px 25px 5px',
-            boxShadow: '#4A4E69',
-            color: '#22223B'
+            boxShadow: '0 3px 5px 2px #4A4E69',
+            color: '#22223B',
+            // padding: '10px',
+            fontSize: 14
+
         },
         root: {
             minHeight: '100vh',
-            border: 0
+            border: 0,
+            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/washdc.jpg'})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            zIndex: '-1'
+        },
+        media: {
+            maxWidth: 345
         }
     }))
 
@@ -146,7 +164,7 @@ function App() {
                         console.log(result)
 
                         setNewsResultObject(result)
-                        
+
                         setMostRecentSearch({
                             unitedStateFilter: stateOfTheStates.unitedStateSelected,
                             recentNewsSearch: newsSearchEntry
@@ -177,9 +195,10 @@ function App() {
     return (
         <Router>
             <ThemeProvider theme={theme}>
-                <Container maxWidth="l">
+                <Container maxWidth="xl">
                     <div className="App">
                         <div className={classes.root}>
+                            <CssBaseline />
 
                             {/* Permanent Nav Bar always exists at the top of the page */}
                             <Nav />
@@ -205,41 +224,50 @@ function App() {
 
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                     {/* RECTANGLE 3 - Forever Fact DISPLAY */}
-                                    <Grid container className={classes.card} spacing={2} justify="center" alignItems="center">
-                                        <Switch>
-                                            <Route exact path="/covidforeverfact">
-                                                {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
-                                                Passing down the unitedStateSelected as a prop */}
-                                                <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                            </Route>
+                                    <Grid container spacing={2} justify="center" alignItems="center">
+                                        <Card className={classes.card} variant="outlined">
+                                            <CardActionArea>
+                                                <CardContent>
+                                                    <Switch>
+                                                        <Route exact path="/covidforeverfact">
+                                                            {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
+                                                                        Passing down the unitedStateSelected as a prop */}
+                                                            <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                        </Route>
 
-                                            <Route exact path="/senatorforeverfact">
-                                                {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
-                                                Passing down the unitedStateSelected as a prop */}
-                                                <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                            </Route>
+                                                        <Route exact path="/senatorforeverfact">
+                                                            {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+                                                                        Passing down the unitedStateSelected as a prop */}
+                                                            <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                        </Route>
 
-                                            <Route exact path="/generalforeverfact">
-                                                {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                                                <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
-                                            </Route>
-                                        </Switch>
+                                                        <Route exact path="/generalforeverfact">
+                                                            {/* Population and general facts component, which will grab local data from our us-states.json file */}
+                                                            <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                        </Route>
+                                                    </Switch>
+                                                </CardContent>
+                                            </CardActionArea>
+                                        </Card>
                                     </Grid>
-
                                     {/* RECTANGLE 4 - News Search and Display */}
-                                    <Grid container className={classes.card} spacing={4} justify="center" alignItems="center">
-                                        {/* The SearchBar component, which is a simple input form. Passing down the
-                                        handleInputChange function as a prop with onChange, so any change
-                                        will run the handleInputChange function */}
-                                        <SearchBar onChange={handleNewsInputChange} />
+                                    <Grid container spacing={4} justify="center" alignItems="center">
+                                        <Card className={classes.card}>
+                                            <CardContent>
+                                                {/* The SearchBar component, which is a simple input form. Passing down the
+                                                handleInputChange function as a prop with onChange, so any change
+                                                will run the handleInputChange function */}
+                                                <SearchBar onChange={handleNewsInputChange} />
 
-                                        {/* The SearchButton component, which is a simple button. Passing down the
-                                        handleSubmit function as a prop with onClick, so any button click will
-                                        run the handleSubmit function */}
-                                        <SearchButton onClick={handleNewsSubmit} />
+                                                {/* The SearchButton component, which is a simple button. Passing down the
+                                                handleSubmit function as a prop with onClick, so any button click will
+                                                run the handleSubmit function */}
+                                                <SearchButton onClick={handleNewsSubmit} />
 
-                                        {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                                        <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
+                                                {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                                                <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
+                                            </CardContent>
+                                        </Card>
                                     </Grid>
                                 </Grid>
                             </Grid>
