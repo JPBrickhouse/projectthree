@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 
+import Button from '@material-ui/core/Button';
+import { makeStyles, styled } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import 'fontsource-roboto';
+
 // A component that contains a quick search button
 // Takes in a a search query in props and displays it on the button
 // If the button is hit, the newSearchEntry is populated with the value assigned to the button
@@ -23,12 +28,16 @@ const QuickSearchButton = (props) => {
             default:
                 setTextDisplay("Button")
         }
-    },[props.value])
+    }, [props.value])
+
+
 
     // The return of the function, which is the button div
     return (
         <div>
-            <button {...props}>{textDisplay}</button>
+            <Typography>
+                <Button variant="contained" {...props}>{textDisplay}</Button>
+            </Typography>
         </div>
     );
 }
