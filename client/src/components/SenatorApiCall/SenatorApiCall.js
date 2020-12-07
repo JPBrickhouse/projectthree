@@ -14,7 +14,7 @@ function SenatorApiCall(props) {
         // That way there aren't any unexplained results and/or errors when the API call is made
         if (isStateAbbreviationNotEmpty(props)) {
             // Making the api call to fetch the senator data
-            fetch("/senators/" + props.usstateAbbrev)
+            fetch("/api/externalRoutes/senators/" + props.usstateAbbrev)
                 .then(response => response.json())
                 .then(data => {
                     setStateAndSenatorData({

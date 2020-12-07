@@ -42,11 +42,6 @@ import SearchButton from "./components/SearchButton/SearchButton"
 // Importing the ForeverFactDisplay
 import ForeverFactDisplay from "./components/ForeverFactDisplay/ForeverFactDisplay"
 
-// Importing the ForeverFactCard
-import ForeverFactCard from "./components/ForeverFactCard/ForeverFactCard"
-
-import NewsCard from "./components/NewsCard/NewsCard"
-
 
 import BtnGrp from "./components/ButtonGroup/ButtonGroup"
 import { FormHelperText } from "@material-ui/core";
@@ -106,6 +101,11 @@ function App() {
     const [newsSearchEntry, setNewsSearchEntry] = useState("")
 
     const [newsResultObject, setNewsResultObject] = useState({})
+
+    const [mostRecentSearch, setMostRecentSearch] = useState({
+        unitedStateFilter: "",
+        recentNewsSearch: ""
+    })
     // ---------------------------------------------------------------
     // A function – to be passed down – that will run when the map is clicked
     // It will update the state object with the United State was most recently clicked
@@ -136,7 +136,7 @@ function App() {
         // (It's going to the NYTimes and getting articles)
         if (stateOfTheStates.unitedStateSelected !== "" && newsSearchEntry !== "") {
 
-            fetch("/news/" + stateOfTheStates.unitedStateSelected + "/" + newsSearchEntry)
+            fetch("/api/externalRoutes/news/" + stateOfTheStates.unitedStateSelected + "/" + newsSearchEntry)
                 .then(res => res.json())
                 .then(
                     (result) => {
@@ -144,8 +144,13 @@ function App() {
                         // setData(result);
 
                         console.log(result)
-                        setNewsResultObject(result)
 
+                        setNewsResultObject(result)
+                        
+                        setMostRecentSearch({
+                            unitedStateFilter: stateOfTheStates.unitedStateSelected,
+                            recentNewsSearch: newsSearchEntry
+                        })
                     },
                     // Note: it's important to handle errors here
                     // instead of a catch() block so that we don't swallow
@@ -168,17 +173,6 @@ function App() {
         // (Storing the user's search history)
     }
 
-
-    // ---------------------------------------------------------------
-    // A function - to be passed down - that will run any time a quick search button
-    // is clicked and will update the state of newsSearchEntry to be whatever the
-    // value of the quick search button is set to. 
-    // const foreverFacts = (event) => {
-    //   console.log(event.target.value)
-    // }
-
-
-
     // =================================================================
     return (
         <Router>
@@ -187,29 +181,31 @@ function App() {
                     <div className="App">
                         <div className={classes.root}>
 
-                            {/* -------------------------------------------------------------- */}
                             {/* Permanent Nav Bar always exists at the top of the page */}
                             <Nav />
 
-                            {/* -------------------------------------------------------------- */}
-                            {/* RECTANGLE 1 - Map component */}
-
-                            {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
-                            <Grid container justify="flex-start" alignItems="center"
-                                style={{
-                                    alignContent: 'center',
-                                    position: 'relative',
-                                }}
-                            >
+                            <Grid container justify="flex-start" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+
+                                    {/* RECTANGLE 1 - Map component */}
+                                    {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
                                     <Covid19 mapClick={gettingTheMapClick} />
+
+                                    {/* RECTANGLE 2 - Forever Fact buttons */}
+                                    {/* Forever fact buttons. Clicking the buttons will activate the router switch.
+                                    This will route to the relevant display, which will contain relevant forever facts.
+                                    Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
+                                    This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
+                                    We're creating a link (equivalent to <a>), and then button a button "inside" that link
+                                    Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
+                                    https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
                                     <BtnGrp />
+
                                 </Grid>
 
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                     {/* RECTANGLE 3 - Forever Fact DISPLAY */}
                                     <Grid container className={classes.card} spacing={2} justify="center" alignItems="center">
-                                        {/* <ForeverFactCard /> */}
                                         <Switch>
                                             <Route exact path="/covidforeverfact">
                                                 {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
@@ -231,15 +227,10 @@ function App() {
                                     </Grid>
 
                                     {/* RECTANGLE 4 - News Search and Display */}
-                                    {/* The SearchBar component, which is a simple input form. Passing down the
-                                    handleInputChange function as a prop with onChange, so any change
-                                    will run the handleInputChange function */}
                                     <Grid container className={classes.card} spacing={4} justify="center" alignItems="center">
-
-
-
-
-                                        {/* <NewsCard /> */}
+                                        {/* The SearchBar component, which is a simple input form. Passing down the
+                                        handleInputChange function as a prop with onChange, so any change
+                                        will run the handleInputChange function */}
                                         <SearchBar onChange={handleNewsInputChange} />
 
                                         {/* The SearchButton component, which is a simple button. Passing down the
@@ -248,28 +239,10 @@ function App() {
                                         <SearchButton onClick={handleNewsSubmit} />
 
                                         {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                                        <NewsDisplay newsResultProp={newsResultObject} />
-
-
-
+                                        <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
                                     </Grid>
                                 </Grid>
-
                             </Grid>
-                            {/* -------------------------------------------------------------- */}
-                            {/* RECTANGLE 2 - Forever Fact Buttons */}
-                            {/* <BtnGrp /> */}
-                            {/* Forever fact buttons. Clicking the buttons will activate the router switch.
-                            This will route to the relevant display, which will contain relevant forever facts.
-                            Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
-                            This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
-                            We're creating a link (equivalent to <a>), and then button a button "inside" that link
-                            Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
-                            https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
-
-
-
-                            {/* -------------------------------------------------------------- */}
                         </div>
                     </div>
                 </Container>

@@ -1,7 +1,11 @@
 const router = require("express").Router();
-const bookRoutes = require("./books");
+const newsRoutes = require("./newsRoutes");
+const externalRoutes = require("./externalRoutes");
 
-// Book routes
-router.use("/books", bookRoutes);
+// News Routes
+router.use("/newsRoutes", newsRoutes);
+
+// External API Routes
+router.use("/externalRoutes",externalRoutes)
 
 module.exports = router;
