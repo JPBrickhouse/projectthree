@@ -40,6 +40,8 @@ import NewsDisplay from "./components/NewsDisplay/NewsDisplay"
 // Importing the SenatorApiCall component (which gets the senator data [name, party, twitter account])
 import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
 
+import TwitterApi from "./components/TwitterApi/TwitterApi"
+
 // Importing the SearchBar component
 import SearchBar from "./components/SearchBar/SearchBar"
 
@@ -58,7 +60,7 @@ import { CardActionArea, FormHelperText } from "@material-ui/core";
 
 // =================================================================
 
-function App() {
+function Home() {
     // Material UI theme constant
     const theme = createMuiTheme({
         palette: {
@@ -200,6 +202,7 @@ function App() {
     // =================================================================
     return (
         <Router>
+
             <ThemeProvider theme={theme}>
                 <div className="App">
                     <div className={classes.root}>
@@ -212,9 +215,11 @@ function App() {
                             <Grid container spacing={2} justify="flex-start" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
-                                    {/* RECTANGLE 1 - Map component */}
-                                    {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
-                                    <Covid19 mapClick={gettingTheMapClick} />
+
+                                        {/* RECTANGLE 1 - Map component */}
+                                        {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
+                                        <Covid19 mapClick={gettingTheMapClick} />
+
 
                                     {/* RECTANGLE 2 - Forever Fact buttons */}
                                     {/* Forever fact buttons. Clicking the buttons will activate the router switch.
@@ -226,7 +231,8 @@ function App() {
                                             https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
                                     <BtnGrp />
 
-                                </Grid>
+
+                                    </Grid>
 
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                     {/* RECTANGLE 3 - Forever Fact DISPLAY */}
@@ -245,6 +251,7 @@ function App() {
                                                             {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
                                                                                 Passing down the unitedStateSelected as a prop */}
                                                             <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                            <TwitterApi />
                                                         </Route>
 
                                                         <Route exact path="/generalforeverfact">
@@ -285,8 +292,9 @@ function App() {
                     </div>
                 </div>
             </ThemeProvider>
+
         </Router>
     );
 }
 
-export default App;
+export default Home;
