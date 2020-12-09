@@ -39,6 +39,8 @@ import NewsDisplay from "./components/NewsDisplay/NewsDisplay"
 // Importing the SenatorApiCall component (which gets the senator data [name, party, twitter account])
 import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
 
+import TwitterApi from "./components/TwitterApi/TwitterApi"
+
 // Importing the SearchBar component
 import SearchBar from "./components/SearchBar/SearchBar"
 
@@ -241,6 +243,7 @@ function Home() {
                                                                 {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
                                                                         Passing down the unitedStateSelected as a prop */}
                                                                 <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                                <TwitterApi />
                                                             </Route>
 
                                                             <Route exact path="/generalforeverfact">

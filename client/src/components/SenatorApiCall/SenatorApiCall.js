@@ -61,6 +61,11 @@ function SenatorApiCall(props) {
         secondSenator: {}
     })
 
+    const [SenatorPictures, SetSenatorPictures] = useState({
+        firstSenator: "",
+        secondSenator: ""
+    })
+
     // useEffect that conditionally runs when props.usstateAbbrev changes
     useEffect(() => {
         // Also adding a conditional if statement to confirm that props.usstateAbbrev isn't blank/empty
@@ -70,13 +75,34 @@ function SenatorApiCall(props) {
             fetch("/api/externalRoutes/senators/" + props.usstateAbbrev)
                 .then(response => response.json())
                 .then(data => {
+                    const firstSenateId = data.results[0].twitter_id;
+                    const secondSenateId = data.results[1].twitter_id
+                    console.log(firstSenateId, secondSenateId)
+
                     setStateAndSenatorData({
                         firstSenator: data.results[0],
                         secondSenator: data.results[1]
                     });
+
+                    // fetch("api/externalRoutes/twitter/" + firstSenateId)
+                    //     .then(response => response.json())
+                    //     .then(data => {
+                    //         console.log(data)
+                    //     });
                 })
         }
     }, [props, props.usstateAbbrev])
+
+    // useEffect(() => {
+    //     if (doSenatorsExist(stateAndSenatorData)) {
+    //         console.log(stateAndSenatorData)
+    // }
+    // console.log(stateAndSenatorData.firstSenator)
+    // if (stateAndSenatorData.firstSenator !== {}) {
+    //     console.log("hello2")
+    // }
+
+    // }, [stateAndSenatorData.firstSenator])
 
     // Display senator name and party in parentheses. Also add links to the senators' twitter accounts
     if (isStateAbbreviationNotEmpty(props)) {
@@ -104,5 +130,13 @@ function SenatorApiCall(props) {
 function isStateAbbreviationNotEmpty(props) {
     return props.usstateAbbrev !== "";
 }
+
+// function doSenatorsExist(stateAndSenatorData) {
+//     if (Object.keys(stateAndSenatorData.firstSenator).length === 0 && stateAndSenatorData.firstSenator.constructor === Object) {
+//         return true 
+//     } else {
+//         return false
+//     }
+// }
 
 export default SenatorApiCall
