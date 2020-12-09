@@ -158,10 +158,10 @@ function Home() {
         event.preventDefault();
 
         // Checking to make sure that both stateOfTheStates.unitedStateSelected and newsSearchEntry aren't blank
-        // If they aren't blank, proceed with the fetch API call to the /news/... route
-        // (It's going to the NYTimes and getting articles)
+        // If they aren't blank, proceed with the two nested routes...
         if (stateOfTheStates.unitedStateSelected !== "" && newsSearchEntry !== "") {
 
+            // This fetch API call is going to the NYTimes and getting news articles
             fetch("/api/externalRoutes/news/" + stateOfTheStates.unitedStateSelected + "/" + newsSearchEntry)
                 .then(res => res.json())
                 .then(
@@ -169,10 +169,12 @@ function Home() {
                         // setIsLoaded(true);
                         // setData(result);
 
-                        console.log(result)
-
+                        // Setting the newsResultObject, which consists of
+                        // ALL the returned news articles
                         setNewsResultObject(result)
 
+                        // Setting the mostRecentSearch object, which consists of
+                        // The most recent search, which is displayed on the page for record
                         setMostRecentSearch({
                             unitedStateFilter: stateOfTheStates.unitedStateSelected,
                             recentNewsSearch: newsSearchEntry
@@ -184,19 +186,26 @@ function Home() {
                     (error) => {
                         // setIsLoaded(true);
                         // setError(error);
-
                         console.log(error)
-
                     }
                 )
+
+
+            // POST the most recent search to the database,
+            // along with the user information
+            fetch("/api/databaseRoutes/store", {
+                method: "post",
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    unitedState: stateOfTheStates.unitedStateSelected,
+                    newsSearch: newsSearchEntry,
+                    user: "User"
+                })
+            })
         }
-
-
-
-
-        // ON CLICK
-        // POST the following to the database: stateOfTheStates and newsSearchEntry
-        // (Storing the user's search history)
     }
 
     // =================================================================
@@ -216,9 +225,9 @@ function Home() {
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
 
-                                        {/* RECTANGLE 1 - Map component */}
-                                        {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
-                                        <Covid19 mapClick={gettingTheMapClick} />
+                                    {/* RECTANGLE 1 - Map component */}
+                                    {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
+                                    <Covid19 mapClick={gettingTheMapClick} />
 
 
                                     {/* RECTANGLE 2 - Forever Fact buttons */}
@@ -232,7 +241,7 @@ function Home() {
                                     <BtnGrp />
 
 
-                                    </Grid>
+                                </Grid>
 
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                     {/* RECTANGLE 3 - Forever Fact DISPLAY */}
