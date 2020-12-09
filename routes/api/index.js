@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const newsRoutes = require("./newsRoutes");
+const databaseRoutes = require("./databaseRoutes");
 const externalRoutes = require("./externalRoutes");
 
 // News Routes
-router.use("/newsRoutes", newsRoutes);
+router.use("/databaseRoutes", databaseRoutes);
 
 // External API Routes
 router.use("/externalRoutes",externalRoutes)
