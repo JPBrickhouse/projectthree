@@ -39,6 +39,8 @@ import NewsDisplay from "./components/NewsDisplay/NewsDisplay"
 // Importing the SenatorApiCall component (which gets the senator data [name, party, twitter account])
 import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
 
+import TwitterApi from "./components/TwitterApi/TwitterApi"
+
 // Importing the SearchBar component
 import SearchBar from "./components/SearchBar/SearchBar"
 
@@ -55,7 +57,7 @@ import { CardActionArea, FormHelperText } from "@material-ui/core";
 
 // =================================================================
 
-function App() {
+function Home() {
     // Material UI theme constant
     const theme = createMuiTheme({
         palette: {
@@ -194,89 +196,94 @@ function App() {
     // =================================================================
     return (
         <Router>
-            <ThemeProvider theme={theme}>
-                <Container maxWidth="xl">
-                    <div className="App">
-                        <div className={classes.root}>
-                            <CssBaseline />
+            <div>
+                <ThemeProvider theme={theme}>
+                    <Container maxWidth="xl">
+                        <div className="App">
+                            <div className={classes.root}>
+                                <CssBaseline />
 
-                            {/* Permanent Nav Bar always exists at the top of the page */}
-                            <Nav />
+                                {/* Permanent Nav Bar always exists at the top of the page */}
+                                <Nav />
 
-                            <Grid container justify="flex-start" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
-                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                <Grid container justify="flex-start" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
+                                    <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
-                                    {/* RECTANGLE 1 - Map component */}
-                                    {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
-                                    <Covid19 mapClick={gettingTheMapClick} />
+                                        {/* RECTANGLE 1 - Map component */}
+                                        {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
+                                        <Covid19 mapClick={gettingTheMapClick} />
 
-                                    {/* RECTANGLE 2 - Forever Fact buttons */}
-                                    {/* Forever fact buttons. Clicking the buttons will activate the router switch.
+                                        {/* RECTANGLE 2 - Forever Fact buttons */}
+                                        {/* Forever fact buttons. Clicking the buttons will activate the router switch.
                                     This will route to the relevant display, which will contain relevant forever facts.
                                     Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
                                     This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
                                     We're creating a link (equivalent to <a>), and then button a button "inside" that link
                                     Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
                                     https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
-                                    <BtnGrp />
+                                        <BtnGrp />
 
-                                </Grid>
-
-                                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                    {/* RECTANGLE 3 - Forever Fact DISPLAY */}
-                                    <Grid container spacing={2} justify="center" alignItems="center">
-                                        <Card className={classes.card} variant="outlined">
-                                            <CardActionArea>
-                                                <CardContent>
-                                                    <Switch>
-                                                        <Route exact path="/covidforeverfact">
-                                                            {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
-                                                                        Passing down the unitedStateSelected as a prop */}
-                                                            <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                        </Route>
-
-                                                        <Route exact path="/senatorforeverfact">
-                                                            {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
-                                                                        Passing down the unitedStateSelected as a prop */}
-                                                            <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                        </Route>
-
-                                                        <Route exact path="/generalforeverfact">
-                                                            {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                                                            <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                        </Route>
-                                                    </Switch>
-                                                </CardContent>
-                                            </CardActionArea>
-                                        </Card>
                                     </Grid>
-                                    {/* RECTANGLE 4 - News Search and Display */}
-                                    <Grid container spacing={4} justify="center" alignItems="center">
-                                        <Card className={classes.card}>
-                                            <CardContent>
-                                                {/* The SearchBar component, which is a simple input form. Passing down the
+
+                                    <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                                        {/* RECTANGLE 3 - Forever Fact DISPLAY */}
+                                        <Grid container spacing={2} justify="center" alignItems="center">
+                                            <Card className={classes.card} variant="outlined">
+                                                <CardActionArea>
+                                                    <CardContent>
+
+                                                        <Switch>
+                                                            <Route exact path="/covidforeverfact">
+                                                                {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
+                                                                        Passing down the unitedStateSelected as a prop */}
+                                                                <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                            </Route>
+
+                                                            <Route exact path="/senatorforeverfact">
+                                                                {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+                                                                        Passing down the unitedStateSelected as a prop */}
+                                                                <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                                <TwitterApi />
+                                                            </Route>
+
+                                                            <Route exact path="/generalforeverfact">
+                                                                {/* Population and general facts component, which will grab local data from our us-states.json file */}
+                                                                <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                            </Route>
+                                                        </Switch>
+
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Card>
+                                        </Grid>
+                                        {/* RECTANGLE 4 - News Search and Display */}
+                                        <Grid container spacing={4} justify="center" alignItems="center">
+                                            <Card className={classes.card}>
+                                                <CardContent>
+                                                    {/* The SearchBar component, which is a simple input form. Passing down the
                                                 handleInputChange function as a prop with onChange, so any change
                                                 will run the handleInputChange function */}
-                                                <SearchBar onChange={handleNewsInputChange} />
+                                                    <SearchBar onChange={handleNewsInputChange} />
 
-                                                {/* The SearchButton component, which is a simple button. Passing down the
+                                                    {/* The SearchButton component, which is a simple button. Passing down the
                                                 handleSubmit function as a prop with onClick, so any button click will
                                                 run the handleSubmit function */}
-                                                <SearchButton onClick={handleNewsSubmit} />
+                                                    <SearchButton onClick={handleNewsSubmit} />
 
-                                                {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                                                <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
-                                            </CardContent>
-                                        </Card>
+                                                    {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                                                    <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
+                                                </CardContent>
+                                            </Card>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
+                            </div>
                         </div>
-                    </div>
-                </Container>
-            </ThemeProvider>
+                    </Container>
+                </ThemeProvider>
+            </div>
         </Router>
     );
 }
 
-export default App;
+export default Home;
