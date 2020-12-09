@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
@@ -24,27 +25,19 @@ function BtnGrp() {
         root: {
             display: 'flex',
             flexWrap: 'wrap',
+            alignItems: 'center',
             minWidth: 300,
-            width: '100%',
-        },
-        image: {
-            position: 'relative',
-            height: 200,
-            [theme.breakpoints.down('md')]: {
-                width: '100% !important', // Overrides inline-style
-                height: 100,
+            maxWidth: '95%',
+        }, '&:hover, &$focusVisible': {
+            zIndex: 1,
+            '& $imageBackdrop': {
+                opacity: 0.15,
             },
-            '&:hover, &$focusVisible': {
-                zIndex: 1,
-                '& $imageBackdrop': {
-                    opacity: 0.15,
-                },
-                '& $imageMarked': {
-                    opacity: 0,
-                },
-                '& $imageTitle': {
-                    border: '4px solid currentColor',
-                },
+            '& $imageMarked': {
+                opacity: 0,
+            },
+            '& $imageTitle': {
+                border: '4px solid currentColor',
             },
         },
         focusVisible: {},
@@ -59,40 +52,19 @@ function BtnGrp() {
             justifyContent: 'center',
             color: theme.palette.common.white,
         },
-        imageBackdrop: {
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            backgroundColor: theme.palette.common.black,
-            opacity: 0.4,
-            transition: theme.transitions.create('opacity'),
-        },
         imageTitle: {
             position: 'relative',
-            padding: `${theme.spacing(2)}px ${theme.spacing(4)}px ${theme.spacing(1) + 6}px`,
-        },
-        imageMarked: {
-            height: 3,
-            width: 18,
-            backgroundColor: theme.palette.common.white,
-            position: 'absolute',
-            bottom: -2,
-            left: 'calc(50% - 9px)',
-            transition: theme.transitions.create('opacity'),
-        },
+            padding: `${theme.spacing(1)}px ${theme.spacing(2)}px ${theme.spacing(1) + 5}px`,
+        }
     }));
 
     const FactsButton = styled(Button)({
-        border: 0,
         width: '100%',
-        fontSize: 20,
         boxShadow: '0 3px 5px 2px #4A4E69',
         color: 'white',
         height: 200,
-        padding: '5px 30px',
-
+        border: '2px solid #4A4E69',
+        opacity: 0.9
     });
 
     const classes = useStyles();
@@ -107,30 +79,21 @@ function BtnGrp() {
 
 
     return (
-        <Card variant="outlined">
-            <div className={classes.root}>
+        <div className={classes.root}>
+            <Card>
+                {/* <CardActionArea> */}
+                <ButtonGroup variant="outlined">
+                    focusRipple
+                    {/* className={classes.image} */}
+                    focusVisibleClassName={classes.focusVisible}
+                    className={classes.imageTitle}
 
-                <ButtonGroup variant="contained">
-                    {/* <ButtonBase
-                        focusRipple
-                        className={classes.image}
-                        focusVisibleClassName={classes.focusVisible}
-                    >
-                        <span
-                            className={classes.imageSrc}
-                        />
-                        <span
-                            className={classes.imageBackdrop}
-                        /> */}
                     <FactsButton
-                        className={classes.imageTitle}
                         size="large"
                         style={{
-                            height: 200,
                             backgroundImage: `url(${process.env.PUBLIC_URL + '/images/covid_count.jpg'})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center 40%',
-                            fontSize: 20
                         }}
                         color="primary"
                     >
@@ -139,14 +102,11 @@ function BtnGrp() {
                         </Link>
                     </FactsButton>
                     <FactsButton
-                        className={classes.imageTitle}
                         size="large"
                         style={{
-                            height: 200,
-                            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/senators_pexels.jpg'})`,
+                            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/capital_building.jpg'})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center 40%',
-                            fontSize: 20
                         }}
                         color="primary"
                     >
@@ -155,14 +115,11 @@ function BtnGrp() {
                         </Link>
                     </FactsButton>
                     <FactsButton
-                        className={classes.imageTitle}
                         size="large"
                         style={{
-                            height: 200,
                             backgroundImage: `url(${process.env.PUBLIC_URL + '/images/neon_flag.jpg'})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center 40%',
-                            fontSize: 20
                         }}
                         color="primary"
                     >
@@ -170,13 +127,11 @@ function BtnGrp() {
                             <ForeverFactButton onClick={foreverFacts} value="general" />
                         </Link>
                     </FactsButton>
-                    {/* </ButtonBase> */}
                 </ButtonGroup>
-            </div>
-        </Card>
+                {/* </CardActionArea> */}
+            </Card>
+        </div>
     )
-
-
 }
 
 export default BtnGrp;

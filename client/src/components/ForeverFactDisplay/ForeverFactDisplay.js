@@ -30,7 +30,6 @@ function ForeverFactDisplay(props) {
     })
     const useStyles = makeStyles((theme) => ({
         root: {
-            // minHeight: '100vh',
             border: 0,
             display: 'flex',
         },
