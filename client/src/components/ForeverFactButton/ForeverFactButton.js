@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Button from '@material-ui/core/Button';
 import { makeStyles, styled } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+
 import 'fontsource-roboto';
 
 // A component that contains a quick search button
@@ -36,7 +37,7 @@ const QuickSearchButton = (props) => {
     return (
         <div>
             <Typography>
-                <Button variant="contained" {...props}>{textDisplay}</Button>
+                <Button variant="contained" style={{ fontWeight: "bolder", fontSize: 20, color: '#22223B', border: '4px solid currentColor' }} {...props}>{textDisplay}</Button>
             </Typography>
         </div>
     );
