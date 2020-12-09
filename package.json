@@ -21,15 +21,17 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.1",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.18.0",
     "dotenv": "^8.2.0",
-    "fontsource-roboto": "^3.0.3",
     "express": "^4.17.1",
     "express-openid-connect": "^2.0.0",
+    "fontsource-roboto": "^3.0.3",
     "if-env": "^1.0.4",
     "leaflet": "^1.7.1",
     "mongoose": "^5.3.16",
     "react-leaflet": "^3.0.2",
+    "react-transition-group": "^4.4.1",
     "request": "^2.88.2"
   }
 }
