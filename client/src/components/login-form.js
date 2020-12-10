@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
+const styles = {
+    backgroundContainer: {
+        backgroundImage: `url(${process.env.PUBLIC_URL + '/images/washdc.jpg'})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '80vh',
+    }
+}
+
 class LoginForm extends Component {
     constructor() {
         super()
@@ -56,58 +65,60 @@ class LoginForm extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
-                <div>
+                <div style={styles.backgroundContainer}>
+                    <div>
 
-                    {/* Login Form */}
-                    <h4>Login</h4>
-                    <form className="form-horizontal">
-                        <div className="form-group">
-                            <div className="col-1 col-ml-auto">
-                                <label className="form-label" htmlFor="username">Username</label>
+                        {/* Login Form */}
+                        <h4>Login</h4>
+                        <form className="form-horizontal">
+                            <div className="form-group">
+                                <div className="col-1 col-ml-auto">
+                                    <label className="form-label" htmlFor="username">Username</label>
+                                </div>
+                                <div className="col-3 col-mr-auto">
+                                    <input className="form-input"
+                                        type="text"
+                                        id="username"
+                                        name="username"
+                                        placeholder="Username"
+                                        value={this.state.username}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
                             </div>
-                            <div className="col-3 col-mr-auto">
-                                <input className="form-input"
-                                    type="text"
-                                    id="username"
-                                    name="username"
-                                    placeholder="Username"
-                                    value={this.state.username}
-                                    onChange={this.handleChange}
-                                />
+                            <div className="form-group">
+                                <div className="col-1 col-ml-auto">
+                                    <label className="form-label" htmlFor="password">Password: </label>
+                                </div>
+                                <div className="col-3 col-mr-auto">
+                                    <input className="form-input"
+                                        placeholder="password"
+                                        type="password"
+                                        name="password"
+                                        value={this.state.password}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <div className="col-1 col-ml-auto">
-                                <label className="form-label" htmlFor="password">Password: </label>
-                            </div>
-                            <div className="col-3 col-mr-auto">
-                                <input className="form-input"
-                                    placeholder="password"
-                                    type="password"
-                                    name="password"
-                                    value={this.state.password}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="form-group ">
-                            <div className="col-7"></div>
-                            <button
-                                className="btn btn-primary col-1 col-mr-auto"
+                            <div className="form-group ">
+                                <div className="col-7"></div>
+                                <button
+                                    className="btn btn-primary col-1 col-mr-auto"
 
-                                onClick={this.handleSubmit}
-                                type="submit">Login</button>
-                        </div>
-                    </form>
+                                    onClick={this.handleSubmit}
+                                    type="submit">Login</button>
+                            </div>
+                        </form>
 
-                    {/* Link that will direct you to sign up! */}
-                    <div>Need to sign up?</div>
-                    <Link to='/signup' className='btn btn-link'>
-                        <div>
-                            <span className='text-secondary'>Sign up here!</span>
-                        </div>
-                    </Link>
+                        {/* Link that will direct you to sign up! */}
+                        <div>Need to sign up?</div>
+                        <Link to='/signup' className='btn btn-link'>
+                            <div>
+                                <span className='text-secondary'>Sign up here!</span>
+                            </div>
+                        </Link>
 
+                    </div>
                 </div>
             )
         }

@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios'
 
+const styles = {
+	backgroundContainer: {
+		backgroundImage: `url(${process.env.PUBLIC_URL + '/images/whitehouse.jpg'})`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+		minHeight: '80vh',
+	}
+}
+
 class Signup extends Component {
 	constructor() {
 		super()
@@ -49,58 +58,61 @@ class Signup extends Component {
 
 	render() {
 		return (
-			<div className="SignupForm">
+			<div style={styles.backgroundContainer}>
 
-				{/* Signup Form */}
-				<h4>Sign up</h4>
-				<form className="form-horizontal">
-					<div className="form-group">
-						<div className="col-1 col-ml-auto">
-							<label className="form-label" htmlFor="username">Username</label>
-						</div>
-						<div className="col-3 col-mr-auto">
-							<input className="form-input"
-								type="text"
-								id="username"
-								name="username"
-								placeholder="Username"
-								value={this.state.username}
-								onChange={this.handleChange}
-							/>
-						</div>
-					</div>
-					<div className="form-group">
-						<div className="col-1 col-ml-auto">
-							<label className="form-label" htmlFor="password">Password: </label>
-						</div>
-						<div className="col-3 col-mr-auto">
-							<input className="form-input"
-								placeholder="password"
-								type="password"
-								name="password"
-								value={this.state.password}
-								onChange={this.handleChange}
-							/>
-						</div>
-					</div>
-					<div className="form-group ">
-						<div className="col-7"></div>
-						<button
-							className="btn btn-primary col-1 col-mr-auto"
-							onClick={this.handleSubmit}
-							type="submit"
-						>Sign up</button>
-					</div>
-				</form>
+				<div className="SignupForm">
 
-				{/* Link that will direct you to log in! */}
-				<div>Already signed up?</div>
-				<Link to='/login' className='btn btn-link text-secondary'>
-					<div>
-						<span className='text-secondary'>Log in here!</span>
-					</div>
-				</Link>
+					{/* Signup Form */}
+					<h4>Sign up</h4>
+					<form className="form-horizontal">
+						<div className="form-group">
+							<div className="col-1 col-ml-auto">
+								<label className="form-label" htmlFor="username">Username</label>
+							</div>
+							<div className="col-3 col-mr-auto">
+								<input className="form-input"
+									type="text"
+									id="username"
+									name="username"
+									placeholder="Username"
+									value={this.state.username}
+									onChange={this.handleChange}
+								/>
+							</div>
+						</div>
+						<div className="form-group">
+							<div className="col-1 col-ml-auto">
+								<label className="form-label" htmlFor="password">Password: </label>
+							</div>
+							<div className="col-3 col-mr-auto">
+								<input className="form-input"
+									placeholder="password"
+									type="password"
+									name="password"
+									value={this.state.password}
+									onChange={this.handleChange}
+								/>
+							</div>
+						</div>
+						<div className="form-group ">
+							<div className="col-7"></div>
+							<button
+								className="btn btn-primary col-1 col-mr-auto"
+								onClick={this.handleSubmit}
+								type="submit"
+							>Sign up</button>
+						</div>
+					</form>
 
+					{/* Link that will direct you to log in! */}
+					<div>Already signed up?</div>
+					<Link to='/login' className='btn btn-link text-secondary'>
+						<div>
+							<span className='text-secondary'>Log in here!</span>
+						</div>
+					</Link>
+
+				</div>
 			</div>
 		)
 	}
