@@ -25,9 +25,6 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 // Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-// Importing Navbar component
-import Nav from "./components/Nav";
-
 // Importing the MAP (Covid19) component
 import Covid19 from "./components/Covid19";
 
@@ -216,9 +213,6 @@ function Home() {
                 <div className="App">
                     <div className={classes.root}>
                         <CssBaseline />
-
-                        {/* Permanent Nav Bar always exists at the top of the page */}
-                        <Nav />
 
                         <Container maxWidth="l">
                             <Grid container spacing={2} justify="flex-start" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
