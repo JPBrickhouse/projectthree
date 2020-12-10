@@ -5,7 +5,7 @@ const db = require("../../models")
 // POST data to the database
 router.route("/store")
   .post(function (req, res) {
-    db.NewsHistory.create(req.body,(error,data) => {
+    db.NewsHistory.create(req.body, (error, data) => {
       if (error) {
         res.send(error);
       } else {
@@ -17,7 +17,13 @@ router.route("/store")
 // Matches with "/api/databaseRoutes/recall"
 router.route("/recall")
   .get(function (req, res) {
-
+    db.NewsHistory.find({}, (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.json(data);
+      }
+    });
   })
 
 // Exporting the router

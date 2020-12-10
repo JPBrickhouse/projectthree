@@ -70,7 +70,7 @@ class App extends Component {
             if the user is logged in or not. If the user is logged in, it serves the
             <Home/> page. If the user is not logged in, it serves the <LoginForm/> page */}
             <Route exact path='/' render={() =>
-              this.state.loggedIn ? (<Home />) : (<LoginForm updateUser={this.updateUser} />)} />
+              this.state.loggedIn ? (<Home currentUsername={this.state.username}/>) : (<LoginForm updateUser={this.updateUser} />)} />
 
             {/* The login route and page */}
             <Route
