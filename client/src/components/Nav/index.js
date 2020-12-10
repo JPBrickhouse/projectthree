@@ -15,10 +15,10 @@ function Nav() {
           <MenuIcon variant="outlined" />
           <Typography variant="h6">
             No Alternatives - Just Facts
-          </Typography>
+            </Typography>
           <Button>
             Login
-        </Button>
+          </Button>
         </Toolbar>
       </AppBar>
     </header>

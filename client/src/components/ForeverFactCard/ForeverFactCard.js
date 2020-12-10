@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
-import { blue, purple } from "@material-ui/core/colors";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
+
 import Grid from "@material-ui/core/Grid";
-import { sizing, flexbox } from '@material-ui/system';
+
 
 // Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
@@ -37,26 +32,28 @@ function ForeverFactCard() {
     const [newsResultObject, setNewsResultObject] = useState({})
 
     return (
-        <Grid>
-            <Switch>
-                <Route exact path="/covidforeverfact">
-                    {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
-                    Passing down the unitedStateSelected as a prop */}
-                    <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                </Route>
+        <div>
+            <Grid>
+                <Switch>
+                    <Route exact path="/covidforeverfact">
+                        {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
+                        Passing down the unitedStateSelected as a prop */}
+                        <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                    </Route>
 
-                <Route exact path="/senatorforeverfact">
-                    {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
-                    Passing down the unitedStateSelected as a prop */}
-                    <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                </Route>
+                    <Route exact path="/senatorforeverfact">
+                        {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+                        Passing down the unitedStateSelected as a prop */}
+                        <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                    </Route>
 
-                <Route exact path="/generalforeverfact">
-                    {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                    <ForeverFactDisplay usStateInformation={stateOfTheStates} />
-                </Route>
-            </Switch>
-        </Grid>
+                    <Route exact path="/generalforeverfact">
+                        {/* Population and general facts component, which will grab local data from our us-states.json file */}
+                        <ForeverFactDisplay usStateInformation={stateOfTheStates} />
+                    </Route>
+                </Switch>
+            </Grid>
+        </div>
     );
 };
 

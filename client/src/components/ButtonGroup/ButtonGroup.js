@@ -7,14 +7,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { makeStyles, styled } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 
 // Importing the ForeverFactButton component
 import ForeverFactButton from "../ForeverFactButton/ForeverFactButton"

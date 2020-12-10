@@ -1,46 +1,59 @@
-import React, { useState } from "react";
-import { Card, makeStyles } from "@material-ui/core";
+import React from "react";
+import { Card, CardActionArea, CardContent, makeStyles, Typography } from "@material-ui/core";
 
-import NewsDisplay from "../NewsDisplay/NewsDisplay";
 
 function CarouselSlide(props) {
     const { backgroundColor, title } = props.content;
 
-    const useStyles = makeStyles(() => ({
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            border: 0,
+        },
+        details: {
+            display: 'flex',
+        },
+        content: {
+            flex: '1 0 auto',
+        },
+        controls: {
+            width: 'fit-content',
+            border: `1px solid ${theme.palette.main}`,
+            // display: 'flex',
+            textAlign: 'center',
+            alignItems: 'center',
+            paddingLeft: theme.spacing(1),
+            paddingBottom: theme.spacing(1),
+        },
         card: {
             backgroundColor,
             borderRadius: 5,
-            padding: '75px 50px',
-            margin: '0px 25px',
-            width: '100%',
+            padding: '40px 30px',
+            margin: '10px 25px',
+            width: '80%',
             display: 'flex',
             justifyContent: 'center',
+            alignContent: 'center'
         }
     }));
     const classes = useStyles();
 
-    // State elements and objects with Hooks
-    // const [stateOfTheStates, setStateOfTheStates] = useState({
-    //     unitedStateSelected: "",
-    //     regionSelected: "",
-    //     abbreviation: "",
-    //     population: 0,
-    //     electoralvotes: 0,
-    //     populationpervote: 0
-    // })
-
-    const [newsResultObject, setNewsResultObject] = useState({})
-
-    const [mostRecentSearch, setMostRecentSearch] = useState({
-        unitedStateFilter: "",
-        recentNewsSearch: ""
-    })
-
     return (
-        <Card className={classes.card}>
-            <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
-        </Card>
+        <div>
+            <Card className={classes.root}>
+                <CardActionArea>
+                    <div className={classes.details}>
+                        <CardContent className={classes.card}>
+                            <Typography variant="p" >
+                                {title}
+                                {/* {props.propsMessage} */}
+                            </Typography>
+                        </CardContent>
+                    </div>
+                </CardActionArea>
+            </Card>
+        </div>
     )
+
 }
 
 export default CarouselSlide;
