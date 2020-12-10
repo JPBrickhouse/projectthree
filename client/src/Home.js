@@ -17,9 +17,6 @@ import 'fontsource-roboto';
 // Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-// Importing Navbar component
-import Nav from "./components/Nav";
-
 // Importing the MAP (Covid19) component
 import Covid19 from "./components/Covid19";
 
@@ -50,8 +47,8 @@ import { CardActionArea } from "@material-ui/core";
 // =================================================================
 
 
+function Home(props) {
 
-function Home() {
     // Material UI theme constant
     const theme = createMuiTheme({
         palette: {
@@ -65,6 +62,7 @@ function Home() {
             }
         }
     })
+
     // useStyles const for beginning styles
     const useStyles = makeStyles((theme) => ({
         grid: {
@@ -125,6 +123,8 @@ function Home() {
         unitedStateFilter: "",
         recentNewsSearch: ""
     })
+
+    const [fullSearchHistoryObject, setFullSearchHistoryObject] = useState([])
     // ---------------------------------------------------------------
     // A function – to be passed down – that will run when the map is clicked
     // It will update the state object with the United State was most recently clicked
@@ -151,10 +151,10 @@ function Home() {
         event.preventDefault();
 
         // Checking to make sure that both stateOfTheStates.unitedStateSelected and newsSearchEntry aren't blank
-        // If they aren't blank, proceed with the fetch API call to the /news/... route
-        // (It's going to the NYTimes and getting articles)
+        // If they aren't blank, proceed with the two nested routes...
         if (stateOfTheStates.unitedStateSelected !== "" && newsSearchEntry !== "") {
 
+            // This fetch API call is going to the NYTimes and getting news articles
             fetch("/api/externalRoutes/news/" + stateOfTheStates.unitedStateSelected + "/" + newsSearchEntry)
                 .then(res => res.json())
                 .then(
@@ -162,10 +162,12 @@ function Home() {
                         // setIsLoaded(true);
                         // setData(result);
 
-                        console.log(result)
-
+                        // Setting the newsResultObject, which consists of
+                        // ALL the returned news articles
                         setNewsResultObject(result)
 
+                        // Setting the mostRecentSearch object, which consists of
+                        // The most recent search, which is displayed on the page for record
                         setMostRecentSearch({
                             unitedStateFilter: stateOfTheStates.unitedStateSelected,
                             recentNewsSearch: newsSearchEntry
@@ -177,18 +179,35 @@ function Home() {
                     (error) => {
                         // setIsLoaded(true);
                         // setError(error);
-
                         console.log(error)
-
                     }
                 )
+
+
+            // POST the most recent search and user information to the database
+            fetch("/api/databaseRoutes/store", {
+                method: "post",
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    unitedState: stateOfTheStates.unitedStateSelected,
+                    newsSearch: newsSearchEntry,
+                    user: props.currentUsername
+                })
+            })
+
+            // GET everyone's search histories from the database
+            fetch("/api/databaseRoutes/recall", {
+                method: "get"
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    setFullSearchHistoryObject(data);
+                });
         }
-
-
-
-        // ON CLICK
-        // POST the following to the database: stateOfTheStates and newsSearchEntry
-        // (Storing the user's search history)
     }
 
     // =================================================================
@@ -199,9 +218,6 @@ function Home() {
                 <div className="App">
                     <div className={classes.root}>
                         <CssBaseline />
-
-                        {/* Permanent Nav Bar always exists at the top of the page */}
-                        <Nav />
 
                         <Container maxWidth="l">
                             <Grid container spacing={2} justify="flex-start" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>

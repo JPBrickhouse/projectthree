@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 // components
 import Signup from './components/sign-up';
 import LoginForm from './components/login-form';
-import Navbar from './components/navbar';
+import Nav from "./components/Nav";
 import Home from "./Home"
 
 class App extends Component {
@@ -59,27 +59,27 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          
-          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-          
-          {/* greet user if logged in: */}
-          {this.state.loggedIn && <p>Join the party, {this.state.username}!</p>}
-          
+
+          {/* Title / Navigation Bar, which always appears */}
+          <Nav updateUser={this.updateUser} loggedIn={this.state.loggedIn} currentUsername={this.state.username} />
+
           {/* Routes to different components */}
           <Switch>
-            
+
+            {/* If the user attempts to route to the "/" route, a ternary operator checks
+            if the user is logged in or not. If the user is logged in, it serves the
+            <Home/> page. If the user is not logged in, it serves the <LoginForm/> page */}
             <Route exact path='/' render={() =>
-              this.state.loggedIn ? (<Home/>): (<LoginForm updateUser={this.updateUser}/>)} />
+              this.state.loggedIn ? (<Home currentUsername={this.state.username}/>) : (<LoginForm updateUser={this.updateUser} />)} />
 
-
+            {/* The login route and page */}
             <Route
               path='/login'
               render={() => <LoginForm updateUser={this.updateUser} />}
             />
 
-
+            {/* The signup route and page */}
             <Route path='/signup' render={() => <Signup />} />
-
 
           </Switch>
         </div>
