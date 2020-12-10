@@ -57,7 +57,8 @@ import { CardActionArea, FormHelperText } from "@material-ui/core";
 
 // =================================================================
 
-function Home() {
+function Home(props) {
+
     // Material UI theme constant
     const theme = createMuiTheme({
         palette: {
@@ -71,6 +72,7 @@ function Home() {
             }
         }
     })
+
     // useStyles const for beginning styles
     const useStyles = makeStyles((theme) => ({
         grid: {
@@ -129,6 +131,8 @@ function Home() {
         unitedStateFilter: "",
         recentNewsSearch: ""
     })
+
+    const [fullSearchHistoryObject, setFullSearchHistoryObject] = useState([])
     // ---------------------------------------------------------------
     // A function – to be passed down – that will run when the map is clicked
     // It will update the state object with the United State was most recently clicked
@@ -188,8 +192,7 @@ function Home() {
                 )
 
 
-            // POST the most recent search to the database,
-            // along with the user information
+            // POST the most recent search and user information to the database
             fetch("/api/databaseRoutes/store", {
                 method: "post",
                 headers: {
@@ -199,9 +202,19 @@ function Home() {
                 body: JSON.stringify({
                     unitedState: stateOfTheStates.unitedStateSelected,
                     newsSearch: newsSearchEntry,
-                    user: "User"
+                    user: props.currentUsername
                 })
             })
+
+            // GET everyone's search histories from the database
+            fetch("/api/databaseRoutes/recall", {
+                method: "get"
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    setFullSearchHistoryObject(data);
+                });
         }
     }
 
