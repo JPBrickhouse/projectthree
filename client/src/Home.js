@@ -3,24 +3,16 @@ import React, { useState } from "react";
 
 import "./styles/Home.css"
 
+
 // Importing styles from Material-ui
 import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
-import BottomNavigation from '@material-ui/core/BottomNavigation'
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
-import { blue, purple } from "@material-ui/core/colors";
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import { sizing, flexbox } from '@material-ui/system';
 import { CssBaseline } from '@material-ui/core';
 import 'fontsource-roboto';
 
-import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 // Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
@@ -48,14 +40,12 @@ import SearchButton from "./components/SearchButton/SearchButton"
 // Importing the ForeverFactDisplay
 import ForeverFactDisplay from "./components/ForeverFactDisplay/ForeverFactDisplay"
 
-// Importing the ForeverFactDisplay
-import CarouselSlide from "./components/CarouselSlide/CarouselSlide"
 
 import BtnGrp from "./components/ButtonGroup/ButtonGroup"
-import { CardActionArea, FormHelperText } from "@material-ui/core";
-
+import { CardActionArea } from "@material-ui/core";
 
 // =================================================================
+
 
 function Home(props) {
 
@@ -112,6 +102,8 @@ function Home(props) {
     }))
 
     const classes = useStyles();
+
+
     // ---------------------------------------------------------------
     // State elements and objects with Hooks
     const [stateOfTheStates, setStateOfTheStates] = useState({
@@ -283,12 +275,12 @@ function Home(props) {
                                     <Grid container spacing={2} justify="center" alignItems="center">
                                         <Card className={classes.card} variant="outlined">
                                             <CardContent variant="outlined">
-                                                <Typography variant="h5">
+                                                {/* <Typography variant="h5">
                                                     Search By Topic
-                                                </Typography>
+                                                </Typography> */}
                                                 {/* The SearchBar component, which is a simple input form. Passing down the
                                                         handleInputChange function as a prop with onChange, so any change
-                                                        will run the handleInputChange function */}
+                                                        will run the handleInputChange function*/}
                                                 <SearchBar onChange={handleNewsInputChange} />
 
                                                 {/* The SearchButton component, which is a simple button. Passing down the
@@ -297,8 +289,8 @@ function Home(props) {
                                                 <SearchButton onClick={handleNewsSubmit} />
 
                                                 {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                                                {/* <CarouselSlide /> */}
                                                 <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
+                                                {/* <CarouselDisplay /> */}
                                             </CardContent>
                                         </Card>
                                     </Grid>

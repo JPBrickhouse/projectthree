@@ -29,21 +29,20 @@ import SearchButton from "../SearchButton/SearchButton"
 
 function NewsCard() {
 
-    const theme = createMuiTheme({
-        palette: {
-            primary: {
-                light: '#9A8C98',
-                main: '#4A4E69',
-                text: '#22223B'
-            },
-            secondary: {
-                main: '#C9ADA7'
-            }
-        }
-    })
+    // const theme = createMuiTheme({
+    //     palette: {
+    //         primary: {
+    //             light: '#9A8C98',
+    //             main: '#4A4E69',
+    //             text: '#22223B'
+    //         },
+    //         secondary: {
+    //             main: '#C9ADA7'
+    //         }
+    //     }
+    // })
     const useStyles = makeStyles((theme) => ({
         root: {
-            // minHeight: '100vh',
             border: 0,
             display: 'flex',
         },
@@ -56,8 +55,6 @@ function NewsCard() {
         },
         media: {
             height: '150px',
-            // maxWidth: '200px',
-            // display: 'flex'
         },
         controls: {
             width: 'fit-content',
@@ -140,23 +137,25 @@ function NewsCard() {
     }
 
     return (
-        <Grid>
-            <Card className={classes.root}>
-                <div className={classes.details}>
-                    <CardContent className={classes.controls}>
-                        <SearchBar onChange={handleNewsInputChange} />
+        <div>
+            <Grid>
+                <Card className={classes.root}>
+                    <div className={classes.details}>
+                        <CardContent className={classes.controls}>
+                            <SearchBar onChange={handleNewsInputChange} />
 
-                        {/* The SearchButton component, which is a simple button. Passing down the
-                            handleSubmit function as a prop with onClick, so any button click will
-                            run the handleSubmit function */}
-                        <SearchButton onClick={handleNewsSubmit} />
+                            {/* The SearchButton component, which is a simple button. Passing down the
+                                handleSubmit function as a prop with onClick, so any button click will
+                                run the handleSubmit function */}
+                            <SearchButton onClick={handleNewsSubmit} />
 
-                        {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                        <NewsDisplay newsResultProp={newsResultObject} />
-                    </CardContent>
-                </div>
-            </Card>
-        </Grid>
+                            {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                            <NewsDisplay newsResultProp={newsResultObject} />
+                        </CardContent>
+                    </div>
+                </Card>
+            </Grid>
+        </div>
     );
 }
 
