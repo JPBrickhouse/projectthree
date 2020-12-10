@@ -26,7 +26,6 @@ function CarouselSlide(props) {
             paddingBottom: theme.spacing(1),
         },
         card: {
-            // backgroundColor,
             borderRadius: 5,
             padding: '40px 30px',
             margin: '10px 25px',
@@ -44,7 +43,7 @@ function CarouselSlide(props) {
                 <CardActionArea>
                     <div className={classes.details}>
                         <CardContent className={classes.card}>
-                            
+
                             {/* Headline */}
                             <Typography variant="h6" >
                                 {individualNewsArticle.headline.main}

@@ -10,12 +10,14 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, Typography } from '@material-ui/core';
 import 'fontsource-roboto';
 
 
 // Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+
+import Header from "./components/Header/Header";
 
 // Importing the MAP (Covid19) component
 import Covid19 from "./components/Covid19";
@@ -30,6 +32,9 @@ import NewsDisplay from "./components/NewsDisplay/NewsDisplay"
 import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
 
 import TwitterApi from "./components/TwitterApi/TwitterApi"
+
+// Importing Trending News Card
+import TrendingNewsCard from "./components/TrendingNewsCard/TrendingNewsCard"
 
 // Importing the SearchBar component
 import SearchBar from "./components/SearchBar/SearchBar"
@@ -98,7 +103,7 @@ function Home(props) {
             margin: 10,
             background: '#FFFFFF',
             opacity: '.5'
-        }
+        },
     }))
 
     const classes = useStyles();
@@ -220,9 +225,13 @@ function Home(props) {
                         <CssBaseline />
 
                         <Container maxWidth="l">
-                            <Grid container spacing={2} justify="flex-start" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
+                            <Grid container spacing={2} justify="center" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
+                                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                                    <Header />
+                                </Grid>
+                            </Grid>
+                            <Grid container spacing={2} justify="center" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-
 
                                     {/* RECTANGLE 1 - Map component */}
                                     {/* The MAP component (called "Covid19", passing down the gettingTheMapClick function as a prop  */}
@@ -270,7 +279,16 @@ function Home(props) {
                                                 </CardContent>
                                             </CardActionArea>
                                         </Card>
+
                                     </Grid>
+
+                                    {/* RECENT NEWS - Display  */}
+                                    <Grid container spacing={2} justify="center" alignItems="center">
+                                        <TrendingNewsCard />
+                                    </Grid>
+
+
+
                                     {/* RECTANGLE 4 - News Search and Display */}
                                     <Grid container spacing={2} justify="center" alignItems="center">
                                         <Card className={classes.card} variant="outlined">
@@ -290,7 +308,6 @@ function Home(props) {
 
                                                 {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
                                                 <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
-                                                {/* <CarouselDisplay /> */}
                                             </CardContent>
                                         </Card>
                                     </Grid>
@@ -301,7 +318,7 @@ function Home(props) {
                 </div>
             </ThemeProvider>
 
-        </Router>
+        </Router >
     );
 }
 
