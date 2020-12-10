@@ -68,9 +68,10 @@ function SenatorApiCall(props) {
 
     // useEffect that conditionally runs when props.usstateAbbrev changes
     useEffect(() => {
+        
         // Also adding a conditional if statement to confirm that props.usstateAbbrev isn't blank/empty
         // That way there aren't any unexplained results and/or errors when the API call is made
-        if (isStateAbbreviationNotEmpty(props)) {
+        if (isStateAbbreviationNotEmpty(props.usstateAbbrev)) {
             // Making the api call to fetch the senator data
             fetch("/api/externalRoutes/senators/" + props.usstateAbbrev)
                 .then(response => response.json())
@@ -91,7 +92,7 @@ function SenatorApiCall(props) {
                     //     });
                 })
         }
-    }, [props, props.usstateAbbrev])
+    }, [props.usstateAbbrev])
 
     // useEffect(() => {
     //     if (doSenatorsExist(stateAndSenatorData)) {
@@ -127,8 +128,8 @@ function SenatorApiCall(props) {
     }
 }
 
-function isStateAbbreviationNotEmpty(props) {
-    return props.usstateAbbrev !== "";
+function isStateAbbreviationNotEmpty(usstateAbbrev) {
+    return usstateAbbrev !== "";
 }
 
 // function doSenatorsExist(stateAndSenatorData) {
