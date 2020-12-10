@@ -1,9 +1,10 @@
 import React from "react";
+import Link from '@material-ui/core/Link';
 import { Card, CardActionArea, CardContent, makeStyles, Typography } from "@material-ui/core";
 
 
 function CarouselSlide(props) {
-    const { backgroundColor, title } = props.content;
+    const individualNewsArticle = props.content
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -25,7 +26,7 @@ function CarouselSlide(props) {
             paddingBottom: theme.spacing(1),
         },
         card: {
-            backgroundColor,
+            // backgroundColor,
             borderRadius: 5,
             padding: '40px 30px',
             margin: '10px 25px',
@@ -43,17 +44,28 @@ function CarouselSlide(props) {
                 <CardActionArea>
                     <div className={classes.details}>
                         <CardContent className={classes.card}>
-                            <Typography variant="p" >
-                                {title}
-                                {/* {props.propsMessage} */}
+                            
+                            {/* Headline */}
+                            <Typography variant="h6" >
+                                {individualNewsArticle.headline.main}
                             </Typography>
+
+                            {/* Article Snippet */}
+                            <Typography variant="p">
+                                {individualNewsArticle.snippet}
+                            </Typography>
+
+                            {/* Link to actual article on NYTimes Website */}
+                            <Link href={individualNewsArticle.web_url} target="_blank" rel="noopener noreferrer">
+                                {individualNewsArticle.web_url}
+                            </Link>
+
                         </CardContent>
                     </div>
                 </CardActionArea>
             </Card>
         </div>
     )
-
 }
 
 export default CarouselSlide;

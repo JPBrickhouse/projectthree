@@ -52,7 +52,7 @@ function NewsDisplay(props) {
 
 
                     {/* Future place for carousel */}
-                    <CarouselDisplay />
+                    <CarouselDisplay newsArray={arrayOfNewsArticleObjects}/>
 
 
 
