@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
 
 class LoginForm extends Component {
@@ -12,7 +12,7 @@ class LoginForm extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
-  
+
     }
 
     handleChange(event) {
@@ -47,7 +47,7 @@ class LoginForm extends Component {
             }).catch(error => {
                 console.log('login error: ')
                 console.log(error);
-                
+
             })
     }
 
@@ -57,6 +57,8 @@ class LoginForm extends Component {
         } else {
             return (
                 <div>
+
+                    {/* Login Form */}
                     <h4>Login</h4>
                     <form className="form-horizontal">
                         <div className="form-group">
@@ -92,11 +94,20 @@ class LoginForm extends Component {
                             <div className="col-7"></div>
                             <button
                                 className="btn btn-primary col-1 col-mr-auto"
-                               
+
                                 onClick={this.handleSubmit}
                                 type="submit">Login</button>
                         </div>
                     </form>
+
+                    {/* Link that will direct you to sign up! */}
+                    <div>Need to sign up?</div>
+                    <Link to='/signup' className='btn btn-link'>
+                        <div>
+                            <span className='text-secondary'>Sign up here!</span>
+                        </div>
+                    </Link>
+
                 </div>
             )
         }
