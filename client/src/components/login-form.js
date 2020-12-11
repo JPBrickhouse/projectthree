@@ -66,12 +66,14 @@ class LoginForm extends Component {
         } else {
             return (
                 <div style={styles.backgroundContainer}>
+
                     <div>
 
                         {/* Login Form */}
-                        <h4>Login</h4>
+                        <h2 style={{ display: 'flex', justifyContent: 'center' }}>Login</h2>
                         <form className="form-horizontal">
-                            <div className="form-group">
+
+                            <div className="form-group" style={{ display: 'flex', justifyContent: 'center' }}>
                                 <div className="col-1 col-ml-auto">
                                     <label className="form-label" htmlFor="username">Username</label>
                                 </div>
@@ -86,7 +88,8 @@ class LoginForm extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="form-group">
+
+                            <div className="form-group" style={{ display: 'flex', justifyContent: 'center' }}>
                                 <div className="col-1 col-ml-auto">
                                     <label className="form-label" htmlFor="password">Password: </label>
                                 </div>
@@ -100,7 +103,8 @@ class LoginForm extends Component {
                                     />
                                 </div>
                             </div>
-                            <div className="form-group ">
+
+                            <div className="form-group" style={{ display: 'flex', justifyContent: 'center' }}>
                                 <div className="col-7"></div>
                                 <button
                                     className="btn btn-primary col-1 col-mr-auto"
@@ -110,13 +114,17 @@ class LoginForm extends Component {
                             </div>
                         </form>
 
-                        {/* Link that will direct you to sign up! */}
-                        <div>Need to sign up?</div>
-                        <Link to='/signup' className='btn btn-link'>
-                            <div>
-                                <span className='text-secondary'>Sign up here!</span>
-                            </div>
-                        </Link>
+                        <br />
+
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>Need to sign up?</div>
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            {/* Link that will direct you to sign up! */}
+                            <Link to='/signup' className='btn btn-link'>
+                                <div>
+                                    <span className='text-secondary'>Sign up here!</span>
+                                </div>
+                            </Link>
+                        </div>
 
                     </div>
                 </div>
