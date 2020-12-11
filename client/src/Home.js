@@ -218,7 +218,7 @@ function Home(props) {
                     <div className={classes.root}>
                         <CssBaseline />
 
-                        <Container maxWidth="l">
+                        <Container maxWidth="lg">
                             <Grid container spacing={2} justify="center" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
                                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <Header />

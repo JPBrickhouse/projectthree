@@ -47,8 +47,7 @@ class Nav extends Component {
         <header className='navbar App-header' id='nav-container'>
           <AppBar position="static">
             <Toolbar>
-              <MenuIcon variant="outlined" />
-
+              
               {/* Title of the App */}
               <Typography variant="h2">
                 Simple State
