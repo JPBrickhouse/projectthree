@@ -62,24 +62,12 @@ function BtnGrp() {
 
     const classes = useStyles();
 
-    // ---------------------------------------------------------------
-    // A function - to be passed down - that will run any time a quick search button
-    // is clicked and will update the state of newsSearchEntry to be whatever the
-    // value of the quick search button is set to. 
-    const foreverFacts = (event) => {
-        console.log(event.target.value)
-    }
-
-
+    // -------------------------------------------------------
     return (
         <div className={classes.root}>
             <Card>
-                
+
                 <ButtonGroup variant="outlined">
-                    focusRipple
-                    {/* className={classes.image} */}
-                    focusVisibleClassName={classes.focusVisible}
-                    className={classes.imageTitle}
 
                     <FactsButton
                         size="large"
@@ -91,10 +79,10 @@ function BtnGrp() {
                         color="primary"
                     >
                         <Link to="/covidforeverfact">
-                            <ForeverFactButton onClick={foreverFacts} value="covid" />
+                            <ForeverFactButton value="covid" />
                         </Link>
                     </FactsButton>
-                    
+
                     <FactsButton
                         size="large"
                         style={{
@@ -105,7 +93,7 @@ function BtnGrp() {
                         color="primary"
                     >
                         <Link to="/senatorforeverfact">
-                            <ForeverFactButton onClick={foreverFacts} value="senator" />
+                            <ForeverFactButton value="senator" />
                         </Link>
                     </FactsButton>
 
@@ -119,12 +107,12 @@ function BtnGrp() {
                         color="primary"
                     >
                         <Link to="/generalforeverfact">
-                            <ForeverFactButton onClick={foreverFacts} value="general" />
+                            <ForeverFactButton value="general" />
                         </Link>
                     </FactsButton>
 
                 </ButtonGroup>
-                
+
             </Card>
         </div>
     )
