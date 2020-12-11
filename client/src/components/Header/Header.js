@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import 'fontsource-roboto';
-import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import "./Header.css";
 

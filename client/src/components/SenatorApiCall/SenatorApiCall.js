@@ -61,11 +61,6 @@ function SenatorApiCall(props) {
         secondSenator: {}
     })
 
-    const [SenatorPictures, SetSenatorPictures] = useState({
-        firstSenator: "",
-        secondSenator: ""
-    })
-
     // useEffect that conditionally runs when props.usstateAbbrev changes
     useEffect(() => {
         
@@ -94,17 +89,6 @@ function SenatorApiCall(props) {
         }
     }, [props.usstateAbbrev])
 
-    // useEffect(() => {
-    //     if (doSenatorsExist(stateAndSenatorData)) {
-    //         console.log(stateAndSenatorData)
-    // }
-    // console.log(stateAndSenatorData.firstSenator)
-    // if (stateAndSenatorData.firstSenator !== {}) {
-    //     console.log("hello2")
-    // }
-
-    // }, [stateAndSenatorData.firstSenator])
-
     // Display senator name and party in parentheses. Also add links to the senators' twitter accounts
     if (isStateAbbreviationNotEmpty(props)) {
         return (
@@ -131,13 +115,5 @@ function SenatorApiCall(props) {
 function isStateAbbreviationNotEmpty(usstateAbbrev) {
     return usstateAbbrev !== "";
 }
-
-// function doSenatorsExist(stateAndSenatorData) {
-//     if (Object.keys(stateAndSenatorData.firstSenator).length === 0 && stateAndSenatorData.firstSenator.constructor === Object) {
-//         return true 
-//     } else {
-//         return false
-//     }
-// }
 
 export default SenatorApiCall

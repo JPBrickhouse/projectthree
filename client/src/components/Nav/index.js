@@ -7,8 +7,7 @@ import MenuIcon from "@material-ui/core/Menu";
 import Typography from "@material-ui/core/Typography"
 
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
