@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const styles = {
 	backgroundContainer: {
-		backgroundImage: `url(${process.env.PUBLIC_URL + '/images/whitehouse.jpg'})`,
+		backgroundImage: `url(${process.env.PUBLIC_URL + '/images/usflag.jpg'})`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		minHeight: '80vh',
@@ -60,12 +60,13 @@ class Signup extends Component {
 		return (
 			<div style={styles.backgroundContainer}>
 
-				<div className="SignupForm">
+				<div className="SignupForm" >
 
 					{/* Signup Form */}
-					<h4>Sign up</h4>
+					<h2 style={{ display: 'flex', justifyContent: 'center' }}>Sign up!</h2>
 					<form className="form-horizontal">
-						<div className="form-group">
+
+						<div className="form-group" style={{ display: 'flex', justifyContent: 'center' }}>
 							<div className="col-1 col-ml-auto">
 								<label className="form-label" htmlFor="username">Username</label>
 							</div>
@@ -80,7 +81,8 @@ class Signup extends Component {
 								/>
 							</div>
 						</div>
-						<div className="form-group">
+
+						<div className="form-group" style={{ display: 'flex', justifyContent: 'center' }}>
 							<div className="col-1 col-ml-auto">
 								<label className="form-label" htmlFor="password">Password: </label>
 							</div>
@@ -94,7 +96,8 @@ class Signup extends Component {
 								/>
 							</div>
 						</div>
-						<div className="form-group ">
+
+						<div className="form-group" style={{ display: 'flex', justifyContent: 'center' }}>
 							<div className="col-7"></div>
 							<button
 								className="btn btn-primary col-1 col-mr-auto"
@@ -103,16 +106,18 @@ class Signup extends Component {
 							>Sign up</button>
 						</div>
 					</form>
-
+				</div>
+				<br />
+				<div style={{ display: 'flex', justifyContent: 'center' }}>Already signed up?</div>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					{/* Link that will direct you to log in! */}
-					<div>Already signed up?</div>
 					<Link to='/login' className='btn btn-link text-secondary'>
 						<div>
 							<span className='text-secondary'>Log in here!</span>
 						</div>
 					</Link>
-
 				</div>
+
 			</div>
 		)
 	}

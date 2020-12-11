@@ -41,22 +41,22 @@ function TrendingNews(props) {
                     </Typography>
 
                     {/* Column 1 - Full Search History from EVERYONE */}
-                    {fullSearchHistory.map(searchItem => {
-                        return (<TrendingSingle
-                            key={searchItem.id}
+                    {fullSearchHistory.map(searchItem => 
+                        <TrendingSingle
+                            key={searchItem._id}
                             newsSearch={searchItem.newsSearch}
                             unitedState={searchItem.unitedState}
-                        />)
-                    })}
+                        />
+                    )}
 
                     {/* Column 2 - Search History from only the USER */}
-                    {userSearchHistory.map(searchItem => {
-                        return (<TrendingSingle
-                            key={searchItem.id}
+                    {userSearchHistory.map(searchItem => 
+                        <TrendingSingle
+                            key={searchItem._id}
                             newsSearch={searchItem.newsSearch}
                             unitedState={searchItem.unitedState}
-                        />)
-                    })}
+                        />
+                    )}
 
                 </CardContent>
             </Card>
