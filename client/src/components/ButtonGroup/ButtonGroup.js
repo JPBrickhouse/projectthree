@@ -74,7 +74,7 @@ function BtnGrp() {
     return (
         <div className={classes.root}>
             <Card>
-                {/* <CardActionArea> */}
+                
                 <ButtonGroup variant="outlined">
                     focusRipple
                     {/* className={classes.image} */}
@@ -94,6 +94,7 @@ function BtnGrp() {
                             <ForeverFactButton onClick={foreverFacts} value="covid" />
                         </Link>
                     </FactsButton>
+                    
                     <FactsButton
                         size="large"
                         style={{
@@ -107,6 +108,7 @@ function BtnGrp() {
                             <ForeverFactButton onClick={foreverFacts} value="senator" />
                         </Link>
                     </FactsButton>
+
                     <FactsButton
                         size="large"
                         style={{
@@ -120,8 +122,9 @@ function BtnGrp() {
                             <ForeverFactButton onClick={foreverFacts} value="general" />
                         </Link>
                     </FactsButton>
+
                 </ButtonGroup>
-                {/* </CardActionArea> */}
+                
             </Card>
         </div>
     )

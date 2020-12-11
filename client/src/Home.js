@@ -1,21 +1,20 @@
 // Importing React and useState Hooks from react
 import React, { useState } from "react";
 
+// Importing styles
 import "./styles/Home.css"
 
-
 // Importing styles from Material-ui
-import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { CssBaseline, Typography } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 import 'fontsource-roboto';
 
-
 // Importing destructured methods from react-router-dom
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 
@@ -30,8 +29,6 @@ import NewsDisplay from "./components/NewsDisplay/NewsDisplay"
 
 // Importing the SenatorApiCall component (which gets the senator data [name, party, twitter account])
 import SenatorApiCall from "./components/SenatorApiCall/SenatorApiCall"
-
-import TwitterApi from "./components/TwitterApi/TwitterApi"
 
 // Importing Trending News Card
 import TrendingNewsCard from "./components/TrendingNewsCard/TrendingNewsCard"
@@ -78,18 +75,15 @@ function Home(props) {
             textAlign: 'center',
             minWidth: '100%',
             height: '300px',
-            color: theme.palette.text.primary,
             marginTop: '20px',
             // background: '#F2E9E4',
             boxShadow: '0 3px 5px 2px #4A4E69',
             color: '#22223B',
             fontSize: 14
-
         },
         root: {
             minHeight: '100vh',
             border: 0,
-            // background: 'linear-gradient(45deg, #FFFFFF 30%, #F5F5F5 90%)',
             backgroundImage: `url(${process.env.PUBLIC_URL + '/images/idea_two.jpg'})`,
             backgroundPosition: 'left top',
             backgroundSize: 'cover',
@@ -247,8 +241,6 @@ function Home(props) {
                                             Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
                                             https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
                                     <BtnGrp />
-
-
                                 </Grid>
 
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
@@ -268,7 +260,6 @@ function Home(props) {
                                                             {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
                                                                                 Passing down the unitedStateSelected as a prop */}
                                                             <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                            <TwitterApi />
                                                         </Route>
 
                                                         <Route exact path="/generalforeverfact">
@@ -282,12 +273,10 @@ function Home(props) {
 
                                     </Grid>
 
-                                    {/* RECENT NEWS - Display  */}
+                                    {/* RECTANGLE 3.5 - Trending News Display  */}
                                     <Grid container spacing={2} justify="center" alignItems="center">
                                         <TrendingNewsCard />
                                     </Grid>
-
-
 
                                     {/* RECTANGLE 4 - News Search and Display */}
                                     <Grid container spacing={2} justify="center" alignItems="center">
