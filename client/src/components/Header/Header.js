@@ -3,11 +3,18 @@ import Typography from "@material-ui/core/Typography";
 import 'fontsource-roboto';
 import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
 
+import "./Header.css";
+
 
 function Header() {
 
     // Material UI theme constant
     const theme = createMuiTheme({
+        typography: {
+            fontFamily: ['Cinzel Decorative',
+                'cursive'
+            ].join(','),
+        },
         palette: {
             primary: {
                 light: '#9A8C98',
@@ -23,7 +30,7 @@ function Header() {
         header: {
             width: '100%',
             margin: '0px',
-            justify: 'center',
+            display: 'inline',
             marginBottom: '0px',
             paddingBottom: '0px'
         },
@@ -32,12 +39,14 @@ function Header() {
     const classes = useStyles();
 
     return (
-        <div className={classes.header}
-            style={{ marginBottom: '0px' }}>
-            <Typography variant="h3" style={{ color: "#5A189A", fontFamily: " 'Roboto', sans serif", fontWeight: "bold" }}>
-                Select A State
-            </Typography>
-        </div>
+        <ThemeProvider theme={theme}>
+            <div className={classes.header}
+                style={{ marginBottom: '0px' }}>
+                <Typography variant="h3" align="left" style={{ color: "#5A189A" }}>
+                    Select A State
+                </Typography>
+            </div>
+        </ThemeProvider>
     )
 };
 
