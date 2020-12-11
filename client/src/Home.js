@@ -90,8 +90,8 @@ function Home(props) {
             minHeight: '100vh',
             border: 0,
             // background: 'linear-gradient(45deg, #FFFFFF 30%, #F5F5F5 90%)',
-            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/vote.jpg'})`,
-            backgroundPosition: 'center',
+            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/idea_two.jpg'})`,
+            backgroundPosition: 'left top',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             zIndex: '-1'
