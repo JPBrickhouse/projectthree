@@ -28,6 +28,8 @@ function TrendingNews(props) {
     const fullSearchHistory = props.fullsearch
     const userSearchHistory = props.usersearch
 
+    console.log(fullSearchHistory,userSearchHistory)
+
     return (
         <div>
             <Card className={classes.news}>
