@@ -26,6 +26,7 @@ router.route("/recall")
           res.json(data);
         }
       })
+      .sort({date: -1})
       .limit(5);
   })
 
@@ -41,6 +42,7 @@ router.route("/recall/:username")
           res.json(data);
         }
       })
+      .sort({date: -1})
       .limit(5);
   })
 
