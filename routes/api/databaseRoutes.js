@@ -15,15 +15,33 @@ router.route("/store")
   });
 
 // Matches with "/api/databaseRoutes/recall"
+// GET data from the database
 router.route("/recall")
   .get(function (req, res) {
-    db.NewsHistory.find({}, (error, data) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.json(data);
-      }
-    });
+    db.NewsHistory
+      .find({}, (error, data) => {
+        if (error) {
+          res.send(error);
+        } else {
+          res.json(data);
+        }
+      })
+      .limit(5);
+  })
+
+// Matches with "/api/databaseRoutes/recall/:username"
+// GET data from the database that corresponds to the username
+router.route("/recall/:username")
+  .get(function (req, res) {
+    db.NewsHistory
+      .find({ user: req.params.username }, (error, data) => {
+        if (error) {
+          res.send(error);
+        } else {
+          res.json(data);
+        }
+      })
+      .limit(5);
   })
 
 // Exporting the router

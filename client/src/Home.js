@@ -1,5 +1,5 @@
 // Importing React and useState Hooks from react
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Importing styles
 import "./styles/Home.css"
@@ -41,7 +41,6 @@ import SearchButton from "./components/SearchButton/SearchButton"
 
 // Importing the ForeverFactDisplay
 import ForeverFactDisplay from "./components/ForeverFactDisplay/ForeverFactDisplay"
-
 
 import BtnGrp from "./components/ButtonGroup/ButtonGroup"
 import { CardActionArea } from "@material-ui/core";
@@ -101,8 +100,6 @@ function Home(props) {
     }))
 
     const classes = useStyles();
-
-
     // ---------------------------------------------------------------
     // State elements and objects with Hooks
     const [stateOfTheStates, setStateOfTheStates] = useState({
@@ -124,6 +121,30 @@ function Home(props) {
     })
 
     const [fullSearchHistoryObject, setFullSearchHistoryObject] = useState([])
+
+    const [userSearchHistoryObject, setUserSearchHistoryObject] = useState([])
+    // ---------------------------------------------------------------
+    // useEffect that runs one time when the page loads,
+    // in order to populate the trending news search history objects
+    useEffect(() => {
+        // GET everyone's search histories from the database
+        fetch("/api/databaseRoutes/recall", {
+            method: "get"
+        })
+            .then(response => response.json())
+            .then(data => {
+                setFullSearchHistoryObject(data);
+            });
+
+        // GET the user's search histories from the database
+        fetch("/api/databaseRoutes/recall/" + props.currentUsername, {
+            method: "get"
+        })
+            .then(response => response.json())
+            .then(data => {
+                setUserSearchHistoryObject(data);
+            });
+    }, [])
     // ---------------------------------------------------------------
     // A function – to be passed down – that will run when the map is clicked
     // It will update the state object with the United State was most recently clicked
@@ -182,7 +203,6 @@ function Home(props) {
                     }
                 )
 
-
             // POST the most recent search and user information to the database
             fetch("/api/databaseRoutes/store", {
                 method: "post",
@@ -203,12 +223,19 @@ function Home(props) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     setFullSearchHistoryObject(data);
+                });
+
+            // GET the user's search histories from the database
+            fetch("/api/databaseRoutes/recall/" + props.currentUsername, {
+                method: "get"
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setUserSearchHistoryObject(data);
                 });
         }
     }
-
     // =================================================================
     return (
         <Router>
@@ -275,7 +302,7 @@ function Home(props) {
 
                                     {/* RECTANGLE 3.5 - Trending News Display  */}
                                     <Grid container spacing={2} justify="center" alignItems="center">
-                                        <TrendingNewsCard />
+                                        <TrendingNewsCard fullsearch={fullSearchHistoryObject} usersearch={userSearchHistoryObject} />
                                     </Grid>
 
                                     {/* RECTANGLE 4 - News Search and Display */}
