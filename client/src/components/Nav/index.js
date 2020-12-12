@@ -45,28 +45,28 @@ class Nav extends Component {
     return (
       <div>
         <header className='navbar App-header' id='nav-container'>
-          <AppBar position="static">
+          <AppBar position="static" style={{ background: "#457b9d" }}>
             <Toolbar>
-              
+
               {/* Title of the App */}
-              <Typography variant="h2">
+              <Typography variant="h3">
                 Simple State
               </Typography>
 
               {/* Tagline of the App */}
-              <Typography variant="h5">
+              <Typography variant="h6">
                 "No Alternatives - Just Facts"
               </Typography>
 
               <div className='col-4'>
-                
+
                 {/* Ternary operator, checking if the user is logged in
                 If logged in, display the currentUsername and a logout button
                 If not logged in, display nothing */}
                 {loggedIn ? (
                   <div>
                     {/* Tagline of the App */}
-                    <Typography variant="h5">
+                    <Typography variant="body1" style={{ display: 'flex-end' }}>
                       Hello {currentUsername}!
                     </Typography>
 
