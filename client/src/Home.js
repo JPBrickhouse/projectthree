@@ -11,6 +11,10 @@ import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { CssBaseline } from '@material-ui/core';
+import withWidth from '@material-ui/core/withWidth';
+import { Typography } from '@material-ui/core';
+
+import { BottomNavigation } from '@material-ui/core';
 import 'fontsource-roboto';
 
 // Importing destructured methods from react-router-dom
@@ -61,11 +65,20 @@ function Home(props) {
             secondary: {
                 main: '#C9ADA7'
             }
-        }
+        },
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920,
+            },
+        },
     })
 
     // useStyles const for beginning styles
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles(() => ({
         grid: {
             width: '100%',
             margin: '0px',
@@ -73,9 +86,8 @@ function Home(props) {
         card: {
             textAlign: 'center',
             minWidth: '100%',
-            height: '300px',
-            marginTop: '20px',
-            // background: '#F2E9E4',
+            height: '325px',
+            margin: '20px 0px',
             boxShadow: '0 3px 5px 2px #4A4E69',
             color: '#22223B',
             fontSize: 14
@@ -87,7 +99,7 @@ function Home(props) {
             backgroundPosition: 'left top',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            zIndex: '-1'
+            zIndex: '-1',
         },
         media: {
             maxWidth: 345
@@ -97,7 +109,11 @@ function Home(props) {
             background: '#FFFFFF',
             opacity: '.5'
         },
+        footer: {
+            background: "#457b9d",
+        }
     }))
+
 
     const classes = useStyles();
     // ---------------------------------------------------------------
@@ -245,13 +261,13 @@ function Home(props) {
                     <div className={classes.root}>
                         <CssBaseline />
 
-                        <Container maxWidth="lg">
-                            <Grid container spacing={2} justify="center" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
+                        <Container maxWidth="xl">
+                            <Grid container justify="center" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
                                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <Header />
                                 </Grid>
                             </Grid>
-                            <Grid container spacing={2} justify="center" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
+                            <Grid container spacing={2} justify="center" style={{ alignContent: 'center', position: 'relative', }}>
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
                                     {/* RECTANGLE 1 - Map component */}
@@ -272,10 +288,13 @@ function Home(props) {
 
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                     {/* RECTANGLE 3 - Forever Fact DISPLAY */}
-                                    <Grid container spacing={2} justify="center" alignItems="center">
+                                    <Grid container spacing={2} justify="center" alignItems="center" style={{ marginTop: '0px' }}>
                                         <Card className={classes.card} variant="outlined">
                                             <CardActionArea>
                                                 <CardContent>
+                                                    <Typography variant="h5">
+                                                        State Information
+                                                    </Typography>
                                                     <Switch>
                                                         <Route exact path="/covidforeverfact">
                                                             {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
@@ -302,16 +321,18 @@ function Home(props) {
 
                                     {/* RECTANGLE 3.5 - Trending News Display  */}
                                     <Grid container spacing={2} justify="center" alignItems="center">
-                                        <TrendingNewsCard fullsearch={fullSearchHistoryObject} usersearch={userSearchHistoryObject} />
+                                        <Card className={classes.card} variant="outlined" style={{ marginTop: 10, marginBottom: 10, height: '220px', width: '300px' }}>
+                                            <TrendingNewsCard fullsearch={fullSearchHistoryObject} usersearch={userSearchHistoryObject} />
+                                        </Card>
                                     </Grid>
 
                                     {/* RECTANGLE 4 - News Search and Display */}
                                     <Grid container spacing={2} justify="center" alignItems="center">
                                         <Card className={classes.card} variant="outlined">
                                             <CardContent variant="outlined">
-                                                {/* <Typography variant="h5">
+                                                <Typography variant="h5">
                                                     Search By Topic
-                                                </Typography> */}
+                                                </Typography>
                                                 {/* The SearchBar component, which is a simple input form. Passing down the
                                                         handleInputChange function as a prop with onChange, so any change
                                                         will run the handleInputChange function*/}
@@ -332,6 +353,12 @@ function Home(props) {
                         </Container>
                     </div>
                 </div>
+
+                <BottomNavigation className={classes.footer}>
+                    Potential Footer
+                </BottomNavigation>
+
+
             </ThemeProvider>
 
         </Router >

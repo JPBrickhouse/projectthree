@@ -1,10 +1,10 @@
 import React from 'react';
-import './ButtonGroup.js';
+import './ButtonGroup.css';
 
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // Importing styles from Material-ui
-import { makeStyles, styled } from "@material-ui/core/styles";
+import { makeStyles, styled, createMuiTheme } from "@material-ui/core/styles";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import Card from '@material-ui/core/Card';
@@ -13,15 +13,30 @@ import Card from '@material-ui/core/Card';
 import ForeverFactButton from "../ForeverFactButton/ForeverFactButton"
 
 function BtnGrp() {
+    const theme = createMuiTheme({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920,
+            },
+        },
+    })
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles(() => ({
         root: {
             display: 'flex',
+            [theme.breakpoints.between('xs', 'md')]: {
+                display: '',
+            },
             flexWrap: 'wrap',
             alignItems: 'center',
             minWidth: 300,
             maxWidth: '95%',
-        }, '&:hover, &$focusVisible': {
+        },
+        '&:hover, &$focusVisible': {
             zIndex: 1,
             '& $imageBackdrop': {
                 opacity: 0.15,
@@ -58,7 +73,8 @@ function BtnGrp() {
         height: 200,
         border: '2px solid #4A4E69',
         opacity: 0.9
-    });
+    }
+    );
 
     const classes = useStyles();
 
@@ -66,7 +82,6 @@ function BtnGrp() {
     return (
         <div className={classes.root}>
             <Card>
-
                 <ButtonGroup variant="outlined">
 
                     <FactsButton

@@ -11,9 +11,10 @@ function Header() {
     // Material UI theme constant
     const theme = createMuiTheme({
         typography: {
-            fontFamily: ['Cinzel Decorative',
-                'cursive'
+            fontFamily: ['Anton',
+                'sans serif'
             ].join(','),
+            fontSize: 22,
         },
         palette: {
             primary: {
@@ -32,7 +33,7 @@ function Header() {
             margin: '0px',
             display: 'inline',
             marginBottom: '0px',
-            paddingBottom: '0px'
+            paddingBottom: '0px',
         },
     }))
 
@@ -42,7 +43,7 @@ function Header() {
         <ThemeProvider theme={theme}>
             <div className={classes.header}
                 style={{ marginBottom: '0px' }}>
-                <Typography variant="h3" align="left" style={{ color: "#5A189A" }}>
+                <Typography variant="h3" align="left" style={{ color: "#1d3557" }}>
                     Select A State
                 </Typography>
             </div>

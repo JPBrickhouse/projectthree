@@ -9,23 +9,8 @@ function NewsDisplay(props) {
         root: {
             border: 0,
             display: 'flex',
-            height: '450px',
-        },
-        details: {
-            display: 'flex',
-            flexDirection: 'column',
-        },
-        content: {
-            flex: '1 0 auto',
-        },
-        controls: {
-            width: 'fit-content',
-            border: `1px solid ${theme.palette.main}`,
-            display: 'flex',
-            textAlign: 'center',
-            paddingLeft: theme.spacing(1),
-            paddingBottom: theme.spacing(1),
-        },
+            height: 'fit-content'
+        }
     }));
 
     const classes = useStyles();
@@ -39,15 +24,14 @@ function NewsDisplay(props) {
 
         return (
             <div className={classes.root}>
-                <div className={classes.wrapper}>
-
+                <div>
                     {/* Letting the user know their most recent search */}
-                    <Typography variant="p">
+                    <Typography variant="body">
                         Your most recent search was for "{props.searchHistorySingle.recentNewsSearch}", filtered by "{props.searchHistorySingle.unitedStateFilter}"
                     </Typography>
 
                     {/* THE carousel */}
-                    <CarouselDisplay newsArray={arrayOfNewsArticleObjects}/>
+                    <CarouselDisplay newsArray={arrayOfNewsArticleObjects} />
 
                 </div>
             </div>
