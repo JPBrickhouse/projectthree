@@ -19,11 +19,11 @@ class Nav extends Component {
 
   logout(event) {
     event.preventDefault();
-    console.log('logging out');
+    // console.log('logging out');
     axios
       .post('/api/user/logout')
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.status === 200) {
           this.props.updateUser({
             loggedIn: false,
@@ -32,15 +32,15 @@ class Nav extends Component {
         }
       })
       .catch((error) => {
-        console.log('Logout error');
+        // console.log('Logout error');
       });
   }
 
   render() {
     const loggedIn = this.props.loggedIn;
     const currentUsername = this.props.currentUsername;
-    console.log('navbar render, props: ');
-    console.log(this.props);
+    // console.log('navbar render, props: ');
+    // console.log(this.props);
 
     return (
       <div>
