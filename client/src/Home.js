@@ -5,13 +5,13 @@ import React, { useEffect, useState } from "react";
 import "./styles/Home.css"
 
 // Importing styles from Material-ui
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { CssBaseline } from '@material-ui/core';
-import withWidth from '@material-ui/core/withWidth';
 import { Typography } from '@material-ui/core';
 
 import { BottomNavigation } from '@material-ui/core';
@@ -87,15 +87,16 @@ function Home(props) {
             textAlign: 'center',
             minWidth: '100%',
             height: '325px',
-            margin: '20px 0px',
+            margin: '20px 10px',
             boxShadow: '0 3px 5px 2px #4A4E69',
-            color: '#22223B',
+            color: '#1D3557',
+            backgroundColor: '#F1FAEE',
             fontSize: 14
         },
         root: {
             minHeight: '100vh',
             border: 0,
-            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/idea_two.jpg'})`,
+            backgroundImage: `url(${process.env.PUBLIC_URL + '/images/dc-img-4.jpg'})`,
             backgroundPosition: 'left top',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -105,12 +106,12 @@ function Home(props) {
             maxWidth: 345
         },
         container: {
-            margin: 10,
-            background: '#FFFFFF',
-            opacity: '.5'
+            margin: 0,
+            alignContent: 'center',
+            position: 'relative',
         },
         footer: {
-            background: "#457b9d",
+            background: "#1d3557",
         }
     }))
 
@@ -261,13 +262,13 @@ function Home(props) {
                     <div className={classes.root}>
                         <CssBaseline />
 
-                        <Container maxWidth="xl">
-                            <Grid container justify="center" alignItems="center" style={{ alignContent: 'center', position: 'relative', }}>
+                        <Container maxWidth="xl" className={classes.container}>
+                            <Grid container justify="center" alignItems="center">
                                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <Header />
                                 </Grid>
                             </Grid>
-                            <Grid container spacing={2} justify="center" style={{ alignContent: 'center', position: 'relative', }}>
+                            <Grid container spacing={2} justify="center">
                                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
                                     {/* RECTANGLE 1 - Map component */}
@@ -290,33 +291,30 @@ function Home(props) {
                                     {/* RECTANGLE 3 - Forever Fact DISPLAY */}
                                     <Grid container spacing={2} justify="center" alignItems="center" style={{ marginTop: '0px' }}>
                                         <Card className={classes.card} variant="outlined">
-                                            <CardActionArea>
-                                                <CardContent>
-                                                    <Typography variant="h5">
-                                                        State Information
+                                            <CardContent>
+                                                <Typography variant="h5" style={{ fontWeight: "bold" }}>
+                                                    State Information
                                                     </Typography>
-                                                    <Switch>
-                                                        <Route exact path="/covidforeverfact">
-                                                            {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
+                                                <Switch>
+                                                    <Route exact path="/covidforeverfact">
+                                                        {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
                                                                                 Passing down the unitedStateSelected as a prop */}
-                                                            <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                        </Route>
+                                                        <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                    </Route>
 
-                                                        <Route exact path="/senatorforeverfact">
-                                                            {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+                                                    <Route exact path="/senatorforeverfact">
+                                                        {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
                                                                                 Passing down the unitedStateSelected as a prop */}
-                                                            <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                        </Route>
+                                                        <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                    </Route>
 
-                                                        <Route exact path="/generalforeverfact">
-                                                            {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                                                            <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                        </Route>
-                                                    </Switch>
-                                                </CardContent>
-                                            </CardActionArea>
+                                                    <Route exact path="/generalforeverfact">
+                                                        {/* Population and general facts component, which will grab local data from our us-states.json file */}
+                                                        <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                    </Route>
+                                                </Switch>
+                                            </CardContent>
                                         </Card>
-
                                     </Grid>
 
                                     {/* RECTANGLE 3.5 - Trending News Display  */}
@@ -330,7 +328,7 @@ function Home(props) {
                                     <Grid container spacing={2} justify="center" alignItems="center">
                                         <Card className={classes.card} variant="outlined">
                                             <CardContent variant="outlined">
-                                                <Typography variant="h5">
+                                                <Typography variant="h5" style={{ fontWeight: "bold" }}>
                                                     Search By Topic
                                                 </Typography>
                                                 {/* The SearchBar component, which is a simple input form. Passing down the

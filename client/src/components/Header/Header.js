@@ -15,6 +15,7 @@ function Header() {
                 'sans serif'
             ].join(','),
             fontSize: 22,
+
         },
         palette: {
             primary: {
@@ -29,7 +30,7 @@ function Header() {
     });
     const useStyles = makeStyles(() => ({
         header: {
-            width: '100%',
+            maxWidth: '100%',
             margin: '0px',
             display: 'inline',
             marginBottom: '0px',
