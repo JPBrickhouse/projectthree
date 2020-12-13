@@ -302,7 +302,7 @@ function Home(props) {
                                                     </Typography>
 
                                                     {/* Ternary Operator to determine whether or not to display the state flag */}
-                                                    {stateOfTheStates.abbreviation ? (<img className={classes.cover} src={'http://flags.ox3.in/svg/us/' + stateOfTheStates.abbreviation + '.svg'} />) : (<div></div>)}
+                                                    {stateOfTheStates.abbreviation ? (<img className={classes.cover} src={process.env.PUBLIC_URL + '/localStateFlags/' + stateOfTheStates.abbreviation + '.svg'} />) : (<div></div>)}
                                                     
                                                     <Switch>
                                                         <Route exact path="/covidforeverfact">
