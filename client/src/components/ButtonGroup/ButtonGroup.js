@@ -4,7 +4,8 @@ import './ButtonGroup.css';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 // Importing styles from Material-ui
-import { makeStyles, styled, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles, styled, createMuiTheme, ThemeProvider, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import Card from '@material-ui/core/Card';
@@ -13,6 +14,7 @@ import Card from '@material-ui/core/Card';
 import ForeverFactButton from "../ForeverFactButton/ForeverFactButton"
 
 function BtnGrp() {
+
     const theme = createMuiTheme({
         breakpoints: {
             values: {
@@ -28,9 +30,6 @@ function BtnGrp() {
     const useStyles = makeStyles(() => ({
         root: {
             display: 'flex',
-            [theme.breakpoints.between('xs', 'md')]: {
-                display: '',
-            },
             flexWrap: 'wrap',
             alignItems: 'center',
             minWidth: 300,
@@ -63,17 +62,20 @@ function BtnGrp() {
         imageTitle: {
             position: 'relative',
             padding: `${theme.spacing(1)}px ${theme.spacing(2)}px ${theme.spacing(1) + 5}px`,
+        },
+        responsivegroup: {
+
         }
     }));
 
     const FactsButton = styled(Button)({
-        width: '100%',
+        maxWidth: '100%',
         boxShadow: '0 3px 5px 2px #4A4E69',
         color: 'white',
         height: 200,
         border: '2px solid #4A4E69',
-        opacity: 0.9
-    }
+        opacity: 0.9,
+    },
     );
 
     const classes = useStyles();
@@ -82,7 +84,11 @@ function BtnGrp() {
     return (
         <div className={classes.root}>
             <Card>
-                <ButtonGroup variant="outlined">
+                <ButtonGroup
+                    variant="outlined"
+                    orientation="horizontal"
+                    style={{ maxWidth: '100%' }}
+                >
 
                     <FactsButton
                         size="large"

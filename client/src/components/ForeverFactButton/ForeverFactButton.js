@@ -37,7 +37,7 @@ const QuickSearchButton = (props) => {
     return (
         <div>
             <Typography>
-                <Button variant="contained" style={{ fontWeight: "bolder", fontSize: 20, color: '#22223B', border: '4px solid currentColor' }} >{textDisplay}</Button>
+                <Button variant="text" style={{ maxWidth: "100%", fontWeight: "bold", fontSize: 15, color: '#ffffff', background: 'rgba(0, 0, 0, 0.5)', boxShadow: '0 5px 5px 5px #ffffff', }} >{textDisplay}</Button>
             </Typography>
         </div>
     );

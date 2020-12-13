@@ -13,15 +13,14 @@ function TrendingNews(props) {
 
     const useStyles = makeStyles((theme) => ({
         root: {
-            // margin: '20px 30px',
             border: 0,
-            // display: 'flex',
-            // boxShadow: '0 3px 5px 2px #4A4E69',
         },
         details: {
             display: 'flex',
             flexDirection: 'column',
             padding: '0px 60px',
+            color: '#1D3557',
+            backgroundColor: '#F1FAEE',
         },
         content: {
             fontSize: 12,
@@ -31,7 +30,6 @@ function TrendingNews(props) {
         controls: {
             minWidth: '100%',
             display: 'flex',
-            // textAlign: 'center',
         },
     }));
     const classes = useStyles();
@@ -47,9 +45,9 @@ function TrendingNews(props) {
                 <CardContent>
 
                     {/* Title Header */}
-                    <Typography variant="h6">
+                    <Typography variant="h5" style={{ fontWeight: "bold" }}>
                         Trending News
-                        </Typography>
+                    </Typography>
 
                     <Card className={classes.controls}>
                         <div className={classes.content}>
