@@ -119,7 +119,7 @@ function NewsCard() {
                     // setIsLoaded(true);
                     // setData(result);
 
-                    console.log(result)
+                    // console.log(result)
                     setNewsResultObject(result)
 
                 },
@@ -130,7 +130,7 @@ function NewsCard() {
                     // setIsLoaded(true);
                     // setError(error);
 
-                    console.log(error)
+                    // console.log(error)
 
                 }
             )

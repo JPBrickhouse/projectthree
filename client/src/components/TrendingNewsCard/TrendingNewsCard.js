@@ -37,7 +37,7 @@ function TrendingNews(props) {
     const fullSearchHistory = props.fullsearch
     const userSearchHistory = props.usersearch
 
-    console.log(fullSearchHistory, userSearchHistory)
+    // console.log(fullSearchHistory, userSearchHistory)
 
     return (
         <div className={classes.root}>
@@ -52,24 +52,30 @@ function TrendingNews(props) {
                     <Card className={classes.controls}>
                         <div className={classes.content}>
                             {/* Column 1 - Full Search History from EVERYONE */}
-                            {fullSearchHistory.map(searchItem =>
-                                <TrendingSingle
-                                    key={searchItem._id}
-                                    newsSearch={searchItem.newsSearch}
-                                    unitedState={searchItem.unitedState}
-                                />
-                            )}
+                            <h3>Everyone's searches:</h3>
+                            <ul>
+                                {fullSearchHistory.map(searchItem =>
+                                    <TrendingSingle
+                                        key={searchItem._id}
+                                        newsSearch={searchItem.newsSearch}
+                                        unitedState={searchItem.unitedState}
+                                    />
+                                )}
+                            </ul>
                         </div>
                         <Divider orientation="vertical" flexItem />
                         <div className={classes.content}>
                             {/* Column 2 - Search History from only the USER */}
-                            {userSearchHistory.map(searchItem =>
-                                <TrendingSingle
-                                    key={searchItem._id}
-                                    newsSearch={searchItem.newsSearch}
-                                    unitedState={searchItem.unitedState}
-                                />
-                            )}
+                            <h3>Your searches:</h3>
+                            <ul>
+                                {userSearchHistory.map(searchItem =>
+                                    <TrendingSingle
+                                        key={searchItem._id}
+                                        newsSearch={searchItem.newsSearch}
+                                        unitedState={searchItem.unitedState}
+                                    />
+                                )}
+                            </ul>
                         </div>
                     </Card>
                 </CardContent>

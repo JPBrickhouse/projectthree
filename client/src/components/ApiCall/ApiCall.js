@@ -65,7 +65,8 @@ function ApiCall(props) {
             paddingBottom: theme.spacing(1),
         },
         cover: {
-            width: 151,
+            height: 150,
+            margin: "auto"
         },
     }))
 
@@ -96,10 +97,6 @@ function ApiCall(props) {
         <Card className={classes.root}>
             <CardActionArea>
                 <div className={classes.details}>
-                    <CardMedia title="stateflag" className={classes.media} image={'http://flags.ox3.in/svg/us/' + props.usstateAbbrev + '.svg'} />
-                    {/* -------------------------------------------- */}
-                    {/* FANCY Covid Data component goes here
-                    Pass down the CovidData object as a prop */}
                     <CardContent className={classes.controls}>
                         <Typography style={{ listStyleType: "none" }} variant="body1" color="textSecondary" component="ul">
                             <li>Positive cases: {stateAndCovidData.covidData.positive}</li>

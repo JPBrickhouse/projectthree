@@ -112,9 +112,12 @@ function Home(props) {
         },
         footer: {
             background: "#1d3557",
-        }
+        },
+        cover: {
+            height: 150,
+            margin: "auto"
+        },
     }))
-
 
     const classes = useStyles();
     // ---------------------------------------------------------------
@@ -216,7 +219,7 @@ function Home(props) {
                     (error) => {
                         // setIsLoaded(true);
                         // setError(error);
-                        console.log(error)
+                        // console.log(error)
                     }
                 )
 
@@ -291,29 +294,36 @@ function Home(props) {
                                     {/* RECTANGLE 3 - Forever Fact DISPLAY */}
                                     <Grid container spacing={2} justify="center" alignItems="center" style={{ marginTop: '0px' }}>
                                         <Card className={classes.card} variant="outlined">
-                                            <CardContent>
-                                                <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                                                    State Information
+                                            <CardActionArea>
+                                                <CardContent>
+                                                    
+                                                    <Typography variant="h5" style={{ fontWeight: "bold" }}>
+                                                        State Information
                                                     </Typography>
-                                                <Switch>
-                                                    <Route exact path="/covidforeverfact">
-                                                        {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
-                                                                                Passing down the unitedStateSelected as a prop */}
-                                                        <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                    </Route>
 
-                                                    <Route exact path="/senatorforeverfact">
-                                                        {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
-                                                                                Passing down the unitedStateSelected as a prop */}
-                                                        <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                    </Route>
+                                                    {/* Ternary Operator to determine whether or not to display the state flag */}
+                                                    {stateOfTheStates.abbreviation ? (<img className={classes.cover} src={'http://flags.ox3.in/svg/us/' + stateOfTheStates.abbreviation + '.svg'} />) : (<div></div>)}
+                                                    
+                                                    <Switch>
+                                                        <Route exact path="/covidforeverfact">
+                                                            {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
+                                                            Passing down the unitedStateSelected as a prop */}
+                                                            <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                        </Route>
 
-                                                    <Route exact path="/generalforeverfact">
-                                                        {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                                                        <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                    </Route>
-                                                </Switch>
-                                            </CardContent>
+                                                        <Route exact path="/senatorforeverfact">
+                                                            {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+                                                            Passing down the unitedStateSelected as a prop */}
+                                                            <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                        </Route>
+
+                                                        <Route exact path="/generalforeverfact">
+                                                            {/* Population and general facts component, which will grab local data from our us-states.json file */}
+                                                            <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                        </Route>
+                                                    </Switch>
+                                                </CardContent>
+                                            </CardActionArea>
                                         </Card>
                                     </Grid>
 

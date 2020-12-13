@@ -26,7 +26,7 @@ function NewsDisplay(props) {
             <div className={classes.root}>
                 <div>
                     {/* Letting the user know their most recent search */}
-                    <Typography variant="body">
+                    <Typography variant="body1">
                         Your most recent search was for "{props.searchHistorySingle.recentNewsSearch}", filtered by "{props.searchHistorySingle.unitedStateFilter}"
                     </Typography>
 

@@ -5,6 +5,8 @@ import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/sty
 import Typography from "@material-ui/core/Typography";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import Container from '@material-ui/core/Container';
 import CardMedia from '@material-ui/core/CardMedia';
 import Divider from '@material-ui/core/Divider';
 import 'fontsource-roboto';
@@ -49,7 +51,8 @@ function ForeverFactDisplay(props) {
             paddingBottom: theme.spacing(1),
         },
         cover: {
-            width: 151,
+            height: 150,
+            margin: "auto"
         },
     }))
 
@@ -57,26 +60,27 @@ function ForeverFactDisplay(props) {
 
     return (
         <div>
-            <ThemeProvider theme={theme}>
+
+            <CardActionArea>
                 <Card className={classes.root}>
                     <div className={classes.details}>
-                        <CardMedia title="stateflag" className={classes.media} image={'http://flags.ox3.in/svg/us/' + props.usstateAbbrev + '.svg'} />
                         <CardContent className={classes.controls}>
                             <Typography style={{ listStyleType: "none" }} variant="body2" color="textSecondary" component="ul">
-                                <li>USA Population - 2019 estimate: 328687501</li>
+                                <li>USA Population (2019): 328687501</li>
                                 <li>Electoral Votes: 538</li>
                                 <li>Population per Electoral Vote: 610111</li>
                             </Typography>
                             <Divider orientation="vertical" flexItem />
                             <Typography style={{ listStyleType: "none" }} variant="body2" color="textSecondary" component="ul">
-                                <li>{props.usStateInformation.unitedStateSelected} Population - 2019 estimate: {props.usStateInformation.population}</li>
+                                <li>{props.usStateInformation.unitedStateSelected} Population (2019): {props.usStateInformation.population}</li>
                                 <li>Electoral Votes: {props.usStateInformation.electoralvotes}</li>
                                 <li>Population per Electoral Vote: {props.usStateInformation.populationpervote}</li>
                             </Typography>
                         </CardContent>
                     </div>
                 </Card>
-            </ThemeProvider>
+            </CardActionArea>
+
         </div>
     );
 }

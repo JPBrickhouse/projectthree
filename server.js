@@ -24,17 +24,13 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors());
 
-// // Define middleware here
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-
 const uri = process.env.MONGODB_URI || "mongodb://localhost/dbProjectThree";
 mongoose
   .connect(uri)
   .then(
     () => {
       /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
-      console.log('Connected to Mongo');
+      // console.log('Connected to Mongo');
 
       // Sessions
       app.use(
@@ -80,43 +76,10 @@ mongoose
     },
     (err) => {
       /** handle initial connection error */
-      console.log('error connecting to Mongo: ');
-      console.log(err);
+      // console.log('error connecting to Mongo: ');
+      // console.log(err);
     }
   )
-  .catch((err) => console.log({ err }));
-
-
-
-
-
-
-
-
-
-
-
-
-// // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
-
-// // Importing the routes
-// app.use(require("./routes"))
-
-// // Connect to the Mongo DB
-// mongoose.connect(
-//   process.env.MONGODB_URI || "mongodb://localhost/dbProjectThree",
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useCreateIndex: true,
-//     useFindAndModify: false
-//   }
-// );
-
-// // Start the API server
-// app.listen(PORT, function () {
-//   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-// });
+  .catch((err) => {
+    // console.log({ err })
+  });
