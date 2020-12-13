@@ -51,7 +51,8 @@ function SenatorApiCall(props) {
             paddingBottom: theme.spacing(1),
         },
         cover: {
-            width: 151,
+            height: 150,
+            margin: "auto"
         },
     }))
 
@@ -63,7 +64,7 @@ function SenatorApiCall(props) {
 
     // useEffect that conditionally runs when props.usstateAbbrev changes
     useEffect(() => {
-        
+
         // Also adding a conditional if statement to confirm that props.usstateAbbrev isn't blank/empty
         // That way there aren't any unexplained results and/or errors when the API call is made
         if (isStateAbbreviationNotEmpty(props.usstateAbbrev)) {
@@ -73,18 +74,12 @@ function SenatorApiCall(props) {
                 .then(data => {
                     const firstSenateId = data.results[0].twitter_id;
                     const secondSenateId = data.results[1].twitter_id
-                    console.log(firstSenateId, secondSenateId)
+                    // console.log(firstSenateId, secondSenateId)
 
                     setStateAndSenatorData({
                         firstSenator: data.results[0],
                         secondSenator: data.results[1]
                     });
-
-                    // fetch("api/externalRoutes/twitter/" + firstSenateId)
-                    //     .then(response => response.json())
-                    //     .then(data => {
-                    //         console.log(data)
-                    //     });
                 })
         }
     }, [props.usstateAbbrev])
@@ -95,7 +90,6 @@ function SenatorApiCall(props) {
             <Card className={classes.root}>
                 <CardActionArea>
                     <div className={classes.details}>
-                        <CardMedia title="stateflag" className={classes.media} image={'http://flags.ox3.in/svg/us/' + props.usstateAbbrev + '.svg'} />
                         <CardContent className={classes.controls}>
                             <Typography style={{ listStyleType: "none" }} variant="body1" color="textSecondary" component="ul">
                                 <a href={"https://www.twitter.com/" + stateAndSenatorData.firstSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.firstSenator.name} ({stateAndSenatorData.firstSenator.party})</a>

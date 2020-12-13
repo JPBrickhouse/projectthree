@@ -35,7 +35,7 @@ function NewsCall(props) {
     } else if (data.response) {
                 
         // CONSOLE LOGGING FOR NOW
-        console.log(data)
+        // console.log(data)
 
         // Returning the news content
         // Currently only returning the first article as a basic div

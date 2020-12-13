@@ -111,9 +111,12 @@ function Home(props) {
         },
         footer: {
             background: "#457b9d",
-        }
+        },
+        cover: {
+            height: 150,
+            margin: "auto"
+        },
     }))
-
 
     const classes = useStyles();
     // ---------------------------------------------------------------
@@ -215,7 +218,7 @@ function Home(props) {
                     (error) => {
                         // setIsLoaded(true);
                         // setError(error);
-                        console.log(error)
+                        // console.log(error)
                     }
                 )
 
@@ -292,19 +295,24 @@ function Home(props) {
                                         <Card className={classes.card} variant="outlined">
                                             <CardActionArea>
                                                 <CardContent>
+                                                    
                                                     <Typography variant="h5">
                                                         State Information
                                                     </Typography>
+
+                                                    {/* Ternary Operator to determine whether or not to display the state flag */}
+                                                    {stateOfTheStates.abbreviation ? (<img className={classes.cover} src={'http://flags.ox3.in/svg/us/' + stateOfTheStates.abbreviation + '.svg'} />) : (<div></div>)}
+                                                    
                                                     <Switch>
                                                         <Route exact path="/covidforeverfact">
                                                             {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
-                                                                                Passing down the unitedStateSelected as a prop */}
+                                                            Passing down the unitedStateSelected as a prop */}
                                                             <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
                                                         </Route>
 
                                                         <Route exact path="/senatorforeverfact">
                                                             {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
-                                                                                Passing down the unitedStateSelected as a prop */}
+                                                            Passing down the unitedStateSelected as a prop */}
                                                             <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
                                                         </Route>
 
