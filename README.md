@@ -8,33 +8,33 @@
 ## DESCRIPTION
 "No Alternatives, Just Facts" <br>
 As someone who is not always interested in reading from dozens of different sources on the daily, and getting overwhelmed with unneccessary content, "Simple State" is the place to quickly acquire data-driven information.<br>
-It is a single-page application and an all-encompassing platform, with immedidate access to up-to-date Covid Statistics, state facts, contact information for US senators, and filtered news searches.
+"Simple State" is a single-page application and an all-encompassing platform, with immedidate access to up-to-date Covid Statistics, state facts, contact information for US senators, and filtered news searches.
 
 ## SCREENSHOTS
-(Potentially GIFs?)
 
-- Login Page
+### Login and Signup Pages
+![Login and Signup pages](./client/public/screenshots/LoginSignup.png)
 
-- Full Home Page
+### Full Home Page
+![Home Page](./client/public/screenshots/homepage.png)
 
-- Map Selected
+### Map Selection and Button Options
+![Map Selection and Buttons](./client/public/screenshots/mapselectAndButtons.png)
 
-- Close-up of the Forever Fact Displays:
-    - Covid
-    - Senators
-    - General State Facts
+### Contact Your Senators
+![Contact Your Senators](./client/public/screenshots/stateFacts.png)
 
-- News Display
+### News Search and Display Cards
+![News Search and Display](./client/public/screenshots/newsCards.png)
 
-- Trending news searches
-
+### Trending News
+![Trending News](./client/public/screenshots/trendingNews.png)
 
 ## TABLE OF CONTENTS
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
 * [Contributing](#contributing)
-* [Retrospective](#retrospective)
 
 ## INSTALLATION
 - No installation is required, as the user can simply visit the deployed application link: [https://project-three-2020.herokuapp.com/](https://project-three-2020.herokuapp.com/)
@@ -74,6 +74,3 @@ License: MIT License<br>
 - [https://github.com/ARBarber0510](https://github.com/ARBarber0510)
 - [https://github.com/jeffreykornfeld](https://github.com/jeffreykornfeld)
 - [https://github.com/kbaur775](https://github.com/kbaur775)
-
-## RETROSPECTIVE
-PLACEHOLDER
