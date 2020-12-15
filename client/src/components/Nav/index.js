@@ -1,10 +1,7 @@
 // import React from "react";
 // import Button from "@material-ui/core/Button";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-// // import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/core/Menu";
-import Typography from "@material-ui/core/Typography"
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
+
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -45,7 +42,7 @@ class Nav extends Component {
     return (
       <div>
         <header className='navbar App-header' id='nav-container'>
-          <AppBar position="static" style={{ background: "#457b9d" }}>
+          <AppBar position="sticky" style={{ background: "#457b9d", margin: "0px", padding: "0px 50px" }}>
             <Toolbar>
 
               {/* Title of the App */}
@@ -58,7 +55,7 @@ class Nav extends Component {
                 "No Alternatives - Just Facts"
               </Typography>
 
-              <div className='col-4'>
+              <div className='col-6'>
 
                 {/* Ternary operator, checking if the user is logged in
                 If logged in, display the currentUsername and a logout button

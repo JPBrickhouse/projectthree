@@ -86,15 +86,10 @@ function CarouselDisplay(props) {
 
             {/* Arrows */}
             <Arrow
-                style={{ display: 'flex', height: '10px', cursor: 'pointer' }}
+                style={{ display: 'flex', height: '5px', cursor: 'pointer' }}
                 direction='left'
                 clickFunction={() => onArrowClick('right')}
             />
-            {/* <Arrow
-                style={{ display: 'flex', height: '10px', cursor: 'pointer' }}
-                direction='right'
-                clickFunction={() => onArrowClick('left')}
-            /> */}
 
             {/* Slides generated here */}
             <Slide in={slideIn} direction={slideDirection}>
@@ -103,7 +98,7 @@ function CarouselDisplay(props) {
                 </div>
             </Slide>
             <Arrow
-                style={{ display: 'flex', height: '10px', cursor: 'pointer' }}
+                style={{ display: 'flex', height: '5px', cursor: 'pointer' }}
                 direction='right'
                 clickFunction={() => onArrowClick('left')}
             />

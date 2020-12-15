@@ -1,18 +1,13 @@
 // Importing React and Hooks
 import React, { useEffect, useState } from "react"
 
-import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Divider from '@material-ui/core/Divider';
+import { makeStyles, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import { Card, CardContent, Divider, ThemeProvider, Typography } from "@material-ui/core";
 import 'fontsource-roboto';
 
 // This is the SenatorApiCall function and we are passing it props
 function SenatorApiCall(props) {
-    const theme = createMuiTheme({
+    let theme = createMuiTheme({
         palette: {
             primary: {
                 light: '#9A8C98',
@@ -24,36 +19,47 @@ function SenatorApiCall(props) {
             }
         }
     })
+    theme = responsiveFontSizes(theme);
     const useStyles = makeStyles((theme) => ({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920,
+            },
+        },
         root: {
-            // minHeight: '100vh',
             border: 0,
             display: 'flex',
         },
         details: {
-            display: 'flex',
             flexDirection: 'column',
         },
-        content: {
-            flex: '1 0 auto',
-        },
-        media: {
-            height: '150px',
-            // maxWidth: '200px',
-            // display: 'flex'
-        },
+
         controls: {
             width: 'fit-content',
-            border: `1px solid ${theme.palette.main}`,
+            flex: '1 0 auto',
             display: 'flex',
             alignItems: 'center',
-            paddingLeft: theme.spacing(1),
-            paddingBottom: theme.spacing(1),
+            // paddingLeft: theme.spacing(1),
+            // paddingBottom: theme.spacing(1),
         },
-        cover: {
-            height: 150,
-            margin: "auto"
-        },
+        // cover: {
+        //     height: 150,
+        //     margin: "10px auto"
+        // },
+        typography: {
+            listStyleType: 'none',
+            margin: '20px',
+            alignText: 'center',
+            [theme.breakpoints.between('xs', 'sm')]: {
+                letterSpacing: 0,
+                textTransform: 'capitalize',
+                paddingLeft: '5px'
+            }
+        }
     }))
 
     const classes = useStyles();
@@ -87,19 +93,23 @@ function SenatorApiCall(props) {
     // Display senator name and party in parentheses. Also add links to the senators' twitter accounts
     if (isStateAbbreviationNotEmpty(props)) {
         return (
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <div className={classes.details}>
-                        <CardContent className={classes.controls}>
-                            <Typography style={{ listStyleType: "none" }} variant="body1" color="textSecondary" component="ul">
-                                <a href={"https://www.twitter.com/" + stateAndSenatorData.firstSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.firstSenator.name} ({stateAndSenatorData.firstSenator.party})</a>
-                                <Divider orientation="vertical" flexItem />
-                                <a href={"https://www.twitter.com/" + stateAndSenatorData.secondSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.secondSenator.name} ({stateAndSenatorData.secondSenator.party})</a>
-                            </Typography>
-                        </CardContent>
-                    </div>
-                </CardActionArea>
-            </Card>
+            <ThemeProvider theme={theme}>
+                <div style={{ width: '100%' }}>
+                    <Card className={classes.root}>
+                        <div className={classes.details}>
+                            <CardContent className={classes.controls}>
+                                <Typography className={classes.typography} variant="overline" component="ul">
+                                    <a href={"https://www.twitter.com/" + stateAndSenatorData.firstSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.firstSenator.name} ({stateAndSenatorData.firstSenator.party})</a>
+                                    <Divider orientation="vertical" flexItem />
+                                </Typography>
+                                <Typography className={classes.typography} variant="overline" component="ul">
+                                    <a href={"https://www.twitter.com/" + stateAndSenatorData.secondSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.secondSenator.name} ({stateAndSenatorData.secondSenator.party})</a>
+                                </Typography>
+                            </CardContent>
+                        </div>
+                    </Card>
+                </div>
+            </ThemeProvider>
         )
     } else {
         return null;

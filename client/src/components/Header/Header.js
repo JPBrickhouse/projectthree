@@ -1,7 +1,7 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import { Box, Typography } from "@material-ui/core";
 import 'fontsource-roboto';
-import { makeStyles, ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles, ThemeProvider, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 import "./Header.css";
 
@@ -9,25 +9,16 @@ import "./Header.css";
 function Header() {
 
     // Material UI theme constant
-    const theme = createMuiTheme({
+    let theme = createMuiTheme({
         typography: {
             fontFamily: ['Anton',
                 'sans serif'
             ].join(','),
             fontSize: 22,
-
         },
-        palette: {
-            primary: {
-                light: '#9A8C98',
-                main: '#4A4E69',
-                text: '#22223B'
-            },
-            secondary: {
-                main: '#C9ADA7'
-            }
-        }
     });
+    theme = responsiveFontSizes(theme);
+
     const useStyles = makeStyles(() => ({
         header: {
             maxWidth: '100%',

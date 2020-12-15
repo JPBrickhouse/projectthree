@@ -3,16 +3,11 @@ import React, { useState } from "react";
 // Importing destructured methods from react-router-dom
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles, ThemeProvider, createMuiTheme, styled } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Divider from '@material-ui/core/Divider';
+
+import { Grid, Card, CardContent, Box } from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 import 'fontsource-roboto';
+
 
 
 // Importing the ApiCall component (which gets the Covid19 data [cases, etc.])
@@ -29,18 +24,6 @@ import SearchButton from "../SearchButton/SearchButton"
 
 function NewsCard() {
 
-    // const theme = createMuiTheme({
-    //     palette: {
-    //         primary: {
-    //             light: '#9A8C98',
-    //             main: '#4A4E69',
-    //             text: '#22223B'
-    //         },
-    //         secondary: {
-    //             main: '#C9ADA7'
-    //         }
-    //     }
-    // })
     const useStyles = makeStyles((theme) => ({
         root: {
             border: 0,
@@ -58,7 +41,6 @@ function NewsCard() {
         },
         controls: {
             width: 'fit-content',
-            border: `1px solid ${theme.palette.main}`,
             display: 'flex',
             alignItems: 'center',
             paddingLeft: theme.spacing(1),
@@ -137,24 +119,28 @@ function NewsCard() {
     }
 
     return (
-        <div>
-            <Grid>
-                <Card className={classes.root}>
-                    <div className={classes.details}>
-                        <CardContent className={classes.controls}>
-                            <SearchBar onChange={handleNewsInputChange} />
+        <div style={{ width: '100' }}>
+            <Box display="flex" p={1}>
+                <Box p={1} flexShrink={1} flexGrow={1}>
+                    <Grid>
+                        <Card className={classes.root}>
+                            <div className={classes.details}>
+                                <CardContent className={classes.controls}>
+                                    <SearchBar onChange={handleNewsInputChange} />
 
-                            {/* The SearchButton component, which is a simple button. Passing down the
-                                handleSubmit function as a prop with onClick, so any button click will
-                                run the handleSubmit function */}
-                            <SearchButton onClick={handleNewsSubmit} />
+                                    {/* The SearchButton component, which is a simple button. Passing down the
+                                        handleSubmit function as a prop with onClick, so any button click will
+                                        run the handleSubmit function */}
+                                    <SearchButton onClick={handleNewsSubmit} />
 
-                            {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                            <NewsDisplay newsResultProp={newsResultObject} />
-                        </CardContent>
-                    </div>
-                </Card>
-            </Grid>
+                                    {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                                    <NewsDisplay newsResultProp={newsResultObject} />
+                                </CardContent>
+                            </div>
+                        </Card>
+                    </Grid>
+                </Box>
+            </Box>
         </div>
     );
 }

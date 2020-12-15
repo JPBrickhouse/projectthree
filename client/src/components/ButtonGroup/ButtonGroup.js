@@ -69,12 +69,14 @@ function BtnGrp() {
     }));
 
     const FactsButton = styled(Button)({
-        maxWidth: '100%',
         boxShadow: '0 3px 5px 2px #4A4E69',
         color: 'white',
         height: 200,
         border: '2px solid #4A4E69',
         opacity: 0.9,
+        "&:hover": {
+            boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+        }
     },
     );
 
