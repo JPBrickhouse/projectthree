@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react"
 
 import { makeStyles, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
-import { Card, CardContent, Divider, ThemeProvider, Typography } from "@material-ui/core";
+import { Box, Card, CardContent, Divider, ThemeProvider, Typography } from "@material-ui/core";
 import 'fontsource-roboto';
 
 // This is the SenatorApiCall function and we are passing it props
@@ -32,32 +32,26 @@ function SenatorApiCall(props) {
         },
         root: {
             border: 0,
+            height: '100%',
+        },
+        controls: {
+            width: '100%',
             display: 'flex',
+            alignItems: 'center',
+            transition: '0.3s'
         },
         details: {
             flexDirection: 'column',
-        },
-
-        controls: {
-            width: 'fit-content',
             flex: '1 0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            // paddingLeft: theme.spacing(1),
-            // paddingBottom: theme.spacing(1),
         },
-        // cover: {
-        //     height: 150,
-        //     margin: "10px auto"
-        // },
         typography: {
             listStyleType: 'none',
-            margin: '20px',
+            fontSize: 15,
             alignText: 'center',
             [theme.breakpoints.between('xs', 'sm')]: {
                 letterSpacing: 0,
                 textTransform: 'capitalize',
-                paddingLeft: '5px'
+                fontSize: 10
             }
         }
     }))
@@ -95,19 +89,23 @@ function SenatorApiCall(props) {
         return (
             <ThemeProvider theme={theme}>
                 <div style={{ width: '100%' }}>
-                    <Card className={classes.root}>
-                        <div className={classes.details}>
-                            <CardContent className={classes.controls}>
-                                <Typography className={classes.typography} variant="overline" component="ul">
-                                    <a href={"https://www.twitter.com/" + stateAndSenatorData.firstSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.firstSenator.name} ({stateAndSenatorData.firstSenator.party})</a>
-                                    <Divider orientation="vertical" flexItem />
-                                </Typography>
-                                <Typography className={classes.typography} variant="overline" component="ul">
-                                    <a href={"https://www.twitter.com/" + stateAndSenatorData.secondSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.secondSenator.name} ({stateAndSenatorData.secondSenator.party})</a>
-                                </Typography>
-                            </CardContent>
-                        </div>
-                    </Card>
+                    <Box display="flex" p={1}>
+                        <Box p={1} flexShrink={1} flexGrow={1}>
+                            <Card className={classes.root}>
+                                <div className={classes.details}>
+                                    <CardContent className={classes.controls}>
+                                        <Typography className={classes.typography} variant="overline" component="ul">
+                                            <a href={"https://www.twitter.com/" + stateAndSenatorData.firstSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.firstSenator.name} ({stateAndSenatorData.firstSenator.party})</a>
+                                            <Divider orientation="vertical" flexItem />
+                                        </Typography>
+                                        <Typography className={classes.typography} variant="overline" component="ul">
+                                            <a href={"https://www.twitter.com/" + stateAndSenatorData.secondSenator.twitter_id} target="_blank" rel="noopener noreferrer"> {stateAndSenatorData.secondSenator.name} ({stateAndSenatorData.secondSenator.party})</a>
+                                        </Typography>
+                                    </CardContent>
+                                </div>
+                            </Card>
+                        </Box>
+                    </Box>
                 </div>
             </ThemeProvider>
         )

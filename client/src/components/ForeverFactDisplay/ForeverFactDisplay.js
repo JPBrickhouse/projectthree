@@ -39,16 +39,16 @@ function ForeverFactDisplay(props) {
         },
         root: {
             border: 0,
-            display: 'flex',
             height: '100%',
-            padding: '0'
         },
         details: {
             flexDirection: 'column',
             flex: '1 0 auto',
+
         },
         controls: {
             width: '100%',
+            alignItems: 'center',
             display: 'flex',
             transition: "0.3s",
             [theme.breakpoints.down('sm')]: {
@@ -57,12 +57,9 @@ function ForeverFactDisplay(props) {
                 paddingLeft: '5px'
             },
             [theme.breakpoints.between('md', 'lg')]: {
-                paddingLeft: '0px'
+                paddingLeft: '0px',
+                alignItems: 'center',
             }
-        },
-        cover: {
-            height: 150,
-            margin: "10px auto",
         },
         typography: {
             listStyleType: 'none',
