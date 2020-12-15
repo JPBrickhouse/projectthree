@@ -27,41 +27,39 @@ function TrendingNews(props) {
         },
         root: {
             border: 0,
-            height: '220px',
-            width: '300px',
+            display: 'flex',
+            height: '100%',
             padding: '0'
         },
         details: {
             flexDirection: 'column',
-            color: '#1D3557',
-            padding: '10px 20px',
-            backgroundColor: '#F1FAEE',
-            [theme.breakpoints.down('sm')]: {
-                padding: '5px 15px',
-            },
-        },
-        content: {
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '10px 40px 30px 20px',
             flex: '1 0 auto',
-            [theme.breakpoints.down('xs')]: {
-                padding: '5px 10px',
-                flex: 'none',
-            },
-
+            padding: '5px',
+            alignItems: 'flex-start',
         },
         controls: {
             width: '100%',
             display: 'flex',
+            // padding: '10px 30px 30px 0px',
+            transition: "0.3s",
+            [theme.breakpoints.down('xs')]: {
+                padding: '5px 10px 10px 0px',
+                flex: 'none',
+            },
+            [theme.breakpoints.down('sm')]: {
+                paddingTop: '10px',
+            },
+            [theme.breakpoints.between('md', 'lg')]: {
+                paddingLeft: '0px',
+            }
         },
         typography: {
-            // listStyleType: 'none',
             lineHeight: 1,
+            letterSpacing: 0,
+            padding: '10px 30px 10px 0px',
             [theme.breakpoints.between('xs', 'sm')]: {
-                letterSpacing: 0,
                 textTransform: 'capitalize',
-                padding: '5px'
+                padding: '5px 10px 10px 0px',
             }
         }
     }));
@@ -80,39 +78,35 @@ function TrendingNews(props) {
                 <Box display="flex" p={1}>
                     <Box p={1} flexShrink={1} flexGrow={1}>
                         <Card>
-                            <CardContent style={{ padding: '0px' }}>
-                                <Card className={classes.controls} style={{ width: '100%' }}>
-                                    <div className={classes.content}>
-                                        {/* Column 1 - Full Search History from EVERYONE */}
-                                        <Typography className={classes.typography} variant="overline" gutterBottom>
-                                            Everyone's searches:
-                                        </Typography>
-                                        <Typography className={classes.typography} style={{ marginLeft: "0px" }} variant="overline" component="ul">
-                                            {fullSearchHistory.map(searchItem =>
-                                                <TrendingSingle
-                                                    key={searchItem._id}
-                                                    newsSearch={searchItem.newsSearch}
-                                                    unitedState={searchItem.unitedState}
-                                                />
-                                            )}
-                                        </Typography>
-                                    </div>
-                                    <Divider orientation="vertical" flexItem />
-                                    <div className={classes.content}>
-                                        {/* Column 2 - Search History from only the USER */}
-                                        <Typography variant="overline" className={classes.typography} gutterBottom>
-                                            Your searches:
+                            <CardContent classNames={classes.details} style={{ width: '100%', padding: '0px' }}>
+                                <Card className={classes.controls} style={{ padding: '0px' }}>
+                                    {/* Column 1 - Full Search History from EVERYONE */}
+                                    <Typography className={classes.typography} variant="overline" display="relative">
+                                        Everyone's searches:
                                                 </Typography>
-                                        <Typography style={{ marginLeft: "0px" }} variant="overline" className={classes.typography} component="ul">
-                                            {userSearchHistory.map(searchItem =>
-                                                <TrendingSingle
-                                                    key={searchItem._id}
-                                                    newsSearch={searchItem.newsSearch}
-                                                    unitedState={searchItem.unitedState}
-                                                />
-                                            )}
-                                        </Typography>
-                                    </div>
+                                    <Typography className={classes.typography} style={{ marginLeft: "0px" }} variant="overline" display="relative" component="ul">
+                                        {fullSearchHistory.map(searchItem =>
+                                            <TrendingSingle
+                                                key={searchItem._id}
+                                                newsSearch={searchItem.newsSearch}
+                                                unitedState={searchItem.unitedState}
+                                            />
+                                        )}
+                                    </Typography>
+                                    <Divider orientation="vertical" flexItem />
+                                    {/* Column 2 - Search History from only the USER */}
+                                    <Typography variant="overline" className={classes.typography} gutterBottom>
+                                        Your searches:
+                                                        </Typography>
+                                    <Typography style={{ marginLeft: "2px" }} variant="overline" className={classes.typography} component="ul">
+                                        {userSearchHistory.map(searchItem =>
+                                            <TrendingSingle
+                                                key={searchItem._id}
+                                                newsSearch={searchItem.newsSearch}
+                                                unitedState={searchItem.unitedState}
+                                            />
+                                        )}
+                                    </Typography>
                                 </Card>
                             </CardContent>
                         </Card>

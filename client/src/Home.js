@@ -293,8 +293,7 @@ function Home(props) {
                                             https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
                                             <BtnGrp />
                                         </Grid>
-                                    </Grid>
-                                    <Grid container spacing={2} justify="center">
+
                                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                             {/* RECTANGLE 3 - Forever Fact DISPLAY */}
                                             <Grid container spacing={2} justify="center" alignItems="center" style={{ marginTop: '0px' }}>

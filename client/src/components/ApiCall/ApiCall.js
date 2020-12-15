@@ -22,35 +22,27 @@ import 'fontsource-roboto';
 
 // This is the ApiCall function and we are passing it props
 function ApiCall(props) {
-    let theme = createMuiTheme({
-        palette: {
-            primary: {
-                light: '#9A8C98',
-                main: '#4A4E69',
-                text: '#22223B'
-            },
-            secondary: {
-                main: '#C9ADA7'
-            }
-        }
-    });
+    let theme = createMuiTheme();
     theme = responsiveFontSizes(theme);
 
     const useStyles = makeStyles((theme) => ({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920,
+            },
+        },
         root: {
             border: 0,
             height: '100%'
         },
         controls: {
-            width: 'fit-content',
-            display: 'flex',
+            width: '100%',
             alignItems: 'center',
             transition: "0.3s",
-            padding: '20px 30px 10px 30px',
-            [theme.breakpoints.down('sm')]: {
-                padding: '10px 15px 5px 15px',
-
-            }
         },
         details: {
             flexDirection: 'column',
@@ -59,10 +51,11 @@ function ApiCall(props) {
         typography: {
             listStyleType: 'none',
             lineHeight: 1,
+            padding: '10px 20px 10px 0px',
             [theme.breakpoints.between('xs', 'sm')]: {
                 letterSpacing: 0,
                 textTransform: 'capitalize',
-                padding: '10px',
+                padding: '10px 15px 5px 15px',
             }
         }
     }))
