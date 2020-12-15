@@ -56,7 +56,7 @@ function TrendingNews(props) {
             display: 'flex',
         },
         typography: {
-            listStyleType: 'none',
+            // listStyleType: 'none',
             lineHeight: 1,
             [theme.breakpoints.between('xs', 'sm')]: {
                 letterSpacing: 0,
