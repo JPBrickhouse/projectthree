@@ -259,9 +259,11 @@ function Home(props) {
         <Router>
 
             <ThemeProvider theme={theme}>
+
                 <div className="App" style={{ width: '100%' }}>
                     <Box display="flex" p={1}>
                         <Box p={1} flexShrink={1} flexGrow={1}>
+
                             <div className={classes.root}>
                                 <CssBaseline />
 
@@ -270,7 +272,9 @@ function Home(props) {
                                         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                             <Header />
                                         </Grid>
+
                                     </Grid>
+
                                     <Grid container spacing={2} justify="center">
                                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
 
@@ -281,12 +285,12 @@ function Home(props) {
 
                                             {/* RECTANGLE 2 - Forever Fact buttons */}
                                             {/* Forever fact buttons. Clicking the buttons will activate the router switch.
-                                                        This will route to the relevant display, which will contain relevant forever facts.
-                                                        Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
-                                                        This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
-                                                        We're creating a link (equivalent to <a>), and then button a button "inside" that link
-                                                        Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
-                                                        https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
+                                            This will route to the relevant display, which will contain relevant forever facts.
+                                            Wrapping buttons with router links: https://stackoverflow.com/questions/42463263/wrapping-a-react-router-link-in-an-html-button
+                                            This solution is entirely valid HTML, but still "works", and here's essentially what is happening:
+                                            We're creating a link (equivalent to <a>), and then button a button "inside" that link
+                                            Per this stackoverflow thread, you nest most things inside <a> tags, but not everything:
+                                            https://stackoverflow.com/questions/6393827/can-i-nest-a-button-element-inside-an-a-using-html5/6393863#6393863 */}
                                             <BtnGrp />
                                         </Grid>
 
@@ -294,73 +298,75 @@ function Home(props) {
                                             {/* RECTANGLE 3 - Forever Fact DISPLAY */}
                                             <Grid container spacing={2} justify="center" alignItems="center" style={{ marginTop: '0px' }}>
                                                 <Card className={classes.card} variant="outlined">
-                                                    <CardActionArea>
-                                                        <CardContent>
 
-                                                            <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                                                                State Information
-                                                                </Typography>
-
-                                                            {/* Ternary Operator to determine whether or not to display the state flag */}
-                                                            {stateOfTheStates.abbreviation ? (<img className={classes.cover} src={'http://flags.ox3.in/svg/us/' + stateOfTheStates.abbreviation + '.svg'} />) : (<div></div>)}
-
-                                                            <Switch>
-                                                                <Route exact path="/covidforeverfact">
-                                                                    {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
-                                                                        Passing down the unitedStateSelected as a prop */}
-                                                                    <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                                </Route>
-
-                                                                <Route exact path="/senatorforeverfact">
-                                                                    {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
-                                                                        Passing down the unitedStateSelected as a prop */}
-                                                                    <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                                </Route>
-
-                                                                <Route exact path="/generalforeverfact">
-                                                                    {/* Population and general facts component, which will grab local data from our us-states.json file */}
-                                                                    <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
-                                                                </Route>
-                                                            </Switch>
-                                                        </CardContent>
-                                                    </CardActionArea>
-                                                </Card>
-                                            </Grid>
-
-                                            {/* RECTANGLE 3.5 - Trending News Display  */}
-                                            <Grid container spacing={2} justify="center" alignItems="center">
-                                                <Card className={classes.card} variant="outlined" style={{ marginTop: 10, marginBottom: 10, height: '220px', width: '300px' }}>
                                                     <CardContent>
-                                                        <Typography className={classes.typography} variant="h6" style={{ fontWeight: "bold" }}>
-                                                            Trending News
-                                                        </Typography>
-                                                        <TrendingNewsCard fullsearch={fullSearchHistoryObject} usersearch={userSearchHistoryObject} />
-                                                    </CardContent>
-                                                </Card>
-                                            </Grid>
 
-                                            {/* RECTANGLE 4 - News Search and Display */}
-                                            <Grid container spacing={2} justify="center" alignItems="center">
-                                                <Card className={classes.card} variant="outlined">
-                                                    <CardContent variant="outlined">
                                                         <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                                                            Search By Topic
+                                                            State Information
                                                             </Typography>
-                                                        {/* The SearchBar component, which is a simple input form. Passing down the
-                                                                    handleInputChange function as a prop with onChange, so any change
-                                                                    will run the handleInputChange function*/}
-                                                        <SearchBar onChange={handleNewsInputChange} />
 
-                                                        {/* The SearchButton component, which is a simple button. Passing down the
-                                                                    handleSubmit function as a prop with onClick, so any button click will
-                                                                    run the handleSubmit function */}
-                                                        <SearchButton onClick={handleNewsSubmit} />
+                                                        {/* Ternary Operator to determine whether or not to display the state flag */}
+                                                        {stateOfTheStates.abbreviation ? (<img className={classes.cover} src={process.env.PUBLIC_URL + '/localStateFlags/' + stateOfTheStates.abbreviation + '.svg'} />) : (<div></div>)}
 
-                                                        {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                                                        <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
+                                                        <Switch>
+                                                            <Route exact path="/covidforeverfact">
+                                                                {/* The ApiCall component, which makes an ajax call to the Covid Data API, and displays relevant case data.
+                                                                    Passing down the unitedStateSelected as a prop */}
+                                                                <ApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                            </Route>
+
+                                                            <Route exact path="/senatorforeverfact">
+                                                                {/* The SenatorApiCall component, which makes an ajax call to the Pro Publica API, and displays relevant state senator data.
+                                                                    Passing down the unitedStateSelected as a prop */}
+                                                                <SenatorApiCall usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                            </Route>
+
+                                                            <Route exact path="/generalforeverfact">
+                                                                {/* Population and general facts component, which will grab local data from our us-states.json file */}
+                                                                <ForeverFactDisplay usStateInformation={stateOfTheStates} usstateAbbrev={stateOfTheStates.abbreviation} />
+                                                            </Route>
+                                                        </Switch>
                                                     </CardContent>
+
                                                 </Card>
+
                                             </Grid>
+                                        </Grid>
+
+
+                                        {/* RECTANGLE 3.5 - Trending News Display  */}
+                                        <Grid container spacing={2} justify="center" alignItems="center">
+                                            <Card className={classes.card} variant="outlined" style={{ marginTop: 10, marginBottom: 10, height: '220px', width: '300px' }}>
+                                                <CardContent>
+                                                    <Typography className={classes.typography} variant="h6" style={{ fontWeight: "bold" }}>
+                                                        Trending News
+                                                    </Typography>
+                                                    <TrendingNewsCard fullsearch={fullSearchHistoryObject} usersearch={userSearchHistoryObject} />
+                                                </CardContent>
+                                            </Card>
+                                        </Grid>
+
+                                        {/* RECTANGLE 4 - News Search and Display */}
+                                        <Grid container spacing={2} justify="center" alignItems="center">
+                                            <Card className={classes.card} variant="outlined">
+                                                <CardContent variant="outlined">
+                                                    <Typography variant="h5" style={{ fontWeight: "bold" }}>
+                                                        Search By Topic
+                                                        </Typography>
+                                                    {/* The SearchBar component, which is a simple input form. Passing down the
+                                                    handleInputChange function as a prop with onChange, so any change
+                                                    will run the handleInputChange function*/}
+                                                    <SearchBar onChange={handleNewsInputChange} />
+
+                                                    {/* The SearchButton component, which is a simple button. Passing down the
+                                                    handleSubmit function as a prop with onClick, so any button click will
+                                                    run the handleSubmit function */}
+                                                    <SearchButton onClick={handleNewsSubmit} />
+
+                                                    {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                                                    <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
+                                                </CardContent>
+                                            </Card>
                                         </Grid>
                                     </Grid>
                                 </Container>
