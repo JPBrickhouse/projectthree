@@ -1,12 +1,8 @@
 // Importing React and Hooks
 import React, { useEffect, useState } from "react"
 
-import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import { makeStyles, ThemeProvider, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import { Box, Card, CardContent, Typography } from "@material-ui/core";
 import 'fontsource-roboto';
 
 // -----------------------------------------------------------
@@ -26,7 +22,7 @@ import 'fontsource-roboto';
 
 // This is the ApiCall function and we are passing it props
 function ApiCall(props) {
-    const theme = createMuiTheme({
+    let theme = createMuiTheme({
         palette: {
             primary: {
                 light: '#9A8C98',
@@ -37,37 +33,38 @@ function ApiCall(props) {
                 main: '#C9ADA7'
             }
         }
-    })
+    });
+    theme = responsiveFontSizes(theme);
+
     const useStyles = makeStyles((theme) => ({
         root: {
-            // minHeight: '100vh',
             border: 0,
-            display: 'flex',
-        },
-        details: {
-            display: 'flex',
-            flexDirection: 'column',
-        },
-        content: {
-            flex: '1 0 auto',
-        },
-        media: {
-            height: '150px',
-            // maxWidth: '200px',
-            // display: 'flex'
+            height: '100%'
         },
         controls: {
             width: 'fit-content',
-            border: `1px solid ${theme.palette.main}`,
             display: 'flex',
             alignItems: 'center',
-            paddingLeft: theme.spacing(1),
-            paddingBottom: theme.spacing(1),
+            transition: "0.3s",
+            padding: '20px 30px 10px 30px',
+            [theme.breakpoints.down('sm')]: {
+                padding: '10px 15px 5px 15px',
+
+            }
         },
-        cover: {
-            height: 150,
-            margin: "auto"
+        details: {
+            flexDirection: 'column',
+            flex: '1 0 auto',
         },
+        typography: {
+            listStyleType: 'none',
+            lineHeight: 1,
+            [theme.breakpoints.between('xs', 'sm')]: {
+                letterSpacing: 0,
+                textTransform: 'capitalize',
+                padding: '10px',
+            }
+        }
     }))
 
     const classes = useStyles();
@@ -94,20 +91,26 @@ function ApiCall(props) {
     }, [props.usstateAbbrev])
 
     return (
-        <Card className={classes.root}>
-            <CardActionArea>
-                <div className={classes.details}>
-                    <CardContent className={classes.controls}>
-                        <Typography style={{ listStyleType: "none" }} variant="body1" color="textSecondary" component="ul">
-                            <li>Positive cases: {stateAndCovidData.covidData.positive}</li>
-                            <li>Currently hospitalized: {stateAndCovidData.covidData.hospitalizedCurrently}</li>
-                            <li>Current deaths: {stateAndCovidData.covidData.death}</li>
-                        </Typography>
-                    </CardContent>
-                    {/* -------------------------------------------- */}
-                </div>
-            </CardActionArea>
-        </Card>
+        <ThemeProvider theme={theme}>
+            <div
+                className={classes.root}
+                style={{ width: '100%' }}>
+                <Box display="flex" p={1}>
+                    <Box p={1} flexShrink={1} flexGrow={1}>
+                        <Card className={classes.details}>
+                            <CardContent className={classes.controls}>
+                                <Typography className={classes.typography} variant="overline" display="block" component="ul">
+                                    <li>Positive cases: {stateAndCovidData.covidData.positive}</li>
+                                    <li>Currently hospitalized: {stateAndCovidData.covidData.hospitalizedCurrently}</li>
+                                    <li>Current deaths: {stateAndCovidData.covidData.death}</li>
+                                </Typography>
+                            </CardContent>
+                            {/* -------------------------------------------- */}
+                        </Card>
+                    </Box>
+                </Box>
+            </div>
+        </ThemeProvider>
     )
 }
 

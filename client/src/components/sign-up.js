@@ -5,9 +5,10 @@ import axios from 'axios'
 const styles = {
 	backgroundContainer: {
 		backgroundImage: `url(${process.env.PUBLIC_URL + '/images/usflag.jpg'})`,
+		border: 0,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
-		minHeight: '80vh',
+		minHeight: '100vh',
 	}
 }
 
