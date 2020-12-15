@@ -332,42 +332,43 @@ function Home(props) {
                                                 </Card>
 
                                             </Grid>
-                                        </Grid>
 
 
-                                        {/* RECTANGLE 3.5 - Trending News Display  */}
-                                        <Grid container spacing={2} justify="center" alignItems="center">
-                                            <Card className={classes.card} variant="outlined" style={{ marginTop: 10, marginBottom: 10, }}>
-                                                <CardContent>
-                                                    <Typography className={classes.typography} variant="h6" style={{ fontWeight: "bold" }}>
-                                                        Trending News
+
+                                            {/* RECTANGLE 3.5 - Trending News Display  */}
+                                            <Grid container spacing={2} justify="center" alignItems="center">
+                                                <Card className={classes.card} variant="outlined" style={{ marginTop: 10, marginBottom: 10, height: '220px', width: '300px' }}>
+                                                    <CardContent>
+                                                        <Typography className={classes.typography} variant="h6" style={{ fontWeight: "bold" }}>
+                                                            Trending News
                                                     </Typography>
-                                                    <TrendingNewsCard fullsearch={fullSearchHistoryObject} usersearch={userSearchHistoryObject} />
-                                                </CardContent>
-                                            </Card>
-                                        </Grid>
+                                                        <TrendingNewsCard fullsearch={fullSearchHistoryObject} usersearch={userSearchHistoryObject} />
+                                                    </CardContent>
+                                                </Card>
+                                            </Grid>
 
-                                        {/* RECTANGLE 4 - News Search and Display */}
-                                        <Grid container spacing={2} justify="center" alignItems="center">
-                                            <Card className={classes.card} variant="outlined">
-                                                <CardContent variant="outlined">
-                                                    <Typography variant="h5" style={{ fontWeight: "bold" }}>
-                                                        Search By Topic
+                                            {/* RECTANGLE 4 - News Search and Display */}
+                                            <Grid container spacing={2} justify="center" alignItems="center">
+                                                <Card className={classes.card} variant="outlined">
+                                                    <CardContent variant="outlined">
+                                                        <Typography variant="h5" style={{ fontWeight: "bold" }}>
+                                                            Search By Topic
                                                         </Typography>
-                                                    {/* The SearchBar component, which is a simple input form. Passing down the
+                                                        {/* The SearchBar component, which is a simple input form. Passing down the
                                                     handleInputChange function as a prop with onChange, so any change
                                                     will run the handleInputChange function*/}
-                                                    <SearchBar onChange={handleNewsInputChange} />
+                                                        <SearchBar onChange={handleNewsInputChange} />
 
-                                                    {/* The SearchButton component, which is a simple button. Passing down the
+                                                        {/* The SearchButton component, which is a simple button. Passing down the
                                                     handleSubmit function as a prop with onClick, so any button click will
                                                     run the handleSubmit function */}
-                                                    <SearchButton onClick={handleNewsSubmit} />
+                                                        <SearchButton onClick={handleNewsSubmit} />
 
-                                                    {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
-                                                    <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
-                                                </CardContent>
-                                            </Card>
+                                                        {/* The NewsDisplay, which takes the news articles from the New York Times and displays them */}
+                                                        <NewsDisplay newsResultProp={newsResultObject} searchHistorySingle={mostRecentSearch} />
+                                                    </CardContent>
+                                                </Card>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                 </Container>
