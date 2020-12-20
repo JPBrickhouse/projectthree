@@ -47,7 +47,9 @@ class Nav extends Component {
 
               {/* Title of the App */}
               <Typography variant="h3">
-                Simple State
+                <Link to="/">
+                  Simple State
+                </Link>
               </Typography>
 
               {/* Tagline of the App */}
@@ -55,8 +57,8 @@ class Nav extends Component {
                 "No Alternatives - Just Facts"
               </Typography>
 
-              <div className='col-6'>
 
+              <div className='col-6'>
                 {/* Ternary operator, checking if the user is logged in
                 If logged in, display the currentUsername and a logout button
                 If not logged in, display nothing */}
@@ -83,7 +85,11 @@ class Nav extends Component {
                 ) : (
                     <div></div>
                   )}
+              </div>
 
+              {/* Link to the "About Us" route and page */}
+              <div>
+                <Link to="/aboutTheTeam">Meet the Developers!</Link>
               </div>
 
             </Toolbar>

@@ -2,11 +2,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 // components
 import Signup from './components/sign-up';
 import LoginForm from './components/login-form';
 import Nav from "./components/Nav";
 import Home from "./Home"
+import AboutUs from "./AboutUs"
 
 class App extends Component {
   constructor() {
@@ -70,7 +72,7 @@ class App extends Component {
             if the user is logged in or not. If the user is logged in, it serves the
             <Home/> page. If the user is not logged in, it serves the <LoginForm/> page */}
             <Route exact path='/' render={() =>
-              this.state.loggedIn ? (<Home currentUsername={this.state.username}/>) : (<LoginForm updateUser={this.updateUser} />)} />
+              this.state.loggedIn ? (<Home currentUsername={this.state.username} />) : (<LoginForm updateUser={this.updateUser} />)} />
 
             {/* The login route and page */}
             <Route
@@ -80,6 +82,9 @@ class App extends Component {
 
             {/* The signup route and page */}
             <Route path='/signup' render={() => <Signup />} />
+
+            {/* The "About Us" route and page */}
+            <Route path="/aboutTheTeam" render={() => <AboutUs />} />
 
           </Switch>
         </div>

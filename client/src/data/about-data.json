@@ -1,0 +1,34 @@
+[
+    {
+        "firstName": "Josh",
+        "lastName": "Brickman",
+        "githubPicURL": "https://avatars1.githubusercontent.com/u/63511774?s=400&u=399ed99b324c1fb9db704a3d130080e7f66b3924&v=4",
+        "linkedIn": "https://www.linkedin.com/in/joshpbrickman/",
+        "github": "https://github.com/JPBrickhouse",
+        "portfolio": "https://jpbrickhouse.github.io/portfolio/"
+    },
+    {
+        "firstName": "Bauyrzhan",
+        "lastName": "Kereibayev",
+        "githubPicURL": "https://avatars3.githubusercontent.com/u/67169437?s=400&u=10dbe49b08b727f95f99c03ff4b4d15894c44bac&v=4",
+        "linkedIn": "https://www.linkedin.com/in/bauyrzhan-kereibayev-659404a6/",
+        "github": "https://github.com/kbaur775",
+        "portfolio": "https://kbaur775.github.io/Portfolio/"
+    },
+    {
+        "firstName": "Alison",
+        "lastName": "Barber",
+        "githubPicURL": "https://avatars2.githubusercontent.com/u/65191513?s=400&u=15a68f173f47251d3707299a5b96f5baf374e34c&v=4",
+        "linkedIn": "https://www.linkedin.com/in/alison-barber-b6b45444/",
+        "github": "https://github.com/ARBarber0510",
+        "portfolio": "https://arbarber0510.github.io/portfolio/"
+    },
+    {
+        "firstName": "Jeffrey",
+        "lastName": "Kornfeld",
+        "githubPicURL": "https://avatars0.githubusercontent.com/u/64879485?s=400&u=ba3756f28ff272abd23d3e8dc1ad406871dfefed&v=4",
+        "linkedIn": "https://www.linkedin.com/in/jeffrey-kornfeld/",
+        "github": "https://github.com/jeffreykornfeld",
+        "portfolio": "https://jeffreykornfeld.github.io/Portfolio/"
+    }
+]
