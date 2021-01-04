@@ -88,9 +88,9 @@ class Nav extends Component {
               </div>
 
               {/* Link to the "About Us" route and page */}
-              <div>
+              {/* <div>
                 <Link to="/aboutTheTeam">Meet the Developers!</Link>
-              </div>
+              </div> */}
 
             </Toolbar>
           </AppBar>
