@@ -84,7 +84,7 @@ class App extends Component {
             <Route path='/signup' render={() => <Signup />} />
 
             {/* The "About Us" route and page */}
-            {/* <Route path="/aboutTheTeam" render={() => <AboutUs />} /> */}
+            <Route path="/aboutTheTeam" render={() => <AboutUs />} />
 
           </Switch>
         </div>

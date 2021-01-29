@@ -1,6 +1,6 @@
 // import React from "react";
 // import Button from "@material-ui/core/Button";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
 
 import React, { Component } from 'react';
@@ -33,54 +33,60 @@ class Nav extends Component {
       });
   }
 
+
+
   render() {
     const loggedIn = this.props.loggedIn;
     const currentUsername = this.props.currentUsername;
     // console.log('navbar render, props: ');
     // console.log(this.props);
 
+
     return (
       <div>
         <header className='navbar App-header' id='nav-container'>
-          <AppBar position="sticky" style={{ background: "#457b9d", margin: "0px", padding: "0px 50px" }}>
+          <AppBar position="static" style={{ background: "#457b9d", boxShadow: 'none', flexGrow: '1' }}>
             <Toolbar>
 
               {/* Title of the App */}
-              <Typography variant="h3">
+              <Typography variant="h4" component="h3">
                 <Link to="/">
                   Simple State
                 </Link>
               </Typography>
 
               {/* Tagline of the App */}
-              <Typography variant="h6">
+              <Typography variant="body1">
                 "No Alternatives - Just Facts"
               </Typography>
 
 
-              <div className='col-6'>
+              <div
+                style={{ marginLeft: '18px', justifyContent: 'flex-end', alignItems: 'flex-end', flexGrow: '1' }}
+              >
                 {/* Ternary operator, checking if the user is logged in
                 If logged in, display the currentUsername and a logout button
                 If not logged in, display nothing */}
                 {loggedIn ? (
-                  <div>
+                  <div >
                     {/* Tagline of the App */}
-                    <Typography variant="body1" style={{ display: 'flex-end' }}>
+                    <Typography variant="body2"
+                    >
                       Hello {currentUsername}!
                     </Typography>
 
                     {/* Logout Button */}
-                    <button>
-                      <section className='navbar-section'>
-                        <Link
-                          to='#'
-                          className='btn btn-link text-secondary'
-                          onClick={this.logout}
-                        >
-                          <span className='text-secondary'>Logout!</span>
-                        </Link>
-                      </section>
-                    </button>
+                    <Button size="small" color="secondary">
+                      {/* <section className='navbar-section'> */}
+                      <Link
+                        to='#'
+                        className='btn btn-link text-secondary'
+                        onClick={this.logout}
+                      >
+                        <span className='text-secondary'>Logout!</span>
+                      </Link>
+                      {/* </section> */}
+                    </Button>
                   </div>
                 ) : (
                     <div></div>
@@ -88,9 +94,12 @@ class Nav extends Component {
               </div>
 
               {/* Link to the "About Us" route and page */}
-              {/* <div>
-                <Link to="/aboutTheTeam">Meet the Developers!</Link>
-              </div> */}
+              <div>
+                <Button size="small" color="secondary"
+                >
+                  <Link to="/aboutTheTeam">Meet the Developers!</Link>
+                </Button>
+              </div>
 
             </Toolbar>
           </AppBar>
