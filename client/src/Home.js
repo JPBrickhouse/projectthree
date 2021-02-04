@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import "./styles/Home.css"
 
 // Importing styles from Material-ui
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles, ThemeProvider, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import { Box, Container, Grid, Card, CardContent, CssBaseline, Typography, BottomNavigation } from "@material-ui/core";
 import 'fontsource-roboto';
@@ -48,7 +47,7 @@ import { CardActionArea } from "@material-ui/core";
 function Home(props) {
 
     // Material UI theme constant
-    const theme = createMuiTheme({
+    let theme = createMuiTheme({
         palette: {
             primary: {
                 light: '#9A8C98',
@@ -69,8 +68,8 @@ function Home(props) {
             },
         },
 
-    })
-
+    });
+    theme = responsiveFontSizes(theme);
 
     // useStyles const for beginning styles
     const useStyles = makeStyles(() => ({
