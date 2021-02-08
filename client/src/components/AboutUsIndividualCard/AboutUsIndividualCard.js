@@ -19,6 +19,10 @@ const useStyles = makeStyles({
     media: {
         height: 300,
     },
+    centerLinks: {
+        textAlign: 'center',
+        justifyContent: 'center',
+    }
 });
 
 const AboutUsIndividualCard = (props) => {
@@ -37,15 +41,15 @@ const AboutUsIndividualCard = (props) => {
                         <Typography variant="h5">{props.firstName}</Typography>
                         <Typography variant="h5">{props.lastName}</Typography>
                         <CardActionArea>
-                            <CardActions>
+                            <CardActions className={classes.centerLinks}>
                                 <Button size="small" color="primary">
-                                    <Link href={props.linkedIn}>LinkedIn</Link>
+                                    <Link href={props.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</Link>
                                 </Button>
                                 <Button size="small" color="primary">
-                                    <Link href={props.github}>GitHub</Link>
+                                    <Link href={props.github} target="_blank" rel="noopener noreferrer">GitHub</Link>
                                 </Button>
                                 <Button size="small" color="primary">
-                                    <Link href={props.portfolio}>Portfolio</Link>
+                                    <Link href={props.portfolio} target="_blank" rel="noopener noreferrer">Portfolio</Link>
                                 </Button>
                             </CardActions>
                         </CardActionArea>
